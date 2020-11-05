@@ -1,0 +1,28 @@
+444
+Autore5
+[Bk!D]y;47mPgqq*va2hzh;#bTVhFk4B-Z:8T*?TbUk
+18-09-2016 18:21
+-1
+Autore999
+C6N_STn3:R_H!,@uaScYQtU[Amb!4e{Rc.,dd@v/9V;]-
+16-07-2008 16:23
+444
+Autore77
+z!Bqb$iS_$qzKdeZrX)Z]RFYvV=Q_HDaAphLfK4zz;yzpZ&
+16-03-2015 10:33
+118
+Autore77
+Linux ubuntu 5.4.0-52-generic #57-Ubuntu SMP x86_64 x86_64 x86_64 GNU/Linux
+10-11-2001 00:00
+333
+Autore0
+Advanced Linux Sound Architecture Driver Version k5.4.0-52-generic.
+23-05-2017 15:21
+1
+Autore-141-caratteri (dovrebbe sollevare)
+fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt nopl nonstop#
+12-07-2020 10:11
+2
+Autore-140-caratteri (NON dovrebbe sollevare)
+fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt nopl nonstop
+12-07-2020 10:12
