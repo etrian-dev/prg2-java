@@ -1,3 +1,7 @@
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 class Post {
     /*
     @overview:  Post è una 6-tupla (sei campi ordinati) di valori, di cui solo l'ultimo
@@ -25,8 +29,7 @@ class Post {
     private Integer id;
     private String author;
     private String text;
-    private Date date;
-    private Time tm;
+    private Date timestamp;
     private Set<String> likes;
     
     /* costruttore con tutti i parametri necessari ad istanziare il Post con 0 like*/
@@ -43,9 +46,9 @@ class Post {
                 Altrimenti se text.length() > 140 solleva TextOverflowException.
                 Altrimenti crea un'istanza di Post con un set di like vuoto e gli altri parametri.
     */
-    public Post(Integer id, String author, String text, Date date, Time tm) 
+    public Post(Integer id, String author, String text, Date timestamp)
     throws TextOverflowException, NullPointerException {
-        if(id == null || author == null || text == null || date == null || tm == null) {
+        if (id == null || author == null || text == null || timestamp == null) {
             throw new NullPointerException();
         }
         if(text.length() > 140) {
@@ -55,9 +58,8 @@ class Post {
         this.id = id;
         this.author = author;
         this.text = text;
-        this.date = date;
-        this.tm = tm;
-        this.likes = HashSet<String>(); //inizializzo ad un set di likes vuoto
+        this.timestamp = timestamp;
+        this.likes = new HashSet<String>(); //inizializzo ad un set di likes vuoto
     }
     
     /* 
@@ -68,7 +70,9 @@ class Post {
     @requires:  true
     @effects:   ritorna una copia di this.id
     */
-    public Integer getId() {return new Integer(this.id);}
+    public Integer getId() {
+        return (Integer) this.id.intValue();
+    }
     /*
     @requires:  true
     @effects:   ritorna una copia di this.author
@@ -85,7 +89,9 @@ class Post {
                 {this.likes.get(i) : for all i. 0 <= i < this.likes.size() this.likes.get(i) != null}
                 (cioè tutti gli elementi non nulli conteuti nel Set)
     */
-    public String[] getLikes() {return this.likes.toArray();}
+    public String[] getLikes() {
+        return (String[]) this.likes.toArray();
+    }
     
     /* metodi modificatori */
     /*
@@ -111,8 +117,12 @@ class Post {
     @effects:   ritorna, su una String, la rappresentazione di this nel formato espresso da AF
     */
     public String toString() {
-        String s =  "( " + this.id + ",\n" + this.author + ",\n" 
-                    + this.text + ",\n" + this.date + ",\n" + this.tm + ",\n"
-                    + "{" + this.likes.toString() + "} )\n";
+        String s = "( " + this.id + ", " + this.author + ", \"" + this.text + "\", " + this.timestamp.toString()
+                + ", {";
+        for (String elem : this.likes) {
+            s += elem + ", ";
+        }
+        s += "} )\n";
+        return s;
     }
 };
