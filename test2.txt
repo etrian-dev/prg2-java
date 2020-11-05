@@ -26,3 +26,12 @@ fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush 
 Autore-140-caratteri (NON dovrebbe sollevare)
 fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt nopl nonstop
 12-07-2020 10:12
+fine
+Autore-140-caratteri (NON dovrebbe sollevare)
+Autore-141-caratteri (dovrebbe sollevare)
+Autore999
+Autore1
+Autore45
+Autore77
+Bianca
+Mario

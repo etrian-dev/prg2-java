@@ -95,17 +95,21 @@ class Post {
     
     /* metodi modificatori */
     /*
-    @requires:  follower != null
-    @throws:    NullPointerException
+    @requires:  follower != null && this.author.equals(follower) == true
+    @throws:    NullPointerException, SelfLikeException
     @modifies:  this
     @effects:   Se follower == null, allora solleva NullPointerException().
+                Altrimenti se this.author.equals(follower) == true
+                solleva SelfLikeException
                 Altrimenti se 
                 (this.author.equals(follower) == true) || (this.likes.contains(follower) == true)
                 allora non fa niente.
                 Altrimenti esegue this.likes.add(follower)
     */
-    public void addLike(String follower) {
+    public void addLike(String follower) throws NullPointerException, SelfLikeException {
         if(follower == null) throw new NullPointerException();
+        if (this.author.equals(follower))
+            throw new SelfLikeException();
         
         if((this.author.equals(follower) == false) && (this.likes.contains(follower) == false)) {
             this.likes.add(follower);
