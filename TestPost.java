@@ -92,12 +92,39 @@ class TestPost {
             }
         }
 
-        s.close();
-
         /* stampa (di nuovo) tutti i post inseriti con i relativi likes */
         System.out.println("***Lista dei post inseriti***");
         for (i = 0; i < pList.size(); i++) {
             System.out.print("pList[" + i + "] = " + pList.get(i).toString());
         }
+
+        s.close();
+
+        SocialNetwork net = new SocialNetwork(pList);
+        SocialNetwork net2 = new SocialNetwork();
+        assert net.equals(net2) == false;
+        for (Post pp : pList) {
+            net2.addPost(pp);
+        }
+        assert net.equals(net2) == true;
+
+        Date d = new Date();
+        try {
+            Post another = new Post(777, "Qualcuno", "TestTestTest", d);
+            net2.addPost(another);
+        } catch (TextOverflowException ex) {
+            System.out.println("caught: " + ex);
+        }
+
+        assert net.equals(net2) == true;
+
+        for (Post pp : pList) {
+            try {
+                net2.rmPost(pp);
+            } catch (NoSuchPostException ex) {
+                System.out.println("caught: " + ex);
+            }
+        }
+        assert net.equals(net2) == false;
     }
 };

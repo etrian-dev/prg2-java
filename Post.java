@@ -2,7 +2,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-class Post {
+public class Post {
     /*
     @overview:  Post è una 6-tupla (sei campi ordinati) di valori, di cui solo l'ultimo
                 è modificabile (un insieme modificabile di String):
@@ -26,6 +26,7 @@ class Post {
                     && x.likes.get(j) != x.author           (autore del post non può mettere like ad esso)
     */
 
+    /* variabili d'istanza (private) */
     private Integer id;
     private String author;
     private String text;
@@ -92,7 +93,17 @@ class Post {
     public String[] getLikes() {
         return (String[]) this.likes.toArray();
     }
-    
+
+    /*
+    @requires:  true
+    @effects:   ritorna una copia di
+                {this.likes.get(i) : for all i. 0 <= i < this.likes.size() this.likes.get(i) != null}
+                (cioè tutti gli elementi non nulli conteuti nel Set)
+    */
+    public Set<String> getLikesSet() {
+        return new HashSet<String>(this.likes);
+    }
+
     /* metodi modificatori */
     /*
     @requires:  follower != null && this.author.equals(follower) == true
@@ -128,5 +139,9 @@ class Post {
         }
         s += "} )\n";
         return s;
+    }
+
+    public boolean equals(Post other) {
+        return this.id == other.getId();
     }
 };
