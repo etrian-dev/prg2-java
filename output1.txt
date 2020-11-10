@@ -1,0 +1,108 @@
+New Post: ( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {} )
+***Lista dei post inseriti***
+pList[0] = ( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {} )
+***Aggiungo dei likes***
+Chi mette like al post:
+( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {} )
+?
+liker = Me
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
+Chi mette like al post:
+( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {} )
+?
+liker = Tu
+Chi mette like al post:
+( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, } )
+?
+liker = Me
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
+Chi mette like al post:
+( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, } )
+?
+liker = Tu
+Chi mette like al post:
+( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, } )
+?
+liker = Lei
+Chi mette like al post:
+( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, Lei, } )
+?
+liker = Essi
+Chi mette like al post:
+( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, Lei, Essi, } )
+?
+liker = Essi
+Chi mette like al post:
+( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, Lei, Essi, } )
+?
+liker = Essi
+Chi mette like al post:
+( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, Lei, Essi, } )
+?
+liker = Loro
+Chi mette like al post:
+( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, Lei, Loro, Essi, } )
+?
+liker = Noi
+Chi mette like al post:
+( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, Lei, Loro, Essi, Noi, } )
+?
+liker = Me
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
+Chi mette like al post:
+( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, Lei, Loro, Essi, Noi, } )
+?
+liker = Me
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
+***Lista dei post inseriti***
+pList[0] = ( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, Lei, Loro, Essi, Noi, } )
+*******net*******
+posts = [
+	( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, Lei, Loro, Essi, Noi, } )
+	]
+followers(Me) = [Tu, Lei, Loro, Essi, Noi]
+
+following(Tu) = [Me]
+following(Lei) = [Me]
+following(Loro) = [Me]
+following(Essi) = [Me]
+following(Noi) = [Me]
+
+*******net2*******
+posts = [
+	( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, Lei, Loro, Essi, Noi, } )
+	( 1663771554, Qualcuno, "TestTestTest", Tue Nov 10 18:25:05 CET 2020, {Qualcun altro, } )
+	]
+followers(Me) = [Tu, Lei, Loro, Essi, Noi]
+followers(Qualcuno) = [Qualcun altro]
+
+following(Tu) = [Me]
+following(Lei) = [Me]
+following(Loro) = [Me]
+following(Essi) = [Me]
+following(Qualcun altro) = [Qualcuno]
+following(Noi) = [Me]
+
+*******net*******
+posts = [
+	( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, Lei, Loro, Essi, Noi, } )
+	]
+followers(Me) = [Tu, Lei, Loro, Essi, Noi]
+
+following(Tu) = [Me]
+following(Lei) = [Me]
+following(Loro) = [Me]
+following(Essi) = [Me]
+following(Noi) = [Me]
+
+*******net2*******
+posts = [
+	]
+
+following(Tu) = []
+following(Lei) = []
+following(Loro) = []
+following(Essi) = []
+following(Qualcun altro) = []
+following(Noi) = []
+

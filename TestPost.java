@@ -29,13 +29,10 @@ class TestPost {
         ArrayList<Post> pList = new ArrayList<Post>();
         Post p = null;
 
-        Integer id;
         String auth, text;
         Date dt = new Date();
         // legge una lista di post fino alla stringa fine
         while (!s.hasNext("fine")) {
-            id = s.nextInt();
-            s.skip("\n"); // scarta \n lasciato dalla lettura precedente
             auth = s.nextLine();
             text = s.nextLine(); // per semplicità non sono consentite \n nel testo
 
@@ -51,7 +48,7 @@ class TestPost {
             eccezioni lo aggiungo alla lista e stampo il Post con il metodo
             toString()*/
             try {
-                p = new Post(id, auth, text, dt);
+                p = new Post(auth, text, dt);
                 pList.add(p);
                 System.out.print("New Post: " + p.toString());
             } catch (Exception ex) {
@@ -100,31 +97,62 @@ class TestPost {
 
         s.close();
 
+        /*
+            costruisco due istanze di SocialNetwork: una inizializzata da pList
+            l'altra vuota
+        */
         SocialNetwork net = new SocialNetwork(pList);
         SocialNetwork net2 = new SocialNetwork();
-        assert net.equals(net2) == false;
-        for (Post pp : pList) {
-            net2.addPost(pp);
-        }
-        assert net.equals(net2) == true;
 
-        Date d = new Date();
+        //devono essere diverse
+        assert net.equals(net2) == false;
+
+        // aggiungo a net2 tutti i post di pList tramite il metodo apposito
         try {
-            Post another = new Post(777, "Qualcuno", "TestTestTest", d);
-            net2.addPost(another);
-        } catch (TextOverflowException ex) {
+            for (Post pp : pList) {
+                net2.addPost(pp);
+            }
+        } catch (Exception ex) {
             System.out.println("caught: " + ex);
         }
 
+        // perciò ora devono risultare uguali
         assert net.equals(net2) == true;
 
-        for (Post pp : pList) {
-            try {
-                net2.rmPost(pp);
-            } catch (NoSuchPostException ex) {
-                System.out.println("caught: " + ex);
-            }
+        // creo un nuovo post e lo aggiungo a net2
+        // voglio provocare un conflitto di id
+        Date d = new Date();
+        Post another = null;
+        try {
+            another = new Post("Qualcuno", "TestTestTest", d);
+            another.addLike("Qualcun altro");
+            net2.addPost(another);
+        } catch (Exception ex) {
+            System.out.println("caught: " + ex);
         }
+
+        // allora adesso net e net2 devono essere diverse
         assert net.equals(net2) == false;
+
+        // stampo net e net2 tramite il metodo toString
+        System.out.println("*******net*******\n" + net.toString());
+        System.out.println("*******net2*******\n" + net2.toString());
+
+        // rimuovo ogni post da net2
+        try {
+            for (Post pp : pList) {
+                net2.rmPost(pp);
+            }
+            net2.rmPost(another);
+        } catch (Exception ex) {
+            System.out.println("caught: " + ex);
+        }
+
+        // chiaramente sono diverse
+        assert net.equals(net2) == false;
+
+        // stampo net e net2 tramite il metodo toString (net2 deve essere vuota)
+        System.out.println("*******net*******\n" + net.toString());
+        System.out.println("*******net2*******\n" + net2.toString());
     }
 };

@@ -1,24 +1,18 @@
-55
 Autore1
 Lorem Ipsum
 11-12-2010 03:33
-10
 Autore2
-Progetto Java 2020: realizzata la classe Post e il main per il testing
+Progetto Java 2020: realizzata la classe Post
 05-11-2020 16:21
-661
 Autore3
 La classe SocialNetwork ha bisogno di AddPost() e RemovePost()
 03-05-2011 09:44
-10001
 Autore1
-Pellentesque vestibulum dui laoreet justo ornare suscipit.
+Pellentesque vestibulum dui laoreet.
 01-01-2021 05:05
-777
 Autore3
 Pellentesque eros odio, lacinia eu hendrerit vel, venenatis vitae turpis. Nulla molestie dui pharetra elit sodales pretium. Quisque lacinia sed massa ac gravida. Nullam vulputate dolor purus, id volutpat ante varius vel. Donec dignissim ultrices odio, id fermentum neque semper ac. Aliquam vel tempus ipsum, ac condimentum lectus. Etiam eu rhoncus mi. Integer posuere erat at eros elementum pulvinar. Nullam placerat enim non rhoncus auctor.
 16-03-2018 13:10
-0
 Autore0
 test
 01-01-1970 18:18
