@@ -5,12 +5,24 @@ import java.util.Set;
 
 public class Post {
     /*
-    @overview:  Post è una 6-tupla (cinque campi ordinati) di valori, di cui solo l'ultimo
-                è modificabile (un insieme modificabile di String):
+    @overview:  Post è un tipo di dato astratto modificabile rappresentato da una quintupla (cinque campi ordinati) di valori, di cui solo l'ultimo
+                è modificabile (un insieme modificabile):
                 Elemento tipico: (id, auth, text, timestamp, {s_1, ..., s_n})
-    
+    */
+    /* variabili d'istanza (private) */
+    private Integer id;
+    private String author;
+    private String text;
+    private Date timestamp;
+    private Set<String> likes;
+
+    /* variabile statica (private) per generare id */
+    private static Random rng = new Random();
+
+    /*
     Funzione di astrazione
     AF(x) = (x.id, x.author, x.text, x.timestamp, x.likes)
+            
     Invariante di rappresentazione
     IR(x) = x != null 
             && x.id != null
@@ -18,23 +30,15 @@ public class Post {
             && x.text != null
             && x.timestamp != null 
             && x.likes != null
-            && for all i. 0 <= i x.likes.size()
+            && ∀ i. 0 <= i < x.likes.size()
                 x.likes.get(i) != null
                 && x.likes.get(i) != x.author
             && x.text.length() <= 140
-            && for all i. 0 <= i < x.likes.size() - 1
-                for all j. i < j < x.likes.size()
+            && ∀ i. 0 <= i < x.likes.size() - 1
+                ∀ j. i < j < x.likes.size()
                     x.likes.get(i) != x.likes.get(j)
     */
 
-    /* variabili d'istanza (private) */
-    private Integer id;
-    private String author;
-    private String text;
-    private Date timestamp;
-    private Set<String> likes;
-    
-    /* costruttore con tutti i parametri necessari ad istanziare un post con 0 like */
     /*
     @requires:  author != null
                 && text != null
@@ -51,11 +55,12 @@ public class Post {
         if (author == null || text == null || timestamp == null) {
             throw new NullPointerException();
         }
-        if (text.length() > 140) {
-            throw new TextOverflowException();
-        }
         // genero un id con valori in [0, Integer.MAX_VALUE - 1]
-        this.id = new Random().nextInt(Integer.MAX_VALUE - 1);
+        this.id = rng.nextInt(Integer.MAX_VALUE - 1);
+        /* voglio usare l'id nell'eccezione, allora devo generarlo prima */
+        if (text.length() > 140) {
+            throw new TextOverflowException(this.id);
+        }
         this.author = author;
         this.text = text;
         this.timestamp = timestamp;
@@ -69,9 +74,8 @@ public class Post {
             throw new NullPointerException();
         }
         if(text.length() > 140) {
-            throw new TextOverflowException();
+            throw new TextOverflowException(id);
         }
-        // genero un id con valori in [0, Integer.MAX_VALUE - 1]
         this.id = id;
         this.author = author;
         this.text = text;
@@ -150,12 +154,8 @@ public class Post {
         } else {
             cut_text = this.text;
         }
-        String s = "( " + this.id + ", " + this.author + ", \"" + cut_text + "\", " + this.timestamp.toString()
-                + ", {";
-        for (String elem : this.likes) {
-            s += elem + ", ";
-        }
-        s += "} )\n";
+        String s = "(" + this.id + ", " + this.author + ", \"" + cut_text + "\", " + this.timestamp.toString() + ", "
+                + this.likes + ")\n";
         return s;
     }
 

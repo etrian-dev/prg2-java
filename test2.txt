@@ -13,15 +13,15 @@ Linux ubuntu 5.4.0-52-generic #57-Ubuntu SMP x86_64 x86_64 x86_64 GNU/Linux
 Autore0
 Advanced Linux Sound Architecture Driver Version k5.4.0-52-generic.
 23-05-2017 15:21
-Autore-141-caratteri (dovrebbe sollevare)
+Autore-141-caratteri
 fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt nopl nonstop#
 12-07-2020 10:11
-Autore-140-caratteri (NON dovrebbe sollevare)
+Autore-140-caratteri
 fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt nopl nonstop
 12-07-2020 10:12
 fine
-Autore-140-caratteri (NON dovrebbe sollevare)
-Autore-141-caratteri (dovrebbe sollevare)
+Autore-140-caratteri
+Autore-141-caratteri
 Autore999
 Autore1
 Autore45

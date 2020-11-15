@@ -1,0 +1,48 @@
+X
+00-00: VT1708S Analog : VT1708S Analog : playback 1 : capture 1
+07-04-2020 18:33
+Y
+G0: system timer : 4000.000us (10000000 ticks)
+06-11-2020 17:14
+Z
+VmallocTotal:   34359738367 kB
+17-01-2020 16:13
+W
+Mlocked:              96 kB
+10-10-2020 09:21
+X
+Buffers:           76260 kB
+14-03-2020 19:55
+Y
+reg00: base=0x000000000 (    0MB), size= 2048MB, count=1: write-back
+19-13-2020 19:17
+X
+1: POSIX  ADVISORY  WRITE 10365 08:05:4327102 1073741826 1073742335
+31-12-2020 00:00
+X
+7        0     100044 loop07        1     100084 loop17        2      56648 loop27        3      56692 loop37        4     166776 loop47        5     261700 loop57        6     223124 loop67        7       2220 loop78        0  488386584 sda8        1     102400 sda18        2  246941696 sda28        3   51200000 sda38        4          1 sda48        5  154271744 sda511        0    1048575 sr07        8      43828 loop87        9       2220 loop97       10      63580 loop107       11      20224 loop117       12      44188 loop127       13     297548 loop137       14      49628 loop14 7       15      51888 loop15
+11-11-2020 18:19
+U
+P0PC	  S4	*disabled  pci:0000:00:14.4
+12-12-0000 17:19
+Z
+00000000-00000000 : Reserved
+13-05-2020 19:20
+fine
+Like1
+Like2
+Like3
+Like4
+Y
+X
+Z
+Z
+Z
+Like5
+X
+X
+X
+X
+X
+X
+X
