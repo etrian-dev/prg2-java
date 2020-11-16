@@ -1,7 +1,5 @@
 
 /* testa la classe Post */
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,14 +17,8 @@ class Test {
     public static void main(String[] args) {
         SocialNetwork MicroBlog = new SocialNetwork();
 
-        /* Creo uno Scanner che legge il file passato come argomento */
-        File ifile = new File(args[0]);
-        Scanner s = null;
-        try {
-            s = new Scanner(ifile);
-        } catch (FileNotFoundException ex) {
-            System.out.println("Nessun file di test trovato. Riprovare.");
-        }
+        /* Creo uno Scanner che legge da stdin */
+        Scanner s = new Scanner(System.in);
 
         /* leggo una lista di Post dal file */
         ArrayList<Post> pList = PostReader(s);

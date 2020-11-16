@@ -21,6 +21,9 @@ public class SocialNetwork {
     private Map<String, Set<String>> followers;
     private List<Post> posts;
 
+    /* variabile statica per determinare il numero di like per essere un influencer */
+    private static int likeTreshold = 10;
+
     /*
     Funzione di astrazione
     AF(x) = (
@@ -273,13 +276,14 @@ public class SocialNetwork {
         return networkOnList;
     }
 
-    /*  Ritorna la lista degli utenti in this che sono seguiti da più persone di quante 
-        ne seguano. (posso limitarmi a considerare le chiavi di this.following in quanto
-        se nessuno ha messo like ad un utente, allora non può essere un influencer)
+    /*  Ritorna la lista (senza duplicati) degli utenti in this che sono seguiti da più
+        persone di quante ne seguano. (posso limitarmi a considerare le chiavi di 
+        this.following in quanto se nessuno ha messo like ad un utente, allora non può 
+        essere un influencer).
     
     @requires:  true
-    @effects:   Ritorna [this.following.get(i) : 
-                            0 <= i < this.following.keySet().size()
+    @effects:   Ritorna [i : 
+                            i ∊ this.following.keySet()
                             && #{this.following.get(i)} > #{this.followers.get(i)}
                         ]
     */
@@ -290,6 +294,23 @@ public class SocialNetwork {
                 influencers.add(user);
             }
             else if (this.following.get(user).size() > this.followers.get(user).size()) {
+                influencers.add(user);
+            }
+        }
+        return influencers;
+    }
+
+    /*  Ritorna la lista (senza duplicati) degli utenti nella mappa di followers
+        che sono seguiti da più di likeTreshold utenti.
+    
+    @requires:  followers != null
+    @throws:    Se followers == null solleva NullPointer
+    @effects:   Ritorna [i : i ∊ followers.keySet()&& #{followers.get(i)} > likeTreshold]
+    */
+    public static List<String> influencers(Map<String, Set<String>> followers) {
+        List<String> influencers = new ArrayList<String>();
+        for (String user : followers.keySet()) {
+            if (!influencers.contains(user) && followers.get(user).size() > likeTreshold) {
                 influencers.add(user);
             }
         }
@@ -308,8 +329,7 @@ public class SocialNetwork {
     /*
     @requires:  ps != null
     @throws:    Se ps == null solleva NullPointerException
-    @effects:   Ritorna
-                {ps.get(i).getAuthor() : 0 <= i < ps.size()}
+    @effects:   Ritorna {ps.get(i).getAuthor() : 0 <= i < ps.size()}
     */
     public Set<String> getMentionedUsers(List<Post> ps) throws NullPointerException {
         if (ps == null)
@@ -326,7 +346,10 @@ public class SocialNetwork {
     @requires:  username != null
     @throws:    Se username == null solleva NullPointerException
     @effects:   ritorna
-                [this.posts.get(i) : 0 <= i < this.posts.length() && this.posts.get(i).getAuthor().equals(username)]
+                [this.posts.get(i) :
+                     0 <= i < this.posts.length()
+                     && this.posts.get(i).getAuthor().equals(username)
+                ]
     */
     public List<Post> writtenBy(String username) throws NullPointerException {
         if (username == null)
@@ -336,10 +359,11 @@ public class SocialNetwork {
 
     /*
     @requires:  username != null && ps != null
-    @throws:    NullPointerException
-    @effects:   Se (username == null || ps == null) solleva NullPointerException,       
-                altrimenti ritorna
-                [ps.get(i) : 0 <= i < ps.length() && ps.get(i).getAuthor().equals(username)]
+    @throws:    Se (username == null || ps == null) solleva NullPointerException
+    @effects:   Ritorna [ps.get(i) : 
+                            0 <= i < ps.length()
+                            && ps.get(i).getAuthor().equals(username)
+                        ]
     */
     public List<Post> writtenBy(List<Post> ps, String username) throws NullPointerException {
         if (username == null || ps == null)
@@ -373,7 +397,8 @@ public class SocialNetwork {
                                 && this.posts.get(i).getText().contains(words.get(j))
                         }
                 }
-                (il fatto di aver considerato un insieme è solo per non ammettere duplicati)
+                (il fatto di aver considerato un insieme è solo per non ammettere 
+                duplicati: in realtà ritorna una lista come da specifica)
             
     */
     public List<Post> containing(List<String> words) throws NullPointerException {
@@ -401,14 +426,16 @@ public class SocialNetwork {
         return new ArrayList<Post>(this.posts);
     }
 
-    /* sovrascrivo il metodo equals per confrontare istanze di SocialNetwork
-    @requires:  other != null (e IR(other) == true)
-    @throws:    Se other == null solleva NullPointerException
+    /*  sovrascrivo il metodo equals per confrontare istanze di SocialNetwork
+        Se other == null ritorna false
+    
+    @requires:  true
     @effects:   Ritorna il risultato (boolean) della valuazione di
     
-                (∀ (i, j). i ∊ this.following.keySet() && i ∊ other.following.keySet()
-                    && j ∊ this.followers.keySet() && j ∊ other.followers.keySet()
-                )
+                other == null
+                && (∀ (i, j). i ∊ this.following.keySet() && i ∊ other.following.keySet()
+                        && j ∊ this.followers.keySet() && j ∊ other.followers.keySet()
+                    )
                 && (∀ i. i ∊ this.following.keySet()
                     && this.following.get(i).equals(other.following.get(i))
                     && this.followers.get(i).equals(other.followers.get(i))
@@ -416,6 +443,9 @@ public class SocialNetwork {
                 && this.posts.equals(other.getPosts())
     */
     public boolean equals(SocialNetwork other) {
+        // chiaramente this != null
+        if (other == null)
+            return false;
         List<Post> otherPosts = other.getPosts();
         Map<String, Set<String>> otherFollowers = other.guessFollowers(otherPosts);
         Map<String, Set<String>> otherFollowing = other.guessFollowing(otherPosts);
