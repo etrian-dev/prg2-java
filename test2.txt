@@ -14,7 +14,7 @@ Autore0
 Advanced Linux Sound Architecture Driver Version k5.4.0-52-generic.
 23-05-2017 15:21
 Autore-141-caratteri
-fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt nopl nonstop#
+fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt nopl zzzzzzzz
 12-07-2020 10:11
 Autore-140-caratteri
 fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt nopl nonstop
@@ -28,3 +28,7 @@ Autore45
 Autore77
 Bianca
 Mario
+fine
+GNU
+zzzzzzzz
+@@

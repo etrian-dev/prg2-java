@@ -184,7 +184,7 @@ public class SocialNetwork {
                     )
                 allora rimuovo la chiave post.getAuthor() dalla mappa followers
     */
-    private void rmFromMaps(Post post) {
+    private void rmFromMaps(Post post) throws NullPointerException {
         if (post == null)
             throw new NullPointerException();
         boolean noMorePosts = true;
@@ -280,7 +280,7 @@ public class SocialNetwork {
                 ->
                 {ps.get(k).getAuthor() : 0 <= k < ps.size() && ps.get(k).getLikes().contains(i)}
     */
-    public Map<String, Set<String>> guessFollowers(List<Post> ps) {
+    public Map<String, Set<String>> guessFollowers(List<Post> ps) throws NullPointerException {
         if (ps == null)
             throw new NullPointerException();
         // parto da una mappa vuota e la aggiorno con ogni post della lista
@@ -292,7 +292,7 @@ public class SocialNetwork {
     }
 
     // analoga alla precedente, cambia solo la mappa che viene aggiornata
-    public Map<String, Set<String>> guessFollowing(List<Post> ps) {
+    public Map<String, Set<String>> guessFollowing(List<Post> ps) throws NullPointerException {
         if (ps == null)
             throw new NullPointerException();
         Map<String, Set<String>> m = new HashMap<String, Set<String>>();
@@ -507,7 +507,7 @@ public class SocialNetwork {
 
     /*  
     Sovrascrivo il metodo toString
-    
+
     @requires:  true
     @effects:   Ritorna una String contenente la rappresentazione di this 
                     in accordo con la AF

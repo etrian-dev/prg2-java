@@ -2,7 +2,7 @@ Autore1
 Lorem Ipsum
 11-12-2010 03:33
 Autore2
-Progetto Java 2020: realizzata la classe Post
+classe Post realizzata: Progetto Java 2020
 05-11-2020 16:21
 Autore3
 La classe SocialNetwork ha bisogno di AddPost() e RemovePost()
@@ -27,3 +27,7 @@ Maria
 Silvia
 Autore999
 Autore0
+fine
+classe
+Lorem
+Ipsum

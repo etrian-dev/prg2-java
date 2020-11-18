@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
@@ -48,7 +49,7 @@ class Test {
         Random rng = new Random();
         String liker;
         if (pList.size() > 0) {
-            while (s.hasNext()) {
+            while (!s.hasNext("fine")) {
                 // scelgo a caso un indice della lista (quindi un post)
                 j = rng.nextInt(pList.size());
                 liker = s.nextLine();
@@ -60,8 +61,8 @@ class Test {
                     System.out.println("Caught: " + ex);
                 }
             }
+            s.skip("fine\n");
         }
-        s.close();
 
         System.out.println("***lista di post + like***");
         /* stampa tutti i post inseriti con i relativi like e prova ad aggiungerli a MicroBlog*/
@@ -145,12 +146,12 @@ class Test {
                 && !(MicroBlog.getPosts().size() > 0 && MicroBlog.equals(net2));
 
         /* stampo la mappa di followers e following indotte dalla lista di post */
-        System.out.println("***map[user] -> {likedByUser}***");
+        System.out.println("***test guessFollowers() con stessa lista***");
         Map<String, Set<String>> m = MicroBlog.guessFollowers(pList);
         for (String k : m.keySet()) {
             System.out.println(k + "=" + m.get(k));
         }
-        System.out.println("***map[user] -> {likedUser}***");
+        System.out.println("***test guessFollowing() con stessa lista***");
         m = MicroBlog.guessFollowing(pList);
         for (String k : m.keySet()) {
             System.out.println(k + "=" + m.get(k));
@@ -160,7 +161,7 @@ class Test {
         System.out.println("***Influencers di MicroBlog***\n" + MicroBlog.influencers());
 
         /*  
-            Verifico con deglia assert che per ogni autore della lista di post devo 
+            Verifico con degli assert che per ogni autore della lista di post devo 
             avere lo stesso output sia che chiami writtenBy su una lista di post, 
             sia su this (perchè pList è uguale). Lo stesso vale per getMentionedUsers()
         */
@@ -168,6 +169,19 @@ class Test {
             assert MicroBlog.writtenBy(pList, p.getAuthor()).equals(MicroBlog.writtenBy(p.getAuthor()));
             assert MicroBlog.getMentionedUsers(pList).equals(MicroBlog.getMentionedUsers());
         }
+
+        /* leggo la lista di parole da cercare all'interno dei post (sempre dal test) */
+        List<String> someWords = new ArrayList<String>();
+        while (s.hasNext()) {
+            someWords.add(s.nextLine());
+        }
+        s.close();
+
+        System.out.println("***test di containing()***\nwords = " + someWords + "\nMicroBlog.containing(words) = \n[");
+        for (Post p : MicroBlog.containing(someWords)) {
+            System.out.print(p);
+        }
+        System.out.println("]");
     }
 
     /* per leggere post secondo il loro formato */
