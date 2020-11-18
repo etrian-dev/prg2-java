@@ -7,22 +7,25 @@ import java.util.Set;
 
 public class SocialNetwork {
     /*
-    @overview:  SocialNetwork è un tipo di dato astratto definito da due funzioni parziali mutabili sia nel dominio che nel codominio ed una lista
+    @overview:  SocialNetwork è un tipo di dato astratto modificabile definito una tripla:
+    due funzioni parziali mutabili sia nel dominio che nel codominio ed una lista di Post
     elemento tipico:    (
                             followers: user -> {user_1, ..., user_n},
                             following: user -> {user*_1, ..., user*_n},
                             [v_1, ..., v_n]
-      
-                      )
+                        )
     */
 
     /* variabili d'istanza (private) */
-    private Map<String, Set<String>> following;
-    private Map<String, Set<String>> followers;
+    private Map<String, Set<String>> following; // associa ad ogni utente gli utenti che segue
+    private Map<String, Set<String>> followers; // associa ad ogni utente gli utenti che lo seguono
     private List<Post> posts;
 
-    /* variabile statica per determinare il numero di like per essere un influencer */
-    private static int likeTreshold = 10;
+    /*
+    costante statica che fissa il numero minimo di like che un utente deve 
+    ricevere per essere considerato un influencer
+    */
+    private static final int likeTreshold = 10;
 
     /*
     Funzione di astrazione
@@ -37,10 +40,20 @@ public class SocialNetwork {
             && x.posts != null
             && ∀ i. 0 <= i < x.posts.size()
                 IR_Post(x.posts.get(i)) == true
-            && ∀ i. i ∊ {x.posts.get(j).getLikes() : 0 <= j < x.posts.size()}
-                x.followers.get(i) = {x.posts.get(k).getLikes() : 0 <= k < x.posts.size() && x.posts.get(k).getAuthor().equals(i)}
-            && ∀ i. i ∊ {x.posts.get(j).getAuthor() : 0 <= j < x.posts.size()}
-                x.following.get(i) = {x.posts.get(k).getLikes() : 0 <= k < x.posts.size() && x.posts.get(k).getAuthor().equals(i)}
+            && x.following.keySet() =  {x.posts.get(j).getLikes() : 0 <= j < x.posts.size()}
+            && ∀ i. i ∊ x.following.keySet()
+                    && x.following.get(i) = 
+                        {x.posts.get(k).getAuthor() : 
+                            0 <= k < x.posts.size()
+                            && x.posts.get(k).getLikes().contains(i)
+                        }
+            && x.followers.keySet() =  {x.posts.get(j).getAuthor() : 0 <= j < x.posts.size()}
+            && ∀ i. i ∊ x.followers.keySet()
+                    && x.followers.get(i) = 
+                        {x.posts.get(k).getLikes() : 
+                            0 <= k < x.posts.size() 
+                            && x.posts.get(k).getAuthor().equals(i)
+                        }
     */
 
     /*
@@ -54,9 +67,9 @@ public class SocialNetwork {
     
     */
     public SocialNetwork() {
+        this.posts = new ArrayList<Post>();
         this.following = new HashMap<String, Set<String>>();
         this.followers = new HashMap<String, Set<String>>();
-        this.posts = new ArrayList<Post>();
     }
 
     /*
@@ -64,16 +77,18 @@ public class SocialNetwork {
     @throws:    Se ps == null solleva NullPointerException
     @modifies:  this
     @effects:   Crea un'istanza di SocialNetwork indotta dai post in ps, ovvero
-                la tripla formata dalle mappe di followers, di following e la lista di post
+                la tripla formata dalle mappe followers, following e la lista di post:
+        
                 (
                     this.followers:
-                    ∀ j ∊ {ps.get(i).getLikes() : 0 <= i < ps.size()}
-                        j -> {ps.get(k).getAuthor() : 0 <= k < ps.size() && ps.get(k).getLikes().contains(j)
-    }
+                    ∀ j ∊ {ps.get(i).getAuthor() : 0 <= i < ps.size()}
+                    la mappa associa
+                    j -> {ps.get(k).getLikes() : 0 <= k < ps.size() && ps.get(k).getAuthor().equals(j)}
                     ,
                     this.following:
-                    ∀ j ∊ {ps.get(i).getAuthor() : 0 <= i < ps.size()}
-                        j -> {ps.get(k).getLikes() : 0 <= k < ps.size() && ps.get(k).getAuthor().equals(j)}
+                    ∀ j ∊ {ps.get(i).getLikes() : 0 <= i < ps.size()}
+                    la mappa associa
+                    j -> {ps.get(k).getAuthor() : 0 <= k < ps.size() && ps.get(k).getLikes().contains(j)}
                     ,
                     ps
                 )
@@ -81,70 +96,115 @@ public class SocialNetwork {
     public SocialNetwork(List<Post> ps) throws NullPointerException {
         if (ps == null)
             throw new NullPointerException();
+        // prima creo delle mappe vuote e la lista vuota
+        this.posts = new ArrayList<Post>();
         this.following = new HashMap<String, Set<String>>();
         this.followers = new HashMap<String, Set<String>>();
-        this.posts = new ArrayList<Post>();
-
+        // Poi aggiorno le mappe e la lista con i dati di ps
         for (Post p : ps) {
-            // aggiorna le mappe con i dati di p
-            updateFollowing(p, this.following);
-            updateFollowers(p, this.followers);
-            // aggiunge p alla lista di post
             this.posts.add(p);
+            updateFollowers(p, this.followers);
+            updateFollowing(p, this.following);
         }
     }
 
-    /** Aggiorno la mappa di chi ha messo like (segue) l'autore del post */
+    /** Aggiorno la mappa di chi segue l'autore del post */
     /*
     @requires:  post != null && followAuth != null
     @throws:    Se post == null o followAuth == null solleva NullPointerException
     @modifies:  this
-    @effects:   Se {followAuth.get(post.getAuthor())} != ∅
-                    aggiorno il codominio di followAuth.get(post.getAuthor() a
-                    {followAuth.get(post.getAuthor())} U post.getLikes()
-                Altrimenti aggiungo a followAuth la coppia chiave -> valore
-                    post.getAuthor() -> post.getLikes()
+    @effects:   Chiamo j = post.getAuthor()
+                Se {followAuth.get(j)} != ∅     (cioè la chiave j appartiene alla mappa)
+                    aggiorno il codominio di followAuth.get(j) a
+                    {followAuth.get(j)} U post.getAuthor()
+                Altrimenti aggiungo la coppia chiave -> valore
+                    j -> {post.getLikes()}
     */
-    private void updateFollowing(Post post, Map<String, Set<String>> followAuth) throws NullPointerException {
+    private void updateFollowers(Post post, Map<String, Set<String>> followAuth) throws NullPointerException {
         if (post == null || followAuth == null)
             throw new NullPointerException();
-
         if (followAuth.get(post.getAuthor()) != null) {
             // merge dei set di like se esiste già la chiave autore
             followAuth.get(post.getAuthor()).addAll(post.getLikes());
         } else {
-            // l'autore non era presente nella mappa, allora devo inserire una nuova chiave con i relativi likes
+            // l'autore non era presente nella mappa, allora devo inserire la coppia chiave -> valore
             followAuth.put(post.getAuthor(), post.getLikes());
         }
     }
 
-    /** Aggiorno la mappa degli autori seguiti da parte di chi ha messo like al post */
+    /** Aggiorno la mappa degli utenti seguiti dal set di utenti che hanno messo like al post */
     /*
     @requires:  post != null && iFollow != null
     @throws:    Se post == null o iFollow == null solleva NullPointerException
     @modifies:  this
-    @effects:   ∀ j ∊ post.getAuthor().getLikes()
-                        Se {iFollow.get(j)} != ∅
-                            aggiorno il codominio di iFollow.get(j) a
-                            {iFollow.get(j)} U post.getAuthor())
-                        Altrimenti aggiungo la coppia chiave -> valore
-                            j -> {post.getAuhtor()}
+    @effects:   ∀ j. j ∊ post.getLikes()
+                    Se {iFollow.get(j)} != ∅
+                        aggiorno il codominio di iFollow.get(j) a
+                        {iFollow.get(j)} U post.getAuthor()
+                    Altrimenti aggiungo la coppia chiave -> valore
+                        j -> {post.getAuhtor()}
     */
-    private void updateFollowers(Post post, Map<String, Set<String>> iFollow) throws NullPointerException {
+    private void updateFollowing(Post post, Map<String, Set<String>> iFollow) throws NullPointerException {
         if (post == null || iFollow == null)
             throw new NullPointerException();
-        Set<String> helper = new HashSet<String>(1);
-        // esamino chi ha messo like al post
+        Set<String> helper = new HashSet<String>();
         for (String s : post.getLikes()) {
             if (iFollow.get(s) != null) {
-                // se s è già presente nella mappa, aggiorna il set di seguiti da s aggiungendo l'autore del post
                 iFollow.get(s).add(post.getAuthor());
             } else {
-                // altrimenti estende la mappa con la coppia chiave-valore usando un set di supporto
+                // ho bisogno del set helper perchè non posso passare la stringa
+                // direttamente al costruttore di HashSet
                 helper.add(post.getAuthor());
                 iFollow.put(s, new HashSet<String>(helper));
+                // ogni volta chiaramente deve essere svuotato
                 helper.clear();
             }
+        }
+    }
+
+    /** 
+    Devo rimuovere l'autore del post rimosso dalla mappa dei seguiti se non ha altri post nella rete.
+    Devo togliere l'autore del post rimosso dai seguiti degli utenti se essi hanno messo like
+    a tale autore soltanto nel post rimosso.
+    Sfrutto inoltre il fatto di aver già tolto post da this.posts, altrimenti dovrei controllare l'id dei post.
+    
+    @requires:  post != null
+    @throws:    Se post == null allora solleva NullPointerException
+    @modifies:  this
+    @effects:   ∀ k ∊ this.following.keySet()
+                    Se k ∉ {this.posts.get(i).getLikes().get(j) : 
+                            ∀ j. 0 <= j < this.posts.getLikes().size()
+                            ∀ i. 0 <= i < this.posts.size()
+                            && this.posts.get(i).getAuthor().equals(post.getAuthor())}
+                    allora tolgo post.getAuthor() dal codominio di this.following.get(k),
+                    cioè rimuovo l'autore del post dalle persone seguite da k
+                Se (∄ i. 
+                        0 <= i < this.posts.size() 
+                        && this.posts.get(i).getAuthor().equals(post.getAuthor())
+                    )
+                allora rimuovo la chiave post.getAuthor() dalla mappa followers
+    */
+    private void rmFromMaps(Post post) {
+        if (post == null)
+            throw new NullPointerException();
+        boolean noMorePosts = true;
+        Set<String> hasOtherLikes = new HashSet<String>();
+        // Seleziono, tra i post rimanenti, quelli dello stesso autore del post
+        for (Post element : this.posts) {
+            if (element.getAuthor().equals(post.getAuthor())) {
+                // ho trovato almeno un altro post con lo stesso autore
+                noMorePosts = false;
+                // considero chi vi ha messo like e li aggiungo ad un set
+                hasOtherLikes.addAll(element.getLikes());
+            }
+        }
+        for (String user : this.following.keySet()) {
+            if (!hasOtherLikes.contains(user)) {
+                this.following.get(user).remove(post.getAuthor());
+            }
+        }
+        if (noMorePosts) {
+            this.followers.remove(post.getAuthor());
         }
     }
 
@@ -153,20 +213,24 @@ public class SocialNetwork {
     @requires:  p != null 
                 && (∀ i. 
                     0 <= i < this.posts.size() 
-                    && !p.getId().equals(this.posts.get(i).getId())
-    @throws:    Se p == null sollevaNullPointerException
+                    && !p.getId().equals(this.posts.get(i).getId()
+                    )
+    @throws:    Se p == null solleva NullPointerException
                 Se (∃ i.
                     0 <= i < this.posts.size() 
-                    && p.getId().equals(this.posts.get(i).getId())
+                    && p.getId().equals(this.posts.get(i).getId()
+                    )
                     allora solleva DuplicatePostException
     @modifies:  this
-    @effects:   Esegue this.posts.add(p) e poi aggiorna le mappe
+    @effects:   Esegue this.posts.add(p) e poi aggiorna le mappe tramite le funzioni
+                definite sopra
     */
     public void addPost(Post p) throws NullPointerException, DuplicatePostException {
         if (p == null)
             throw new NullPointerException();
         for (Post el : this.posts) {
             if (el.getId().equals(p.getId()))
+                // nell'eccezione stampo anche l'id del post che ha provocato il conflitto
                 throw new DuplicatePostException(p.getId());
         }
         // aggiungo alla lista
@@ -188,7 +252,8 @@ public class SocialNetwork {
                     && !p.getId().equals(this.posts.get(i).getId())
                     allora solleva NoSuchPostException
     @modifies:  this
-    @effects:   Esegue this.posts.remove(p) e poi aggiorna le mappe
+    @effects:   Esegue this.posts.remove(p) e poi aggiorna le mappe tramite la funzione
+                rmFromMaps()
     */
     public void rmPost(Post p) throws NullPointerException, NoSuchPostException {
         if (p == null)
@@ -202,49 +267,6 @@ public class SocialNetwork {
         this.rmFromMaps(p);
     }
 
-    /** 
-        Devo togliere dalla mappa dei seguiti se l'utente x non ha messo like a nessun 
-        altro post oltre quello rimosso. Inoltre, se l'autore del post non ha
-        altri post nella rete, allora devo rimuoverlo dalla mappa degli utenti seguiti
-    
-    @requires:  post != null
-    @throws:    Se post == null allora solleva NullPointerException
-    @modifies:  this
-    @effects:   ∀ k ∊ this.following.keySet()
-                    Se k ∉ {this.posts.get(i).getLikes().get(j) : 
-                            ∀ i. 0 <= i < this.posts.size()
-                            && this.posts.get(i).getAuthor().equals(post.getAuthor())}
-                    allora this.following.get(k).remove(post.getAuthor())
-                    Cioè rimuovo l'autore del post dalle persone seguite da k se non
-                    aveva messo like ad altri post dell'autore del post rimosso
-                Inoltre, rimuovo dalla mappa la funzione autore -> persone che lo seguono
-                se non ha altri post nella rete sociale
-    */
-    private void rmFromMaps(Post post) {
-        if (post == null)
-            throw new NullPointerException();
-        boolean noMorePosts = true;
-        Set<String> hasOtherLikes = new HashSet<String>();
-        // Seleziono, tra i post rimanenti, quelli dello stesso autore del post
-        for (Post element : this.posts) {
-            if (element.getAuthor().equals(post.getAuthor())) {
-                // considero chi vi ha messo like e li inserisco in un set
-                for (String liker : element.getLikes()) {
-                    hasOtherLikes.add(liker);
-                }
-                noMorePosts = false; // allora ho trovato almeno un altro post con lo stesso autore
-            }
-        }
-        for (String user : this.followers.keySet()) {
-            if (!hasOtherLikes.contains(user)) {
-                this.followers.get(user).remove(post.getAuthor());
-            }
-        }
-        if (noMorePosts) {
-            this.following.remove(post.getAuthor());
-        }
-    }
-
     /*
     Ritorna sotto forma di mappa <String, Set<String>> l'insieme delle persone seguite 
     da ogni utente derivandolo dai post passati come parametro
@@ -252,62 +274,70 @@ public class SocialNetwork {
     @requires:  ps != null
     @throws:    Se ps == null solleva NullPointerException
     @effects:   Ritorna la rete sociale derivata da ps, ovvero la funzione che
-                ∀ i. i ∊ {ps.get(j).getLikes() : 0 <= j < x.posts.size()}
+                ∀ i. i ∊ {ps.get(j).getLikes() : 0 <= j < ps.size()}
                 mappa
                 i
                 ->
-                {ps.get(k).getLikes() : 0 <= k < ps.size() && ps.get(k).getAuthor().equals(i)}
+                {ps.get(k).getAuthor() : 0 <= k < ps.size() && ps.get(k).getLikes().contains(i)}
     */
     public Map<String, Set<String>> guessFollowers(List<Post> ps) {
+        if (ps == null)
+            throw new NullPointerException();
         // parto da una mappa vuota e la aggiorno con ogni post della lista
-        Map<String, Set<String>> networkOnList = new HashMap<String, Set<String>>();
+        Map<String, Set<String>> m = new HashMap<String, Set<String>>();
         for (Post p : ps) {
-            updateFollowers(p, networkOnList);
+            updateFollowing(p, m);
         }
-        return networkOnList;
+        return m;
     }
 
     // analoga alla precedente, cambia solo la mappa che viene aggiornata
     public Map<String, Set<String>> guessFollowing(List<Post> ps) {
-        Map<String, Set<String>> networkOnList = new HashMap<String, Set<String>>();
+        if (ps == null)
+            throw new NullPointerException();
+        Map<String, Set<String>> m = new HashMap<String, Set<String>>();
         for (Post p : ps) {
-            updateFollowing(p, networkOnList);
+            updateFollowers(p, m);
         }
-        return networkOnList;
+        return m;
     }
 
     /*  Ritorna la lista (senza duplicati) degli utenti in this che sono seguiti da più
         persone di quante ne seguano. (posso limitarmi a considerare le chiavi di 
-        this.following in quanto se nessuno ha messo like ad un utente, allora non può 
+        this.followers in quanto se nessuno ha messo like ad un utente, allora non può 
         essere un influencer).
     
     @requires:  true
     @effects:   Ritorna [i : 
-                            i ∊ this.following.keySet()
-                            && #{this.following.get(i)} > #{this.followers.get(i)}
+                            i ∊ this.followers.keySet()
+                            && #{this.followers.get(i)} > #{this.following.get(i)}
                         ]
     */
     public List<String> influencers() {
         List<String> influencers = new ArrayList<String>();
-        for (String user : this.following.keySet()) {
-            if (this.followers.get(user) == null) {
-                influencers.add(user);
-            }
-            else if (this.following.get(user).size() > this.followers.get(user).size()) {
-                influencers.add(user);
+        for (String user : this.followers.keySet()) {
+            if (!influencers.contains(user)) {
+                if (this.following.get(user) == null) {
+                    influencers.add(user);
+                }
+                else if (this.followers.get(user).size() > this.following.get(user).size()) {
+                    influencers.add(user);
+                }
             }
         }
         return influencers;
     }
 
-    /*  Ritorna la lista (senza duplicati) degli utenti nella mappa di followers
+    /*  Ritorna la lista (senza duplicati) degli utenti nella mappa passata come parametro
         che sono seguiti da più di likeTreshold utenti.
     
     @requires:  followers != null
-    @throws:    Se followers == null solleva NullPointer
-    @effects:   Ritorna [i : i ∊ followers.keySet()&& #{followers.get(i)} > likeTreshold]
+    @throws:    Se followers == null solleva NullPointerException
+    @effects:   Ritorna [i : i ∊ followers.keySet() && #{followers.get(i)} > likeTreshold]
     */
     public static List<String> influencers(Map<String, Set<String>> followers) {
+        if (followers == null)
+            throw new NullPointerException();
         List<String> influencers = new ArrayList<String>();
         for (String user : followers.keySet()) {
             if (!influencers.contains(user) && followers.get(user).size() > likeTreshold) {
@@ -318,6 +348,9 @@ public class SocialNetwork {
     }
 
     /*
+    Chiamo la funzione con parametro per determinare la lista di utenti
+    che sono autori di almeno un post in this
+    
     @requires:  true
     @effects:   ritorna
                 {this.posts.get(i).getAuthor() : 0 <= i < this.posts.size()}
@@ -343,6 +376,9 @@ public class SocialNetwork {
     }
 
     /*
+    Usa la funzione con parametro per ritornare la lista di post scritti da username
+    che sono presenti in this
+    
     @requires:  username != null
     @throws:    Se username == null solleva NullPointerException
     @effects:   ritorna
@@ -359,7 +395,7 @@ public class SocialNetwork {
 
     /*
     @requires:  username != null && ps != null
-    @throws:    Se (username == null || ps == null) solleva NullPointerException
+    @throws:    Se username == null o ps == null solleva NullPointerException
     @effects:   Ritorna [ps.get(i) : 
                             0 <= i < ps.length()
                             && ps.get(i).getAuthor().equals(username)
@@ -379,26 +415,26 @@ public class SocialNetwork {
 
     /*
     @requires:  words != null
-                && ∀ i. 0 <= i < words.length()
+                && ∀ i. 0 <= i < words.size()
                     words.get(i) != null
     @throws:    Se words == null
-                oppure se ∃ i. 0 <= i < words.length() && words.get(i) == null
+                oppure se ∃ i. 0 <= i < words.size() && words.get(i) == null
                 solleva NullPointerException
     @effects:   Ritorna la lista (senza duplicati) di post ∊ this.posts il cui testo
                 contiene almeno una parola tra quelle della lista words, ovvero
                 
                 {this.posts.get(k) : 
-                    0 <= k < this.posts.length() 
+                    0 <= k < this.posts.size() 
                     && this.posts.get(k) ∊ 
                         {this.posts.get(i) :
                             ∃ (i, j).
-                                0 <= i < this.posts.length() 
-                                && 0 <= j < words.length()
+                                0 <= i < this.posts.size() 
+                                && 0 <= j < words.size()
                                 && this.posts.get(i).getText().contains(words.get(j))
                         }
                 }
                 (il fatto di aver considerato un insieme è solo per non ammettere 
-                duplicati: in realtà ritorna una lista come da specifica)
+                formalmente i duplicati: in realtà ritorna una lista come da specifica)
             
     */
     public List<Post> containing(List<String> words) throws NullPointerException {
@@ -408,7 +444,6 @@ public class SocialNetwork {
         for (String s : words) {
             if (s == null)
                 throw new NullPointerException();
-
             for (Post p : this.posts) {
                 if (!hasSome.contains(p) && p.getText().contains(s)) {
                     hasSome.add(p);
@@ -432,7 +467,7 @@ public class SocialNetwork {
     @requires:  true
     @effects:   Ritorna il risultato (boolean) della valuazione di
     
-                other == null
+                (other == null)
                 && (∀ (i, j). i ∊ this.following.keySet() && i ∊ other.following.keySet()
                         && j ∊ this.followers.keySet() && j ∊ other.followers.keySet()
                     )
@@ -443,24 +478,24 @@ public class SocialNetwork {
                 && this.posts.equals(other.getPosts())
     */
     public boolean equals(SocialNetwork other) {
-        // chiaramente this != null
+        // ovviamente deve essere vero che this != null
         if (other == null)
             return false;
+        // mi creo copie delle mappe e dei post tramite gli appositi metodi
         List<Post> otherPosts = other.getPosts();
-        Map<String, Set<String>> otherFollowers = other.guessFollowers(otherPosts);
-        Map<String, Set<String>> otherFollowing = other.guessFollowing(otherPosts);
+        Map<String, Set<String>> otherFollowing = other.guessFollowers(otherPosts);
+        Map<String, Set<String>> otherFollowers = other.guessFollowing(otherPosts);
 
         // devono essere presenti gli stessi post
         if (!this.posts.equals(otherPosts))
             return false;
 
-        // la mappa dei following deve avere le stesse chiavi associate agli stessi Set
+        // le mappe devono corrispondere sia nel dominio che nel codominio
         for (String liker : this.following.keySet()) {
             if (!otherFollowing.containsKey(liker) || !this.following.get(liker).equals(otherFollowing.get(liker))) {
                 return false;
             }
         }
-        // la mappa dei followers deve avere le stesse chiavi associate agli stessi Set
         for (String liked : this.followers.keySet()) {
             if (!otherFollowers.containsKey(liked) || !this.followers.get(liked).equals(otherFollowers.get(liked))) {
                 return false;
@@ -470,9 +505,12 @@ public class SocialNetwork {
         return true;
     }
 
-    /*
-        sovrascrivo il metodo toString che ritorna una String contenente la
-        rappresentazione di this in accordo con la AF
+    /*  
+    Sovrascrivo il metodo toString
+    
+    @requires:  true
+    @effects:   Ritorna una String contenente la rappresentazione di this 
+                    in accordo con la AF
     */
     public String toString() {
         String s = new String();
@@ -483,12 +521,13 @@ public class SocialNetwork {
         }
         s += "],\n";
         for (String user : this.followers.keySet()) {
-            s += user + " follows " + this.followers.get(user).toString() + "\n";
+            if (!this.followers.get(user).isEmpty())
+                s += "followers(" + user + ") = " + this.followers.get(user).toString() + "\n";
         }
         s += ",\n";
         for (String user : this.following.keySet()) {
-            /* stampo il set sse user segue qualcuno */
-            s += user + " followed by " + this.following.get(user).toString() + "\n";
+            if (!this.following.get(user).isEmpty())
+                s += "following(" + user + ") = " + this.following.get(user).toString() + "\n";
         }
         s += ")\n";
 
