@@ -23,7 +23,8 @@ public class SocialNetwork {
 
     /*
     costante statica che fissa il numero minimo di like che un utente deve 
-    ricevere per essere considerato un influencer
+    ricevere per essere considerato un influencer 
+    (usato nel metodo influencers() con parametro)
     */
     private static final int likeTreshold = 10;
 
@@ -268,12 +269,13 @@ public class SocialNetwork {
     }
 
     /*
-    Ritorna sotto forma di mappa <String, Set<String>> l'insieme delle persone seguite 
-    da ogni utente derivandolo dai post passati come parametro
+    Ritorna sotto forma di mappa <String, Set<String>> la funzione che associa ad
+    ogni utente, nella rete indotta da ps, il Set di utenti che segue
     
     @requires:  ps != null
     @throws:    Se ps == null solleva NullPointerException
-    @effects:   Ritorna la rete sociale derivata da ps, ovvero la funzione che
+    @effects:   Ritorna la rete sociale (di seguiti) derivata da ps, ovvero la 
+                funzione che
                 ∀ i. i ∊ {ps.get(j).getLikes() : 0 <= j < ps.size()}
                 mappa
                 i
@@ -291,7 +293,20 @@ public class SocialNetwork {
         return m;
     }
 
-    // analoga alla precedente, cambia solo la mappa che viene aggiornata
+    /*
+    Ritorna sotto forma di mappa <String, Set<String>> la funzione che associa ad
+    ogni utente, nella rete indotta da ps, il Set di utenti che lo seguono
+    
+    @requires:  ps != null
+    @throws:    Se ps == null solleva NullPointerException
+    @effects:   Ritorna la rete sociale (di seguaci) derivata da ps, ovvero la 
+                funzione che
+                ∀ i. i ∊ {ps.get(j).getAuthor() : 0 <= j < ps.size()}
+                mappa
+                i
+                ->
+                {ps.get(k).getLikes() : 0 <= k < ps.size() && ps.get(k).getAuthor().equals(i)}
+    */
     public Map<String, Set<String>> guessFollowing(List<Post> ps) throws NullPointerException {
         if (ps == null)
             throw new NullPointerException();
