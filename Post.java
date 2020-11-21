@@ -5,7 +5,8 @@ import java.util.Set;
 
 public class Post {
     /*
-    @overview:  Post è un tipo di dato astratto modificabile rappresentato da una quintupla (cinque campi ordinati) di valori, di cui solo l'ultimo
+    @overview:  Post è un tipo di dato astratto modificabile rappresentato da una 
+                quintupla di valori, di cui solo l'ultimo
                 è modificabile (un insieme modificabile):
                 Elemento tipico: (id, auth, text, timestamp, {s_1, ..., s_n})
     */
@@ -30,13 +31,20 @@ public class Post {
             && x.text != null
             && x.timestamp != null 
             && x.likes != null
-            && ∀ i. 0 <= i < x.likes.size()
-                x.likes.get(i) != null
-                && x.likes.get(i) != x.author
+            && ∀ i.
+                0 <= i < x.likes.size()
+                && x.likes.get(i) != null
+                && !x.likes.get(i)equals(x.author)
             && x.text.length() <= 140
-            && ∀ i. 0 <= i < x.likes.size() - 1
-                ∀ j. i < j < x.likes.size()
-                    x.likes.get(i) != x.likes.get(j)
+            && ∀ i. 
+                0 <= i < x.likes.size()
+                && ∀ j. 
+                    0 <= j < x.likes.size()
+                    && (
+                        (i != j && !x.likes.get(i).equals(x.likes.get(j)))
+                        ||
+                        (i == j && x.likes.get(i).equals(x.likes.get(j)))
+                    )
     */
 
     /*
@@ -44,12 +52,11 @@ public class Post {
                 && text != null
                 && date != null 
                 && text.length() <= 140
-    @throws:    TextOverflowException, NullPointerException
+    @throws:    Se almeno uno dei parametri è null allora solleva NullPointerException.
+                Se text.length() > 140 allora solleva TextOverflowException.
     @modifies:  this
-    @effects:   Se almeno uno dei parametri è uguale a null, allora solleva         
-                NullPointerException.
-                Altrimenti se text.length() > 140 solleva TextOverflowException.
-                Altrimenti crea un'istanza di Post con un set di like vuoto e gli altri parametri.
+    @effects:   Crea un'istanza di Post con id generato da rng e set di like vuoto, ovvero
+                (rng.nextInt(), author, text, timestamp, {})
     */
     public Post(String author, String text, Date timestamp) throws TextOverflowException, NullPointerException {
         if (author == null || text == null || timestamp == null) {
@@ -67,7 +74,9 @@ public class Post {
         this.likes = new HashSet<String>(); //inizializzo ad un set di likes vuoto
     }
 
-    /* identico al precedente, ma passo un id esplicitamente: serve solo a creare conflitti tra id nel testing */
+    /*
+    identico al precedente, ma passo un id esplicitamente: serve solo a creare conflitti tra id nel testing
+    */
     public Post(Integer id, String author, String text, Date timestamp)
     throws TextOverflowException, NullPointerException {
         if (id == null || author == null || text == null || timestamp == null) {
@@ -82,11 +91,6 @@ public class Post {
         this.timestamp = timestamp;
         this.likes = new HashSet<String>(); //inizializzo ad un set di likes vuoto
     }
-    
-    /* 
-        metodi osservatori
-        La clausola modifies è omessa in quanto non modificano this
-    */
 
     /*
     @requires:  true
@@ -115,6 +119,8 @@ public class Post {
     /*
     @requires:  true
     @effects:   ritorna una copia (shallow) di this.likes
+                Se anche fossero modificato il set ritornato
+                non avrei effetti su quello contenuto in this
     */
     public Set<String> getLikes() {
         return new HashSet<String>(this.likes);
@@ -123,29 +129,28 @@ public class Post {
     /* metodi modificatori */
     /*
     @requires:  follower != null && this.author.equals(follower) == true
-    @throws:    NullPointerException, SelfLikeException
-    @modifies:  this
-    @effects:   Se follower == null, allora solleva NullPointerException().
+    @throws:    Se follower == null, allora solleva NullPointerException.
                 Altrimenti se this.author.equals(follower) == true
                 solleva SelfLikeException
-                Altrimenti se 
-                (this.author.equals(follower) == true) || (this.likes.contains(follower) == true)
+    @modifies:  this
+    @effects:   Se this.likes.contains(follower) == true
                 allora non fa niente.
                 Altrimenti esegue this.likes.add(follower)
     */
     public void addLike(String follower) throws NullPointerException, SelfLikeException {
-        if(follower == null) throw new NullPointerException();
+        if (follower == null)
+            throw new NullPointerException();
         if (this.author.equals(follower))
-            throw new SelfLikeException();
-        
-        if((this.author.equals(follower) == false) && (this.likes.contains(follower) == false)) {
+            throw new SelfLikeException(); 
+        if (!this.likes.contains(follower)) {
             this.likes.add(follower);
         }
     }
     
     /*
     @requires:  true
-    @effects:   ritorna, su una String, la rappresentazione di this nel formato espresso da AF
+    @effects:   ritorna la rappresentazione di this (come indicato nella AF)
+                sotto forma di String
     */
     public String toString() {
         String cut_text = "";
@@ -161,12 +166,13 @@ public class Post {
 
     /*
     @requires:  true
-    @effects:   se other == null ritorna false, altrimenti ritorna true
-                se e solo se this.getId().equals(other.getId())
+    @effects:   Se other == null ritorna false
+                Se this.getId().equals(other.getId()) == true ritorna true,
+                altrimenti ritorna false
     */
     public boolean equals(Post other) {
         if (other == null)
             return false;
-        return this.id == other.getId();
+        return this.id.equals(other.getId());
     }
 };

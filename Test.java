@@ -182,6 +182,10 @@ class Test {
             System.out.print(p);
         }
         System.out.println("]");
+
+        ModeratedSocialNetwork mnet = new ModeratedSocialNetwork(pList);
+        System.out.println("Social moderato inizializzato con\n" + mnet.getPosts() + "\nI post segnalati sono:\n"
+                + mnet.getOffensive().toString());
     }
 
     /* per leggere post secondo il loro formato */
