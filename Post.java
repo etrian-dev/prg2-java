@@ -6,18 +6,19 @@ import java.util.Set;
 public class Post {
     /*
     @overview:  Post è un tipo di dato astratto modificabile rappresentato da una 
-                quintupla di valori, di cui solo l'ultimo
-                è modificabile (un insieme modificabile):
-                Elemento tipico: (id, auth, text, timestamp, {s_1, ..., s_n})
+                quintupla, di cui l'ultimo elemento è un insieme modificabile, quindi 
+                globalmente è un tipo di dato modificabile.
+                Elemento tipico: (id, author, text, timestamp, {like_1, ..., like_n})
     */
+
     /* variabili d'istanza (private) */
     private Integer id;
     private String author;
     private String text;
-    private Date timestamp;
+    private Date timestamp; // data e ora di pubblicazione del post
     private Set<String> likes;
 
-    /* variabile statica (private) per generare id */
+    /* variabile statica (privata) per generare id */
     private static Random rng = new Random();
 
     /*
@@ -34,7 +35,7 @@ public class Post {
             && ∀ i.
                 0 <= i < x.likes.size()
                 && x.likes.get(i) != null
-                && !x.likes.get(i)equals(x.author)
+                && !x.likes.get(i).equals(x.author)
             && x.text.length() <= 140
             && ∀ i. 
                 0 <= i < x.likes.size()
@@ -50,12 +51,14 @@ public class Post {
     /*
     @requires:  author != null
                 && text != null
-                && date != null 
+                && timestamp != null 
                 && text.length() <= 140
     @throws:    Se almeno uno dei parametri è null allora solleva NullPointerException.
                 Se text.length() > 140 allora solleva TextOverflowException.
     @modifies:  this
-    @effects:   Crea un'istanza di Post con id generato da rng e set di like vuoto, ovvero
+    @effects:   Crea un'istanza di Post con id >= 0 generato casualmente
+                e nessun like (Set vuoto), ovvero:
+        
                 (rng.nextInt(), author, text, timestamp, {})
     */
     public Post(String author, String text, Date timestamp) throws TextOverflowException, NullPointerException {
@@ -64,18 +67,19 @@ public class Post {
         }
         // genero un id con valori in [0, Integer.MAX_VALUE - 1]
         this.id = rng.nextInt(Integer.MAX_VALUE - 1);
-        /* voglio usare l'id nell'eccezione, allora devo generarlo prima */
         if (text.length() > 140) {
             throw new TextOverflowException(this.id);
         }
         this.author = author;
         this.text = text;
         this.timestamp = timestamp;
-        this.likes = new HashSet<String>(); //inizializzo ad un set di likes vuoto
+        this.likes = new HashSet<String>();
     }
 
     /*
-    identico al precedente, ma passo un id esplicitamente: serve solo a creare conflitti tra id nel testing
+    identico al precedente, ma invece di generare un id lo passo come parametro:
+    serve a creare intenzionalmente conflitti tra id e non dovrebbe essere usato
+    in un'implementazione reale
     */
     public Post(Integer id, String author, String text, Date timestamp)
     throws TextOverflowException, NullPointerException {
@@ -89,7 +93,7 @@ public class Post {
         this.author = author;
         this.text = text;
         this.timestamp = timestamp;
-        this.likes = new HashSet<String>(); //inizializzo ad un set di likes vuoto
+        this.likes = new HashSet<String>();
     }
 
     /*
@@ -119,8 +123,9 @@ public class Post {
     /*
     @requires:  true
     @effects:   ritorna una copia (shallow) di this.likes
-                Se anche fossero modificato il set ritornato
+                Se anche fosse modificato il set ritornato
                 non avrei effetti su quello contenuto in this
+                (le stringhe non sono mutabili)
     */
     public Set<String> getLikes() {
         return new HashSet<String>(this.likes);
@@ -128,23 +133,21 @@ public class Post {
 
     /* metodi modificatori */
     /*
-    @requires:  follower != null && this.author.equals(follower) == true
+    @requires:  follower != null && !this.author.equals(follower)
     @throws:    Se follower == null, allora solleva NullPointerException.
-                Altrimenti se this.author.equals(follower) == true
-                solleva SelfLikeException
+                Se this.author.equals(follower) solleva SelfLikeException
+                (l'autore del post non può seguire se stesso)
     @modifies:  this
-    @effects:   Se this.likes.contains(follower) == true
-                allora non fa niente.
-                Altrimenti esegue this.likes.add(follower)
+    @effects:   Esegue this.likes = this.likes U {follower}
+                (come da definizione di insieme non ho duplicati)
     */
     public void addLike(String follower) throws NullPointerException, SelfLikeException {
         if (follower == null)
             throw new NullPointerException();
+        // l'autore non può comparire nel Set dei like
         if (this.author.equals(follower))
-            throw new SelfLikeException(); 
-        if (!this.likes.contains(follower)) {
-            this.likes.add(follower);
-        }
+            throw new SelfLikeException();
+        this.likes.add(follower); // aggiungo l'utente al Set di like
     }
     
     /*
@@ -153,7 +156,9 @@ public class Post {
                 sotto forma di String
     */
     public String toString() {
-        String cut_text = "";
+        // il testo è tagliato se è più lungo di 20 caratteri
+        // per agevolare la visualizzazione
+        String cut_text;
         if (this.text.length() > 20) {
             cut_text = this.text.substring(0, 19) + "...";
         } else {
@@ -167,7 +172,7 @@ public class Post {
     /*
     @requires:  true
     @effects:   Se other == null ritorna false
-                Se this.getId().equals(other.getId()) == true ritorna true,
+                Se this.getId().equals(other.getId()) ritorna true,
                 altrimenti ritorna false
     */
     public boolean equals(Post other) {
