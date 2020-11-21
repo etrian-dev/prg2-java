@@ -46,6 +46,7 @@ class Test {
         }
 
         /* aggiungo dei like ad alcuni post (utenti che mettono like sono letti nel file di test) */
+        System.out.println("***Test addLike()***");
         Random rng = new Random();
         String liker;
         if (pList.size() > 0) {
@@ -104,7 +105,6 @@ class Test {
             che deve sollevare DuplicatePostException */
         Date now = new Date();
         Post another = null;
-        System.out.println("***Test addLike()***");
         if (pList.size() > 0) {
             Integer conflictId = pList.get(0).getId();
             try {
@@ -123,14 +123,14 @@ class Test {
         System.out.println("***Test rmPost()***");
         try {
             for (Post toRm : pList) {
-                net2.rmPost(toRm);
+                net2.rmPost(toRm.getId());
             }
             /* 
                 provo a rimuovere un post sicuramente non presente in MicroBlog -> deve sollevare 
                 NoSuchPostException.
             */
-            another = new Post(rng.nextInt(), "Qualcuno", "Deve sollevare NoSuchPostException", now);
-            MicroBlog.rmPost(another);
+            another = new Post(-1, "Autore", "Deve sollevare NoSuchPostException", now);
+            MicroBlog.rmPost(another.getId());
         } catch (Exception ex) {
             System.out.println("caught: " + ex + "\nOk, eccezione sollevata e gestita");
         }
@@ -183,9 +183,12 @@ class Test {
         }
         System.out.println("]");
 
+        // creo un'istanza del social moderato
         ModeratedSocialNetwork mnet = new ModeratedSocialNetwork(pList);
-        System.out.println("Social moderato inizializzato con\n" + mnet.getPosts() + "\nI post segnalati sono:\n"
-                + mnet.getOffensive().toString());
+        System.out.print("***Social moderato inizializzato***\n[\n");
+        System.out.println("badwords: " + ModeratedSocialNetwork.getBadwords().toString());
+        System.out.println(mnet.toString());
+        System.out.println("]\nI post segnalati sono:\n" + mnet.getOffensive().toString());
     }
 
     /* per leggere post secondo il loro formato */

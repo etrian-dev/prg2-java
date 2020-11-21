@@ -1,108 +1,73 @@
-New Post: ( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {} )
-***Lista dei post inseriti***
-pList[0] = ( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {} )
-***Aggiungo dei likes***
-Chi mette like al post:
-( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {} )
-?
-liker = Me
+***lista di post***
+(779880974, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
+***Test addLike()***
 Caught: SelfLikeException: Non è possibile mettere like al proprio post
-Chi mette like al post:
-( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {} )
-?
-liker = Tu
-Chi mette like al post:
-( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, } )
-?
-liker = Me
+aggiunto il like di Tu al post con id = 779880974
 Caught: SelfLikeException: Non è possibile mettere like al proprio post
-Chi mette like al post:
-( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, } )
-?
-liker = Tu
-Chi mette like al post:
-( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, } )
-?
-liker = Lei
-Chi mette like al post:
-( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, Lei, } )
-?
-liker = Essi
-Chi mette like al post:
-( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, Lei, Essi, } )
-?
-liker = Essi
-Chi mette like al post:
-( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, Lei, Essi, } )
-?
-liker = Essi
-Chi mette like al post:
-( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, Lei, Essi, } )
-?
-liker = Loro
-Chi mette like al post:
-( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, Lei, Loro, Essi, } )
-?
-liker = Noi
-Chi mette like al post:
-( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, Lei, Loro, Essi, Noi, } )
-?
-liker = Me
+aggiunto il like di Tu al post con id = 779880974
+aggiunto il like di Lei al post con id = 779880974
+aggiunto il like di Essi al post con id = 779880974
+aggiunto il like di Essi al post con id = 779880974
+aggiunto il like di Essi al post con id = 779880974
+aggiunto il like di Loro al post con id = 779880974
+aggiunto il like di Noi al post con id = 779880974
 Caught: SelfLikeException: Non è possibile mettere like al proprio post
-Chi mette like al post:
-( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, Lei, Loro, Essi, Noi, } )
-?
-liker = Me
 Caught: SelfLikeException: Non è possibile mettere like al proprio post
-***Lista dei post inseriti***
-pList[0] = ( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, Lei, Loro, Essi, Noi, } )
-*******net*******
-posts = [
-	( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, Lei, Loro, Essi, Noi, } )
-	]
+***lista di post + like***
+(779880974, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [Tu, Lei, Loro, Essi, Noi])
+***MicroBlog***
+(
+[
+	(779880974, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [Tu, Lei, Loro, Essi, Noi])
+],
 followers(Me) = [Tu, Lei, Loro, Essi, Noi]
-
+,
 following(Tu) = [Me]
 following(Lei) = [Me]
 following(Loro) = [Me]
 following(Essi) = [Me]
 following(Noi) = [Me]
+)
 
-*******net2*******
-posts = [
-	( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, Lei, Loro, Essi, Noi, } )
-	( 1663771554, Qualcuno, "TestTestTest", Tue Nov 10 18:25:05 CET 2020, {Qualcun altro, } )
-	]
+***Test addPost()***
+caught: DuplicatePostException: Esiste già un post con id = 779880974
+Ok, eccezione sollevata e gestita
+***Test rmPost()***
+caught: NoSuchPostException: Il post non è presente nella rete sociale
+Ok, eccezione sollevata e gestita
+caught: java.lang.NullPointerException
+Ok, eccezione sollevata e gestita
+***test guessFollowers() con stessa lista***
+Me=[Tu, Lei, Loro, Essi, Noi]
+***test guessFollowing() con stessa lista***
+Tu=[Me]
+Lei=[Me]
+Loro=[Me]
+Essi=[Me]
+Noi=[Me]
+***Influencers di MicroBlog***
+[Me]
+***test di containing()***
+words = [Non, Sono, Presenti, Queste, Parole]
+MicroBlog.containing(words) = 
+[
+]
+***Social moderato inizializzato***
+[
+badwords: [sse, Post, prova, fpu, Agenda, Windows, windows, agenda, GNU, gnu, Funzione, xi, Xi, Linux, penna, funzione, linux, Penna]
+(
+[
+	(779880974, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [Tu, Lei, Loro, Essi, Noi])
+],
 followers(Me) = [Tu, Lei, Loro, Essi, Noi]
-followers(Qualcuno) = [Qualcun altro]
-
+,
 following(Tu) = [Me]
 following(Lei) = [Me]
 following(Loro) = [Me]
 following(Essi) = [Me]
-following(Qualcun altro) = [Qualcuno]
 following(Noi) = [Me]
+)
 
-*******net*******
-posts = [
-	( 307749223, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, {Tu, Lei, Loro, Essi, Noi, } )
-	]
-followers(Me) = [Tu, Lei, Loro, Essi, Noi]
-
-following(Tu) = [Me]
-following(Lei) = [Me]
-following(Loro) = [Me]
-following(Essi) = [Me]
-following(Noi) = [Me]
-
-*******net2*******
-posts = [
-	]
-
-following(Tu) = []
-following(Lei) = []
-following(Loro) = []
-following(Essi) = []
-following(Qualcun altro) = []
-following(Noi) = []
-
+]
+I post segnalati sono:
+[779880974]

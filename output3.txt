@@ -1,0 +1,38 @@
+Lista di post vuota
+***lista di post***
+***Test addLike()***
+***lista di post + like***
+***MicroBlog***
+(
+[
+],
+,
+)
+
+***Test addPost()***
+***Test rmPost()***
+caught: NoSuchPostException: Il post non è presente nella rete sociale
+Ok, eccezione sollevata e gestita
+caught: java.lang.NullPointerException
+Ok, eccezione sollevata e gestita
+***test guessFollowers() con stessa lista***
+***test guessFollowing() con stessa lista***
+***Influencers di MicroBlog***
+[]
+***test di containing()***
+words = [CosaSuccede?, Niente, Nessun, Post, è, presente, allora, nessuna, di, queste, parole, viene, restituita]
+MicroBlog.containing(words) = 
+[
+]
+***Social moderato inizializzato***
+[
+badwords: [sse, Post, prova, fpu, Agenda, Windows, windows, agenda, GNU, gnu, Funzione, xi, Xi, Linux, penna, funzione, linux, Penna]
+(
+[
+],
+,
+)
+
+]
+I post segnalati sono:
+[]

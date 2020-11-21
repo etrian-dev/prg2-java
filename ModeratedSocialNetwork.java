@@ -7,12 +7,9 @@ import java.util.Set;
 
 class ModeratedSocialNetwork extends SocialNetwork {
     private Set<Integer> offensivePosts;
-    private static Hashtable<Integer, String> badwords = new Hashtable<>();
+    private static Hashtable<Integer, String> badwords = new Hashtable<Integer, String>();
 
-    /* costruttore rete sociale vuota */
-    public ModeratedSocialNetwork() {
-        super();
-        this.offensivePosts = new HashSet<>();
+    static {
         Scanner s = null;
         try {
             File f = new File("badwords.txt");
@@ -28,52 +25,50 @@ class ModeratedSocialNetwork extends SocialNetwork {
         s.close();
     }
 
-    /* costruttore rete sociale con lista di post */
+    /* costruttore rete sociale moderata vuota */
+    public ModeratedSocialNetwork() {
+        super();
+        this.offensivePosts = new HashSet<Integer>();
+    }
+
+    /* costruttore rete sociale moderata con lista di post */
     public ModeratedSocialNetwork(List<Post> pList) {
         super(pList);
-        this.offensivePosts = new HashSet<>();
-        Scanner s = null;
-        try {
-            File f = new File("badwords.txt");
-            s = new Scanner(f);
-        } catch (Exception ex) {
-            System.out.println("Caught:" + ex);
-        }
-        String word;
-        while (s.hasNext()) {
-            word = s.nextLine();
-            badwords.put(word.hashCode(), word);
-        }
-        s.close();
+        this.offensivePosts = new HashSet<Integer>();
         for (Post p : pList) {
-            for (String bad : badwords.values())
-                if (p.getText().indexOf(bad) != -1) {
+            for (String w : p.getText().split(" ")) {
+                if (badwords.get(w.hashCode()) != null) {
                     offensivePosts.add(p.getId());
                 }
+            }
         }
     }
 
     // sovrascrivo addPost()
     public void addPost(Post p) throws DuplicatePostException, NullPointerException {
         super.addPost(p); // prima aggiungo il post alla rete
-        for (String bad : badwords.values()) {
-            if (p.getText().indexOf(bad) != -1) {
-                // se trovo una parola lo aggiungo ai segnalati
-                this.offensivePosts.add(p.getId());
+        for (String w : p.getText().split(" ")) {
+            if (badwords.get(w.hashCode()) != null) {
+                offensivePosts.add(p.getId());
             }
         }
     }
 
     // sovrascrivo rmPost()
-    public void rmPost(Post p) throws NoSuchPostException, NullPointerException {
-        super.rmPost(p); // prima rimuovo il post dalla rete
-        if (this.offensivePosts.contains(p.getId())) {
+    public void rmPost(Integer pid) throws NoSuchPostException, NullPointerException {
+        super.rmPost(pid); // prima rimuovo il post dalla rete
+        if (this.offensivePosts.contains(pid)) {
             // lo rimuovo dai segnalati
-            this.offensivePosts.remove(p.getId());
+            this.offensivePosts.remove(pid);
         }
     }
 
+    // ritorna il set di post segnalati
     public Set<Integer> getOffensive() {
-        return new HashSet<>(this.offensivePosts);
+        return new HashSet<Integer>(this.offensivePosts);
+    }
+
+    public static HashSet<String> getBadwords() {
+        return new HashSet<String>(badwords.values());
     }
 };

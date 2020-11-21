@@ -1,6 +1,107 @@
-(id, Autore1, "Lorem Ipsum", 11-12-2010 03:33, [])
-(id, Autore2, "Progetto Java 2020: realizzata la classe Post", 05-11-2020 16:21, [])
-(id, Autore3, "La classe SocialNetwork ha bisogno di AddPost() e RemovePost()", 03-05-2011 09:44, [])
-(id, Autore1, "Pellentesque vestibulum dui laoreet.", 01-01-2021 05:05, [])
-Caught: TextOverflowException: Il testo deve contenere al più 140 caratteri
-(id, Autore0, "test", 01-01-1970 18:18, [])
+Caught: TextOverflowException: Il testo del post con id = 1247091850 contiene più di 140 caratteri
+***lista di post***
+(1456940450, Autore1, "Lorem Ipsum", Mon Jan 11 03:33:00 CET 2010, [])
+(990191127, Autore2, "classe Post realizz...", Sun Jan 05 16:21:00 CET 2020, [])
+(46742401, Autore3, "La classe SocialNet...", Mon Jan 03 09:44:00 CET 2011, [])
+(183340051, Autore1, "Pellentesque vestib...", Fri Jan 01 05:05:00 CET 2021, [])
+(1955017928, Autore0, "test", Thu Jan 01 18:18:00 CET 1970, [])
+***Test addLike()***
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
+aggiunto il like di Pippo al post con id = 46742401
+aggiunto il like di Gianni al post con id = 46742401
+aggiunto il like di Autore2 al post con id = 46742401
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
+aggiunto il like di Autore1 al post con id = 46742401
+aggiunto il like di Maria al post con id = 1955017928
+aggiunto il like di Silvia al post con id = 183340051
+aggiunto il like di Autore999 al post con id = 46742401
+aggiunto il like di Autore0 al post con id = 46742401
+***lista di post + like***
+(1456940450, Autore1, "Lorem Ipsum", Mon Jan 11 03:33:00 CET 2010, [])
+(990191127, Autore2, "classe Post realizz...", Sun Jan 05 16:21:00 CET 2020, [])
+(46742401, Autore3, "La classe SocialNet...", Mon Jan 03 09:44:00 CET 2011, [Autore2, Gianni, Autore999, Autore0, Autore1, Pippo])
+(183340051, Autore1, "Pellentesque vestib...", Fri Jan 01 05:05:00 CET 2021, [Silvia])
+(1955017928, Autore0, "test", Thu Jan 01 18:18:00 CET 1970, [Maria])
+***MicroBlog***
+(
+[
+	(1456940450, Autore1, "Lorem Ipsum", Mon Jan 11 03:33:00 CET 2010, [])
+	(990191127, Autore2, "classe Post realizz...", Sun Jan 05 16:21:00 CET 2020, [])
+	(46742401, Autore3, "La classe SocialNet...", Mon Jan 03 09:44:00 CET 2011, [Autore2, Gianni, Autore999, Autore0, Autore1, Pippo])
+	(183340051, Autore1, "Pellentesque vestib...", Fri Jan 01 05:05:00 CET 2021, [Silvia])
+	(1955017928, Autore0, "test", Thu Jan 01 18:18:00 CET 1970, [Maria])
+],
+followers(Autore3) = [Autore2, Gianni, Autore999, Autore0, Autore1, Pippo]
+followers(Autore0) = [Maria]
+followers(Autore1) = [Silvia]
+,
+following(Autore2) = [Autore3]
+following(Silvia) = [Autore1]
+following(Gianni) = [Autore3]
+following(Autore999) = [Autore3]
+following(Autore0) = [Autore3]
+following(Maria) = [Autore0]
+following(Autore1) = [Autore3]
+following(Pippo) = [Autore3]
+)
+
+***Test addPost()***
+caught: DuplicatePostException: Esiste già un post con id = 1456940450
+Ok, eccezione sollevata e gestita
+***Test rmPost()***
+caught: NoSuchPostException: Il post non è presente nella rete sociale
+Ok, eccezione sollevata e gestita
+caught: java.lang.NullPointerException
+Ok, eccezione sollevata e gestita
+***test guessFollowers() con stessa lista***
+Autore2=[]
+Autore3=[Autore2, Gianni, Autore999, Autore0, Autore1, Pippo]
+Autore0=[Maria]
+Autore1=[Silvia]
+***test guessFollowing() con stessa lista***
+Autore2=[Autore3]
+Silvia=[Autore1]
+Gianni=[Autore3]
+Autore999=[Autore3]
+Autore0=[Autore3]
+Maria=[Autore0]
+Autore1=[Autore3]
+Pippo=[Autore3]
+***Influencers di MicroBlog***
+[Autore3]
+***test di containing()***
+words = [classe, Lorem, Ipsum]
+MicroBlog.containing(words) = 
+[
+(990191127, Autore2, "classe Post realizz...", Sun Jan 05 16:21:00 CET 2020, [])
+(46742401, Autore3, "La classe SocialNet...", Mon Jan 03 09:44:00 CET 2011, [Autore2, Gianni, Autore999, Autore0, Autore1, Pippo])
+(1456940450, Autore1, "Lorem Ipsum", Mon Jan 11 03:33:00 CET 2010, [])
+]
+***Social moderato inizializzato***
+[
+badwords: [sse, Post, prova, fpu, Agenda, Windows, windows, agenda, GNU, gnu, Funzione, xi, Xi, Linux, penna, funzione, linux, Penna]
+(
+[
+	(1456940450, Autore1, "Lorem Ipsum", Mon Jan 11 03:33:00 CET 2010, [])
+	(990191127, Autore2, "classe Post realizz...", Sun Jan 05 16:21:00 CET 2020, [])
+	(46742401, Autore3, "La classe SocialNet...", Mon Jan 03 09:44:00 CET 2011, [Autore2, Gianni, Autore999, Autore0, Autore1, Pippo])
+	(183340051, Autore1, "Pellentesque vestib...", Fri Jan 01 05:05:00 CET 2021, [Silvia])
+	(1955017928, Autore0, "test", Thu Jan 01 18:18:00 CET 1970, [Maria])
+],
+followers(Autore3) = [Autore2, Gianni, Autore999, Autore0, Autore1, Pippo]
+followers(Autore0) = [Maria]
+followers(Autore1) = [Silvia]
+,
+following(Autore2) = [Autore3]
+following(Silvia) = [Autore1]
+following(Gianni) = [Autore3]
+following(Autore999) = [Autore3]
+following(Autore0) = [Autore3]
+following(Maria) = [Autore0]
+following(Autore1) = [Autore3]
+following(Pippo) = [Autore3]
+)
+
+]
+I post segnalati sono:
+[990191127]

@@ -1,0 +1,104 @@
+***lista di post***
+(49741355, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
+(509656530, Tu, "Testo di prova nume...", Sun Jan 05 19:23:00 CET 2020, [])
+(1412701460, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
+(149438419, Lei, "Testo di prova nume...", Sun Jan 05 21:15:00 CET 2020, [])
+(944956218, Essi, "Testo di prova nume...", Sun Jan 05 16:41:00 CET 2020, [])
+(2049695776, Loro, "Testo di prova nume...", Sun Jan 05 17:16:00 CET 2020, [])
+***Test addLike()***
+aggiunto il like di NonDovrebbeSollevareEccezioni al post con id = 1412701460
+aggiunto il like di Lui al post con id = 509656530
+aggiunto il like di Coloro al post con id = 49741355
+aggiunto il like di Autore2 al post con id = 2049695776
+aggiunto il like di Germania al post con id = 509656530
+aggiunto il like di Italia al post con id = 2049695776
+***lista di post + like***
+(49741355, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [Coloro])
+(509656530, Tu, "Testo di prova nume...", Sun Jan 05 19:23:00 CET 2020, [Lui, Germania])
+(1412701460, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [NonDovrebbeSollevareEccezioni])
+(149438419, Lei, "Testo di prova nume...", Sun Jan 05 21:15:00 CET 2020, [])
+(944956218, Essi, "Testo di prova nume...", Sun Jan 05 16:41:00 CET 2020, [])
+(2049695776, Loro, "Testo di prova nume...", Sun Jan 05 17:16:00 CET 2020, [Autore2, Italia])
+***MicroBlog***
+(
+[
+	(49741355, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [Coloro])
+	(509656530, Tu, "Testo di prova nume...", Sun Jan 05 19:23:00 CET 2020, [Lui, Germania])
+	(1412701460, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [NonDovrebbeSollevareEccezioni])
+	(149438419, Lei, "Testo di prova nume...", Sun Jan 05 21:15:00 CET 2020, [])
+	(944956218, Essi, "Testo di prova nume...", Sun Jan 05 16:41:00 CET 2020, [])
+	(2049695776, Loro, "Testo di prova nume...", Sun Jan 05 17:16:00 CET 2020, [Autore2, Italia])
+],
+followers(Tu) = [Lui, Germania]
+followers(Loro) = [Autore2, Italia]
+followers(Me) = [NonDovrebbeSollevareEccezioni, Coloro]
+,
+following(Lui) = [Tu]
+following(Germania) = [Tu]
+following(Autore2) = [Loro]
+following(NonDovrebbeSollevareEccezioni) = [Me]
+following(Italia) = [Loro]
+following(Coloro) = [Me]
+)
+
+***Test addPost()***
+caught: DuplicatePostException: Esiste già un post con id = 49741355
+Ok, eccezione sollevata e gestita
+***Test rmPost()***
+caught: NoSuchPostException: Il post non è presente nella rete sociale
+Ok, eccezione sollevata e gestita
+caught: java.lang.NullPointerException
+Ok, eccezione sollevata e gestita
+***test guessFollowers() con stessa lista***
+Tu=[Lui, Germania]
+Lei=[]
+Loro=[Autore2, Italia]
+Essi=[]
+Me=[NonDovrebbeSollevareEccezioni, Coloro]
+***test guessFollowing() con stessa lista***
+Lui=[Tu]
+Germania=[Tu]
+Autore2=[Loro]
+NonDovrebbeSollevareEccezioni=[Me]
+Italia=[Loro]
+Coloro=[Me]
+***Influencers di MicroBlog***
+[Tu, Lei, Loro, Essi, Me]
+***test di containing()***
+words = [Testo, Tutti, I, Post, Sono, Restituiti]
+MicroBlog.containing(words) = 
+[
+(49741355, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [Coloro])
+(509656530, Tu, "Testo di prova nume...", Sun Jan 05 19:23:00 CET 2020, [Lui, Germania])
+(1412701460, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [NonDovrebbeSollevareEccezioni])
+(149438419, Lei, "Testo di prova nume...", Sun Jan 05 21:15:00 CET 2020, [])
+(944956218, Essi, "Testo di prova nume...", Sun Jan 05 16:41:00 CET 2020, [])
+(2049695776, Loro, "Testo di prova nume...", Sun Jan 05 17:16:00 CET 2020, [Autore2, Italia])
+]
+***Social moderato inizializzato***
+[
+badwords: [sse, Post, prova, fpu, Agenda, Windows, windows, agenda, GNU, gnu, Funzione, xi, Xi, Linux, penna, funzione, linux, Penna]
+(
+[
+	(49741355, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [Coloro])
+	(509656530, Tu, "Testo di prova nume...", Sun Jan 05 19:23:00 CET 2020, [Lui, Germania])
+	(1412701460, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [NonDovrebbeSollevareEccezioni])
+	(149438419, Lei, "Testo di prova nume...", Sun Jan 05 21:15:00 CET 2020, [])
+	(944956218, Essi, "Testo di prova nume...", Sun Jan 05 16:41:00 CET 2020, [])
+	(2049695776, Loro, "Testo di prova nume...", Sun Jan 05 17:16:00 CET 2020, [Autore2, Italia])
+],
+followers(Tu) = [Lui, Germania]
+followers(Loro) = [Autore2, Italia]
+followers(Me) = [NonDovrebbeSollevareEccezioni, Coloro]
+,
+following(Lui) = [Tu]
+following(Germania) = [Tu]
+following(Autore2) = [Loro]
+following(NonDovrebbeSollevareEccezioni) = [Me]
+following(Italia) = [Loro]
+following(Coloro) = [Me]
+)
+
+]
+I post segnalati sono:
+[1412701460, 509656530, 944956218, 149438419, 2049695776, 49741355]

@@ -1,0 +1,132 @@
+Caught: TextOverflowException: Il testo del post con id = 858411105 contiene più di 140 caratteri
+***lista di post***
+(1839768782, X, "00-00: VT1708S Anal...", Tue Jan 07 18:33:00 CET 2020, [])
+(145678826, Y, "G0: system timer : ...", Mon Jan 06 17:14:00 CET 2020, [])
+(353826900, Z, "VmallocTotal:   343...", Fri Jan 17 16:13:00 CET 2020, [])
+(495937335, W, "Mlocked:           ...", Fri Jan 10 09:21:00 CET 2020, [])
+(1744356084, X, "Buffers:           ...", Tue Jan 14 19:55:00 CET 2020, [])
+(1305682827, Y, "reg00: base=0x00000...", Sun Jan 19 19:17:00 CET 2020, [])
+(21456799, X, "1: POSIX  ADVISORY ...", Fri Jan 31 00:00:00 CET 2020, [])
+(103779328, U, "P0PC	  S4	*disabled...", Mon Jan 12 17:19:00 CET 1, [])
+(1829566592, Z, "00000000-00000000 :...", Mon Jan 13 19:20:00 CET 2020, [])
+***Test addLike()***
+aggiunto il like di Like1 al post con id = 353826900
+aggiunto il like di Like2 al post con id = 353826900
+aggiunto il like di Like3 al post con id = 1744356084
+aggiunto il like di Like4 al post con id = 1839768782
+aggiunto il like di Y al post con id = 1839768782
+aggiunto il like di X al post con id = 353826900
+aggiunto il like di Z al post con id = 103779328
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
+aggiunto il like di Z al post con id = 1305682827
+aggiunto il like di Like5 al post con id = 353826900
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
+aggiunto il like di X al post con id = 495937335
+aggiunto il like di X al post con id = 145678826
+aggiunto il like di X al post con id = 145678826
+aggiunto il like di X al post con id = 1829566592
+aggiunto il like di X al post con id = 1829566592
+aggiunto il like di X al post con id = 103779328
+***lista di post + like***
+(1839768782, X, "00-00: VT1708S Anal...", Tue Jan 07 18:33:00 CET 2020, [Y, Like4])
+(145678826, Y, "G0: system timer : ...", Mon Jan 06 17:14:00 CET 2020, [X])
+(353826900, Z, "VmallocTotal:   343...", Fri Jan 17 16:13:00 CET 2020, [X, Like1, Like2, Like5])
+(495937335, W, "Mlocked:           ...", Fri Jan 10 09:21:00 CET 2020, [X])
+(1744356084, X, "Buffers:           ...", Tue Jan 14 19:55:00 CET 2020, [Like3])
+(1305682827, Y, "reg00: base=0x00000...", Sun Jan 19 19:17:00 CET 2020, [Z])
+(21456799, X, "1: POSIX  ADVISORY ...", Fri Jan 31 00:00:00 CET 2020, [])
+(103779328, U, "P0PC	  S4	*disabled...", Mon Jan 12 17:19:00 CET 1, [X, Z])
+(1829566592, Z, "00000000-00000000 :...", Mon Jan 13 19:20:00 CET 2020, [X])
+***MicroBlog***
+(
+[
+	(1839768782, X, "00-00: VT1708S Anal...", Tue Jan 07 18:33:00 CET 2020, [Y, Like4])
+	(145678826, Y, "G0: system timer : ...", Mon Jan 06 17:14:00 CET 2020, [X])
+	(353826900, Z, "VmallocTotal:   343...", Fri Jan 17 16:13:00 CET 2020, [X, Like1, Like2, Like5])
+	(495937335, W, "Mlocked:           ...", Fri Jan 10 09:21:00 CET 2020, [X])
+	(1744356084, X, "Buffers:           ...", Tue Jan 14 19:55:00 CET 2020, [Like3])
+	(1305682827, Y, "reg00: base=0x00000...", Sun Jan 19 19:17:00 CET 2020, [Z])
+	(21456799, X, "1: POSIX  ADVISORY ...", Fri Jan 31 00:00:00 CET 2020, [])
+	(103779328, U, "P0PC	  S4	*disabled...", Mon Jan 12 17:19:00 CET 1, [X, Z])
+	(1829566592, Z, "00000000-00000000 :...", Mon Jan 13 19:20:00 CET 2020, [X])
+],
+followers(U) = [X, Z]
+followers(W) = [X]
+followers(X) = [Y, Like3, Like4]
+followers(Y) = [X, Z]
+followers(Z) = [X, Like1, Like2, Like5]
+,
+following(X) = [U, W, Y, Z]
+following(Y) = [X]
+following(Like1) = [Z]
+following(Z) = [U, Y]
+following(Like2) = [Z]
+following(Like3) = [X]
+following(Like4) = [X]
+following(Like5) = [Z]
+)
+
+***Test addPost()***
+caught: DuplicatePostException: Esiste già un post con id = 1839768782
+Ok, eccezione sollevata e gestita
+***Test rmPost()***
+caught: NoSuchPostException: Il post non è presente nella rete sociale
+Ok, eccezione sollevata e gestita
+caught: java.lang.NullPointerException
+Ok, eccezione sollevata e gestita
+***test guessFollowers() con stessa lista***
+U=[X, Z]
+W=[X]
+X=[Y, Like3, Like4]
+Y=[X, Z]
+Z=[X, Like1, Like2, Like5]
+***test guessFollowing() con stessa lista***
+X=[U, W, Y, Z]
+Y=[X]
+Like1=[Z]
+Z=[U, Y]
+Like2=[Z]
+Like3=[X]
+Like4=[X]
+Like5=[Z]
+***Influencers di MicroBlog***
+[U, W, Y, Z]
+***test di containing()***
+words = []
+MicroBlog.containing(words) = 
+[
+]
+***Social moderato inizializzato***
+[
+badwords: [sse, Post, prova, fpu, Agenda, Windows, windows, agenda, GNU, gnu, Funzione, xi, Xi, Linux, penna, funzione, linux, Penna]
+(
+[
+	(1839768782, X, "00-00: VT1708S Anal...", Tue Jan 07 18:33:00 CET 2020, [Y, Like4])
+	(145678826, Y, "G0: system timer : ...", Mon Jan 06 17:14:00 CET 2020, [X])
+	(353826900, Z, "VmallocTotal:   343...", Fri Jan 17 16:13:00 CET 2020, [X, Like1, Like2, Like5])
+	(495937335, W, "Mlocked:           ...", Fri Jan 10 09:21:00 CET 2020, [X])
+	(1744356084, X, "Buffers:           ...", Tue Jan 14 19:55:00 CET 2020, [Like3])
+	(1305682827, Y, "reg00: base=0x00000...", Sun Jan 19 19:17:00 CET 2020, [Z])
+	(21456799, X, "1: POSIX  ADVISORY ...", Fri Jan 31 00:00:00 CET 2020, [])
+	(103779328, U, "P0PC	  S4	*disabled...", Mon Jan 12 17:19:00 CET 1, [X, Z])
+	(1829566592, Z, "00000000-00000000 :...", Mon Jan 13 19:20:00 CET 2020, [X])
+],
+followers(U) = [X, Z]
+followers(W) = [X]
+followers(X) = [Y, Like3, Like4]
+followers(Y) = [X, Z]
+followers(Z) = [X, Like1, Like2, Like5]
+,
+following(X) = [U, W, Y, Z]
+following(Y) = [X]
+following(Like1) = [Z]
+following(Z) = [U, Y]
+following(Like2) = [Z]
+following(Like3) = [X]
+following(Like4) = [X]
+following(Like5) = [Z]
+)
+
+]
+I post segnalati sono:
+[]

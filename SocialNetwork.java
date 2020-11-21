@@ -178,12 +178,11 @@ public class SocialNetwork {
     }
 
     /** 
-    Devo rimuovere l'autore del post rimosso dalla mappa dei seguiti se non ha altri post nella rete.
-    Devo togliere l'autore del post rimosso dai seguiti degli utenti se essi hanno messo like
-    a tale autore soltanto nel post rimosso.
-    Sfrutto inoltre il fatto di aver già tolto post da this.posts, altrimenti dovrei controllare l'id dei post.
+    Devo togliere l'autore del post rimosso dai seguiti degli utenti se essi hanno messo like a tale autore soltanto nel post rimosso e togliere di conseguenza l'utente
+    dai followers dell'autore
+    Sfrutto inoltre il fatto di aver già tolto p da this.posts, altrimenti dovrei controllare l'id dei post.
     
-    @requires:  post != null
+    @requires:  p != null
     @throws:    Se p == null allora solleva NullPointerException
     @modifies:  this
     @effects:   ∀ k ∊ this.following.keySet()
@@ -191,25 +190,17 @@ public class SocialNetwork {
                             ∀ j. 0 <= j < this.posts.getLikes().size()
                             ∀ i. 0 <= i < this.posts.size()
                             && this.posts.get(i).getAuthor().equals(p.getAuthor())}
-                    allora tolgo p.getAuthor() dal codominio di this.following.get(k),
-                    cioè rimuovo l'autore del post dalle persone seguite da k
-                Se (∄ i. 
-                        0 <= i < this.posts.size() 
-                        && this.posts.get(i).getAuthor().equals(p.getAuthor())
-                    )
-                allora rimuovo la chiave p.getAuthor() dalla mappa followers
+                    allora this.following.get(k).remove(p.getAuthor())
+                    e this.followers.get(p.getAuthor()).remove(k)
     */
     private void rmFromMaps(Post p) throws NullPointerException {
         if (p == null)
             throw new NullPointerException();
-        //booleano per rilevare la presenza di altri post dello stesso autore di p
-        boolean noMorePosts = true;
         Set<String> hasOtherLikes = new HashSet<String>();
         // Seleziono, tra i post rimanenti, quelli dello stesso autore di p
         for (Post element : this.posts) {
             if (element.getAuthor().equals(p.getAuthor())) {
                 // ∃ post ∊ this.posts : post.getAuthor().equals(p.getAuthor())
-                noMorePosts = false;
                 // unisco gli utenti che hanno messo like al set di utenti da escludere
                 // dalla rimozione della relazione di following
                 hasOtherLikes.addAll(element.getLikes());
@@ -223,11 +214,8 @@ public class SocialNetwork {
             */
             if (!hasOtherLikes.contains(user) && this.following.get(user).contains(p.getAuthor())) {
                 this.following.get(user).remove(p.getAuthor());
+                this.followers.get(p.getAuthor()).remove(user);
             }
-        }
-        if (noMorePosts) {
-            // l'autore non ha più alcun post nella rete, pertanto non ha più alcun follower
-            this.followers.remove(p.getAuthor());
         }
     }
 
@@ -265,29 +253,36 @@ public class SocialNetwork {
 
     /** metodo per rimuovere un post dalla rete sociale */
     /*
-    @requires:  p != null 
+    @requires:  pid != null 
                 && (∃ i. 
                     0 <= i < this.posts.size() 
-                    && p.getId().equals(this.posts.get(i).getId())
-    @throws:    Se p == null solleva NullPointerException
+                    && this.posts.get(i).getId().equals(pid)
+    @throws:    Se pid == null solleva NullPointerException
                 Se (∀ i.
                     0 <= i < this.posts.size() 
-                    && !p.getId().equals(this.posts.get(i).getId())
-                    allora solleva NoSuchPostException
+                    && !this.posts.get(i).getId().equals(pid)
     @modifies:  this
-    @effects:   Esegue this.posts.remove(p) e poi aggiorna le mappe tramite la funzione
-                rmFromMaps()
+    @effects:   Trova p ∊ this.posts : p.getId().equals(pid),
+                quindi esegue this.posts.remove(p)
+                e poi aggiorna le mappe tramite la funzione rmFromMaps(p)
     */
-    public void rmPost(Post p) throws NullPointerException, NoSuchPostException {
-        if (p == null)
+    public void rmPost(Integer pid) throws NullPointerException, NoSuchPostException {
+        if (pid == null)
             throw new NullPointerException();
-        if (!this.posts.contains((Post) p)) {
-            throw new NoSuchPostException();
+        boolean nopost = true;
+        Post toRemove = null;
+        for (Post p : this.posts) {
+            if (p.getId().equals(pid)) {
+                nopost = false;
+                toRemove = p;
+            }
         }
+        if (nopost)
+            throw new NoSuchPostException();
         // rimuovo dalla lista
-        this.posts.remove(p);
+        this.posts.remove(toRemove);
         // e aggiorno le mappe
-        this.rmFromMaps(p);
+        this.rmFromMaps(toRemove);
     }
 
     /*
