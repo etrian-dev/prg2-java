@@ -8,7 +8,8 @@ import java.util.Set;
 public class SocialNetwork {
     /*
     @overview:  SocialNetwork è un tipo di dato astratto modificabile definito una tripla:
-    due funzioni mutabili sia nel dominio che nel codominio ed una lista di Post
+                due funzioni parziali mutabili sia nel dominio che nel codominio ed 
+                una lista (di Post)
     elemento tipico:    (
                             followers: {users} -> {{follower_1}, ... , {follower_n}},
                             following: {users} -> {{following_1}, ... , {following_n}},
@@ -17,14 +18,17 @@ public class SocialNetwork {
     */
 
     /* variabili d'istanza (private) */
-    private Map<String, Set<String>> following; // associa ad ogni utente gli utenti che segue
-    private Map<String, Set<String>> followers; // associa ad ogni utente gli utenti che lo seguono
-    private List<Post> posts; // lista dei post presenti nella rete
+    // associa ad ogni utente il Set degli utenti che segue
+    private Map<String, Set<String>> following;
+    // associa ad ogni utente il Set degli utenti che lo seguono
+    private Map<String, Set<String>> followers;
+    // lista dei post presenti nella rete
+    private List<Post> posts;
 
     /*
     costante statica che fissa il numero minimo di like che un utente deve 
-    ricevere per essere considerato un influencer 
-    (usato nel metodo influencers() con parametro)
+    ricevere per essere considerato un influencer
+    (nel metodo influencers() con parametro)
     */
     private static final int likeTreshold = 10;
 
@@ -32,21 +36,21 @@ public class SocialNetwork {
     Funzione di astrazione
     AF(x) = (
                 followers:
-                x.followers.keySet() -> {x.followers.get(i) : i ∊ x.followers.keySet()}
+                x.followers.keySet() → {x.followers.get(i) : i ∊ x.followers.keySet()}
                 ,
                 following:
-                x.following.keySet() -> {x.following.get(i) : i ∊ following.keySet()}
+                x.following.keySet() → {x.following.get(i) : i ∊ following.keySet()}
                 ,
                 x.posts
             )
-        
     Invariante di rappresentazione
     IR(x) = x != null
             && x.posts != null
             && x.following != null
             && x.followers != null
-            && ∀ i. 0 <= i < x.posts.size()
-                IR_Post(x.posts.get(i)) == true
+            && ∀ i. 
+                0 <= i < x.posts.size()
+                && IR_Post(x.posts.get(i)) == true
             && x.following.keySet() =  {x.posts.get(j).getLikes() : 
                                             0 <= j < x.posts.size()
                                         }
@@ -349,11 +353,9 @@ public class SocialNetwork {
     public List<String> influencers() {
         List<String> influencers = new ArrayList<String>();
         for (String user : this.followers.keySet()) {
-            if (!influencers.contains(user)) {
-                if (this.following.get(user) == null) {
-                    influencers.add(user);
-                }
-                else if (this.followers.get(user).size() > this.following.get(user).size()) {
+            if (!(influencers.contains(user) || this.followers.get(user).isEmpty())) {
+                if (this.following.get(user) == null
+                        || this.followers.get(user).size() > this.following.get(user).size()) {
                     influencers.add(user);
                 }
             }
@@ -552,7 +554,7 @@ public class SocialNetwork {
         for (Post p : this.posts) {
             s += "\t" + p.toString();
         }
-        s += "],\n";
+        s += "]\n,\n";
         for (String user : this.followers.keySet()) {
             if (!this.followers.get(user).isEmpty())
                 s += "followers(" + user + ") = " + this.followers.get(user).toString() + "\n";

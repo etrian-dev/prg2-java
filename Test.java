@@ -144,6 +144,9 @@ class Test {
         /* quindi net2 deve risultare vuota e diversa da MicroBlog */
         assert net2.getPosts().size() == 0 && net2.getMentionedUsers().size() == 0
                 && !(MicroBlog.getPosts().size() > 0 && MicroBlog.equals(net2));
+                
+        /* stampo influencers di MicroBlog */
+        System.out.println("***Influencers di MicroBlog***\n" + MicroBlog.influencers());
 
         /* stampo la mappa di followers e following indotte dalla lista di post */
         System.out.println("***test guessFollowers() con stessa lista***");
@@ -156,9 +159,6 @@ class Test {
         for (String k : m.keySet()) {
             System.out.println(k + "=" + m.get(k));
         }
-
-        /* stampo influencers di MicroBlog */
-        System.out.println("***Influencers di MicroBlog***\n" + MicroBlog.influencers());
 
         /*  
             Verifico con degli assert che per ogni autore della lista di post devo 

@@ -3,15 +3,18 @@ Testo di prova
 05-11-2020 18:33
 fine
 Me
-Tu
 Me
-Tu
-Lei
-Essi
-Essi
-Essi
-Loro
-Noi
+Me
+Me
+Me
+Me
+Me
+Me
+Me
+Me
+Me
+Me
+Me
 Me
 Me
 fine
