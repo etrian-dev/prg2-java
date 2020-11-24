@@ -1,96 +1,199 @@
-Caught: TextOverflowException: Il testo del post con id = 858411105 contiene più di 140 caratteri
+Caught: TextOverflowException: Il testo del post con id = 8996737 contiene più di 140 caratteri
+Caught: TextOverflowException: Il testo del post con id = 990989287 contiene più di 140 caratteri
+Caught: TextOverflowException: Il testo del post con id = 844363041 contiene più di 140 caratteri
+Caught: TextOverflowException: Il testo del post con id = 1845339661 contiene più di 140 caratteri
 ***lista di post***
-(1839768782, X, "00-00: VT1708S Anal...", Tue Jan 07 18:33:00 CET 2020, [])
-(145678826, Y, "G0: system timer : ...", Mon Jan 06 17:14:00 CET 2020, [])
-(353826900, Z, "VmallocTotal:   343...", Fri Jan 17 16:13:00 CET 2020, [])
-(495937335, W, "Mlocked:           ...", Fri Jan 10 09:21:00 CET 2020, [])
-(1744356084, X, "Buffers:           ...", Tue Jan 14 19:55:00 CET 2020, [])
-(1305682827, Y, "reg00: base=0x00000...", Sun Jan 19 19:17:00 CET 2020, [])
-(21456799, X, "1: POSIX  ADVISORY ...", Fri Jan 31 00:00:00 CET 2020, [])
-(103779328, U, "P0PC	  S4	*disabled...", Mon Jan 12 17:19:00 CET 1, [])
-(1829566592, Z, "00000000-00000000 :...", Mon Jan 13 19:20:00 CET 2020, [])
+(936100435, X, "00-00: VT1708S Anal...", Tue Jan 07 18:33:00 CET 2020, [])
+(1162432864, Y, "G0: system timer : ...", Mon Jan 06 17:14:00 CET 2020, [])
+(1390555936, Z, "VmallocTotal:   343...", Fri Jan 17 16:13:00 CET 2020, [])
+(977639433, W, "Mlocked:           ...", Fri Jan 10 09:21:00 CET 2020, [])
+(991406270, X, "Buffers:           ...", Tue Jan 14 19:55:00 CET 2020, [])
+(495617665, Y, "reg00: base=0x00000...", Sun Jan 19 19:17:00 CET 2020, [])
+(20003683, X, "1: POSIX  ADVISORY ...", Fri Jan 31 00:00:00 CET 2020, [])
+(347859915, U, "P0PC	  S4	*disabled...", Mon Jan 12 17:19:00 CET 1, [])
+(966269697, Z, "00000000-00000000 :...", Mon Jan 13 19:20:00 CET 2020, [])
+(61151652, X, "snd_seq_device 1638...", Fri Jan 14 15:18:00 CET 2005, [])
+(738549512, X, "drm 491520 7 radeon...", Sat Jan 13 19:20:00 CET 2001, [])
+(1017499697, X, "wmi 32768 1 wmi_bmo...", Tue Jan 18 20:33:00 CET 2011, [])
+(226659919, U, "ccm 20480 6 - Live ...", Mon Jan 19 21:19:00 CET 2009, [])
+(495512270, U, "k10temp 16384 0 - L...", Sun Jan 10 14:36:00 CET 2010, [])
+(775639635, X, "898: 00000000000000...", Fri Jan 27 10:00:00 CET 2006, [])
+(1891160272, Y, "0000A8C0	00000000	0...", Wed Jan 29 15:20:00 CET 2020, [])
+(728369579, S, "InMsgs InErrors InC...", Wed Jan 30 19:30:00 CET 2019, [])
+(938552982, S, "InDatagrams NoPorts...", Thu Jan 29 23:33:00 CET 2009, [])
+(1730840253, X, "timeout inode ref p...", Mon Jan 27 18:11:00 CET 2020, [])
+(2049242861, Z, "Covid", Fri Jan 10 18:33:00 CET 2020, [])
 ***Test addLike()***
-aggiunto il like di Like1 al post con id = 353826900
-aggiunto il like di Like2 al post con id = 353826900
-aggiunto il like di Like3 al post con id = 1744356084
-aggiunto il like di Like4 al post con id = 1839768782
-aggiunto il like di Y al post con id = 1839768782
-aggiunto il like di X al post con id = 353826900
-aggiunto il like di Z al post con id = 103779328
+aggiunto il like di Y al post con id = 1017499697
+aggiunto il like di X al post con id = 728369579
+aggiunto il like di Z al post con id = 991406270
+aggiunto il like di Z al post con id = 991406270
+aggiunto il like di Z al post con id = 1730840253
 Caught: SelfLikeException: Non è possibile mettere like al proprio post
-aggiunto il like di Z al post con id = 1305682827
-aggiunto il like di Like5 al post con id = 353826900
 Caught: SelfLikeException: Non è possibile mettere like al proprio post
-aggiunto il like di X al post con id = 495937335
-aggiunto il like di X al post con id = 145678826
-aggiunto il like di X al post con id = 145678826
-aggiunto il like di X al post con id = 1829566592
-aggiunto il like di X al post con id = 1829566592
-aggiunto il like di X al post con id = 103779328
+aggiunto il like di X al post con id = 938552982
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
+aggiunto il like di X al post con id = 728369579
+aggiunto il like di X al post con id = 226659919
+aggiunto il like di Z al post con id = 347859915
+aggiunto il like di Z al post con id = 775639635
+aggiunto il like di Z al post con id = 1017499697
+aggiunto il like di Z al post con id = 20003683
+aggiunto il like di Z al post con id = 20003683
+aggiunto il like di Z al post con id = 226659919
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
+aggiunto il like di S al post con id = 226659919
+aggiunto il like di S al post con id = 977639433
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
+aggiunto il like di Like1 al post con id = 738549512
+aggiunto il like di Like2 al post con id = 775639635
+aggiunto il like di Like3 al post con id = 1730840253
+aggiunto il like di Like4 al post con id = 977639433
+aggiunto il like di Like5 al post con id = 495512270
+aggiunto il like di Like6 al post con id = 728369579
+aggiunto il like di Like7 al post con id = 728369579
+aggiunto il like di Like8 al post con id = 495617665
+aggiunto il like di Like9 al post con id = 991406270
+aggiunto il like di Like10 al post con id = 936100435
+aggiunto il like di Like11 al post con id = 2049242861
+aggiunto il like di Like12 al post con id = 1730840253
+aggiunto il like di Like13 al post con id = 1891160272
+aggiunto il like di Like14 al post con id = 977639433
+aggiunto il like di Like15 al post con id = 495617665
+aggiunto il like di Like16 al post con id = 495512270
+aggiunto il like di Like17 al post con id = 1891160272
+aggiunto il like di Like18 al post con id = 1390555936
+aggiunto il like di Like19 al post con id = 61151652
+aggiunto il like di Like20 al post con id = 936100435
+aggiunto il like di Like21 al post con id = 20003683
 ***lista di post + like***
-(1839768782, X, "00-00: VT1708S Anal...", Tue Jan 07 18:33:00 CET 2020, [Y, Like4])
-(145678826, Y, "G0: system timer : ...", Mon Jan 06 17:14:00 CET 2020, [X])
-(353826900, Z, "VmallocTotal:   343...", Fri Jan 17 16:13:00 CET 2020, [X, Like1, Like2, Like5])
-(495937335, W, "Mlocked:           ...", Fri Jan 10 09:21:00 CET 2020, [X])
-(1744356084, X, "Buffers:           ...", Tue Jan 14 19:55:00 CET 2020, [Like3])
-(1305682827, Y, "reg00: base=0x00000...", Sun Jan 19 19:17:00 CET 2020, [Z])
-(21456799, X, "1: POSIX  ADVISORY ...", Fri Jan 31 00:00:00 CET 2020, [])
-(103779328, U, "P0PC	  S4	*disabled...", Mon Jan 12 17:19:00 CET 1, [X, Z])
-(1829566592, Z, "00000000-00000000 :...", Mon Jan 13 19:20:00 CET 2020, [X])
+(936100435, X, "00-00: VT1708S Anal...", Tue Jan 07 18:33:00 CET 2020, [Like10, Like20])
+(1162432864, Y, "G0: system timer : ...", Mon Jan 06 17:14:00 CET 2020, [])
+(1390555936, Z, "VmallocTotal:   343...", Fri Jan 17 16:13:00 CET 2020, [Like18])
+(977639433, W, "Mlocked:           ...", Fri Jan 10 09:21:00 CET 2020, [Like14, S, Like4])
+(991406270, X, "Buffers:           ...", Tue Jan 14 19:55:00 CET 2020, [Like9, Z])
+(495617665, Y, "reg00: base=0x00000...", Sun Jan 19 19:17:00 CET 2020, [Like8, Like15])
+(20003683, X, "1: POSIX  ADVISORY ...", Fri Jan 31 00:00:00 CET 2020, [Z, Like21])
+(347859915, U, "P0PC	  S4	*disabled...", Mon Jan 12 17:19:00 CET 1, [Z])
+(966269697, Z, "00000000-00000000 :...", Mon Jan 13 19:20:00 CET 2020, [])
+(61151652, X, "snd_seq_device 1638...", Fri Jan 14 15:18:00 CET 2005, [Like19])
+(738549512, X, "drm 491520 7 radeon...", Sat Jan 13 19:20:00 CET 2001, [Like1])
+(1017499697, X, "wmi 32768 1 wmi_bmo...", Tue Jan 18 20:33:00 CET 2011, [Y, Z])
+(226659919, U, "ccm 20480 6 - Live ...", Mon Jan 19 21:19:00 CET 2009, [S, X, Z])
+(495512270, U, "k10temp 16384 0 - L...", Sun Jan 10 14:36:00 CET 2010, [Like16, Like5])
+(775639635, X, "898: 00000000000000...", Fri Jan 27 10:00:00 CET 2006, [Z, Like2])
+(1891160272, Y, "0000A8C0	00000000	0...", Wed Jan 29 15:20:00 CET 2020, [Like13, Like17])
+(728369579, S, "InMsgs InErrors InC...", Wed Jan 30 19:30:00 CET 2019, [Like7, X, Like6])
+(938552982, S, "InDatagrams NoPorts...", Thu Jan 29 23:33:00 CET 2009, [X])
+(1730840253, X, "timeout inode ref p...", Mon Jan 27 18:11:00 CET 2020, [Like12, Z, Like3])
+(2049242861, Z, "Covid", Fri Jan 10 18:33:00 CET 2020, [Like11])
 ***MicroBlog***
 (
 [
-	(1839768782, X, "00-00: VT1708S Anal...", Tue Jan 07 18:33:00 CET 2020, [Y, Like4])
-	(145678826, Y, "G0: system timer : ...", Mon Jan 06 17:14:00 CET 2020, [X])
-	(353826900, Z, "VmallocTotal:   343...", Fri Jan 17 16:13:00 CET 2020, [X, Like1, Like2, Like5])
-	(495937335, W, "Mlocked:           ...", Fri Jan 10 09:21:00 CET 2020, [X])
-	(1744356084, X, "Buffers:           ...", Tue Jan 14 19:55:00 CET 2020, [Like3])
-	(1305682827, Y, "reg00: base=0x00000...", Sun Jan 19 19:17:00 CET 2020, [Z])
-	(21456799, X, "1: POSIX  ADVISORY ...", Fri Jan 31 00:00:00 CET 2020, [])
-	(103779328, U, "P0PC	  S4	*disabled...", Mon Jan 12 17:19:00 CET 1, [X, Z])
-	(1829566592, Z, "00000000-00000000 :...", Mon Jan 13 19:20:00 CET 2020, [X])
-],
-followers(U) = [X, Z]
-followers(W) = [X]
-followers(X) = [Y, Like3, Like4]
-followers(Y) = [X, Z]
-followers(Z) = [X, Like1, Like2, Like5]
+	(936100435, X, "00-00: VT1708S Anal...", Tue Jan 07 18:33:00 CET 2020, [Like10, Like20])
+	(1162432864, Y, "G0: system timer : ...", Mon Jan 06 17:14:00 CET 2020, [])
+	(1390555936, Z, "VmallocTotal:   343...", Fri Jan 17 16:13:00 CET 2020, [Like18])
+	(977639433, W, "Mlocked:           ...", Fri Jan 10 09:21:00 CET 2020, [Like14, S, Like4])
+	(991406270, X, "Buffers:           ...", Tue Jan 14 19:55:00 CET 2020, [Like9, Z])
+	(495617665, Y, "reg00: base=0x00000...", Sun Jan 19 19:17:00 CET 2020, [Like8, Like15])
+	(20003683, X, "1: POSIX  ADVISORY ...", Fri Jan 31 00:00:00 CET 2020, [Z, Like21])
+	(347859915, U, "P0PC	  S4	*disabled...", Mon Jan 12 17:19:00 CET 1, [Z])
+	(966269697, Z, "00000000-00000000 :...", Mon Jan 13 19:20:00 CET 2020, [])
+	(61151652, X, "snd_seq_device 1638...", Fri Jan 14 15:18:00 CET 2005, [Like19])
+	(738549512, X, "drm 491520 7 radeon...", Sat Jan 13 19:20:00 CET 2001, [Like1])
+	(1017499697, X, "wmi 32768 1 wmi_bmo...", Tue Jan 18 20:33:00 CET 2011, [Y, Z])
+	(226659919, U, "ccm 20480 6 - Live ...", Mon Jan 19 21:19:00 CET 2009, [S, X, Z])
+	(495512270, U, "k10temp 16384 0 - L...", Sun Jan 10 14:36:00 CET 2010, [Like16, Like5])
+	(775639635, X, "898: 00000000000000...", Fri Jan 27 10:00:00 CET 2006, [Z, Like2])
+	(1891160272, Y, "0000A8C0	00000000	0...", Wed Jan 29 15:20:00 CET 2020, [Like13, Like17])
+	(728369579, S, "InMsgs InErrors InC...", Wed Jan 30 19:30:00 CET 2019, [Like7, X, Like6])
+	(938552982, S, "InDatagrams NoPorts...", Thu Jan 29 23:33:00 CET 2009, [X])
+	(1730840253, X, "timeout inode ref p...", Mon Jan 27 18:11:00 CET 2020, [Like12, Z, Like3])
+	(2049242861, Z, "Covid", Fri Jan 10 18:33:00 CET 2020, [Like11])
+]
 ,
-following(X) = [U, W, Y, Z]
+followers(S) = [Like7, X, Like6]
+followers(U) = [S, Like16, X, Z, Like5]
+followers(W) = [Like14, S, Like4]
+followers(X) = [Like9, Like12, Like19, Y, Z, Like1, Like2, Like10, Like21, Like3, Like20]
+followers(Y) = [Like8, Like15, Like13, Like17]
+followers(Z) = [Like18, Like11]
+,
+following(Like7) = [S]
+following(Like8) = [Y]
+following(Like9) = [X]
+following(S) = [U, W]
+following(X) = [S, U]
 following(Y) = [X]
-following(Like1) = [Z]
-following(Z) = [U, Y]
-following(Like2) = [Z]
+following(Z) = [U, X]
+following(Like21) = [X]
+following(Like20) = [X]
+following(Like14) = [W]
+following(Like15) = [Y]
+following(Like12) = [X]
+following(Like13) = [Y]
+following(Like18) = [Z]
+following(Like19) = [X]
+following(Like16) = [U]
+following(Like17) = [Y]
+following(Like1) = [X]
+following(Like2) = [X]
+following(Like10) = [X]
 following(Like3) = [X]
-following(Like4) = [X]
-following(Like5) = [Z]
+following(Like4) = [W]
+following(Like11) = [Z]
+following(Like5) = [U]
+following(Like6) = [S]
 )
 
 ***Test addPost()***
-caught: DuplicatePostException: Esiste già un post con id = 1839768782
+caught: DuplicatePostException: Esiste già un post con id = 936100435
 Ok, eccezione sollevata e gestita
 ***Test rmPost()***
 caught: NoSuchPostException: Il post non è presente nella rete sociale
 Ok, eccezione sollevata e gestita
 caught: java.lang.NullPointerException
 Ok, eccezione sollevata e gestita
-***test guessFollowers() con stessa lista***
-U=[X, Z]
-W=[X]
-X=[Y, Like3, Like4]
-Y=[X, Z]
-Z=[X, Like1, Like2, Like5]
-***test guessFollowing() con stessa lista***
-X=[U, W, Y, Z]
-Y=[X]
-Like1=[Z]
-Z=[U, Y]
-Like2=[Z]
-Like3=[X]
-Like4=[X]
-Like5=[Z]
 ***Influencers di MicroBlog***
-[U, W, Y, Z]
+[S, U, W, X, Y]
+***test di influencers() con parametro***
+Data la lista di post pList
+Set di utenti per cui #{followers di user)} > 5 = [X]
+***test guessFollowers() con stessa lista***
+Like7=[S]
+Like8=[Y]
+Like9=[X]
+S=[U, W]
+X=[S, U]
+Y=[X]
+Z=[U, X]
+Like21=[X]
+Like20=[X]
+Like14=[W]
+Like15=[Y]
+Like12=[X]
+Like13=[Y]
+Like18=[Z]
+Like19=[X]
+Like16=[U]
+Like17=[Y]
+Like1=[X]
+Like2=[X]
+Like10=[X]
+Like3=[X]
+Like4=[W]
+Like11=[Z]
+Like5=[U]
+Like6=[S]
+***test guessFollowing() con stessa lista***
+S=[Like7, X, Like6]
+U=[S, Like16, X, Z, Like5]
+W=[Like14, S, Like4]
+X=[Like9, Like12, Like19, Y, Z, Like1, Like2, Like10, Like21, Like3, Like20]
+Y=[Like8, Like15, Like13, Like17]
+Z=[Like18, Like11]
 ***test di containing()***
 words = []
 MicroBlog.containing(words) = 
@@ -101,30 +204,60 @@ MicroBlog.containing(words) =
 badwords: [sse, Post, prova, fpu, Agenda, Windows, windows, agenda, GNU, gnu, Funzione, xi, Xi, Linux, penna, funzione, linux, Penna]
 (
 [
-	(1839768782, X, "00-00: VT1708S Anal...", Tue Jan 07 18:33:00 CET 2020, [Y, Like4])
-	(145678826, Y, "G0: system timer : ...", Mon Jan 06 17:14:00 CET 2020, [X])
-	(353826900, Z, "VmallocTotal:   343...", Fri Jan 17 16:13:00 CET 2020, [X, Like1, Like2, Like5])
-	(495937335, W, "Mlocked:           ...", Fri Jan 10 09:21:00 CET 2020, [X])
-	(1744356084, X, "Buffers:           ...", Tue Jan 14 19:55:00 CET 2020, [Like3])
-	(1305682827, Y, "reg00: base=0x00000...", Sun Jan 19 19:17:00 CET 2020, [Z])
-	(21456799, X, "1: POSIX  ADVISORY ...", Fri Jan 31 00:00:00 CET 2020, [])
-	(103779328, U, "P0PC	  S4	*disabled...", Mon Jan 12 17:19:00 CET 1, [X, Z])
-	(1829566592, Z, "00000000-00000000 :...", Mon Jan 13 19:20:00 CET 2020, [X])
-],
-followers(U) = [X, Z]
-followers(W) = [X]
-followers(X) = [Y, Like3, Like4]
-followers(Y) = [X, Z]
-followers(Z) = [X, Like1, Like2, Like5]
+	(936100435, X, "00-00: VT1708S Anal...", Tue Jan 07 18:33:00 CET 2020, [Like10, Like20])
+	(1162432864, Y, "G0: system timer : ...", Mon Jan 06 17:14:00 CET 2020, [])
+	(1390555936, Z, "VmallocTotal:   343...", Fri Jan 17 16:13:00 CET 2020, [Like18])
+	(977639433, W, "Mlocked:           ...", Fri Jan 10 09:21:00 CET 2020, [Like14, S, Like4])
+	(991406270, X, "Buffers:           ...", Tue Jan 14 19:55:00 CET 2020, [Like9, Z])
+	(495617665, Y, "reg00: base=0x00000...", Sun Jan 19 19:17:00 CET 2020, [Like8, Like15])
+	(20003683, X, "1: POSIX  ADVISORY ...", Fri Jan 31 00:00:00 CET 2020, [Z, Like21])
+	(347859915, U, "P0PC	  S4	*disabled...", Mon Jan 12 17:19:00 CET 1, [Z])
+	(966269697, Z, "00000000-00000000 :...", Mon Jan 13 19:20:00 CET 2020, [])
+	(61151652, X, "snd_seq_device 1638...", Fri Jan 14 15:18:00 CET 2005, [Like19])
+	(738549512, X, "drm 491520 7 radeon...", Sat Jan 13 19:20:00 CET 2001, [Like1])
+	(1017499697, X, "wmi 32768 1 wmi_bmo...", Tue Jan 18 20:33:00 CET 2011, [Y, Z])
+	(226659919, U, "ccm 20480 6 - Live ...", Mon Jan 19 21:19:00 CET 2009, [S, X, Z])
+	(495512270, U, "k10temp 16384 0 - L...", Sun Jan 10 14:36:00 CET 2010, [Like16, Like5])
+	(775639635, X, "898: 00000000000000...", Fri Jan 27 10:00:00 CET 2006, [Z, Like2])
+	(1891160272, Y, "0000A8C0	00000000	0...", Wed Jan 29 15:20:00 CET 2020, [Like13, Like17])
+	(728369579, S, "InMsgs InErrors InC...", Wed Jan 30 19:30:00 CET 2019, [Like7, X, Like6])
+	(938552982, S, "InDatagrams NoPorts...", Thu Jan 29 23:33:00 CET 2009, [X])
+	(1730840253, X, "timeout inode ref p...", Mon Jan 27 18:11:00 CET 2020, [Like12, Z, Like3])
+	(2049242861, Z, "Covid", Fri Jan 10 18:33:00 CET 2020, [Like11])
+]
 ,
-following(X) = [U, W, Y, Z]
+followers(S) = [Like7, X, Like6]
+followers(U) = [S, Like16, X, Z, Like5]
+followers(W) = [Like14, S, Like4]
+followers(X) = [Like9, Like12, Like19, Y, Z, Like1, Like2, Like10, Like21, Like3, Like20]
+followers(Y) = [Like8, Like15, Like13, Like17]
+followers(Z) = [Like18, Like11]
+,
+following(Like7) = [S]
+following(Like8) = [Y]
+following(Like9) = [X]
+following(S) = [U, W]
+following(X) = [S, U]
 following(Y) = [X]
-following(Like1) = [Z]
-following(Z) = [U, Y]
-following(Like2) = [Z]
+following(Z) = [U, X]
+following(Like21) = [X]
+following(Like20) = [X]
+following(Like14) = [W]
+following(Like15) = [Y]
+following(Like12) = [X]
+following(Like13) = [Y]
+following(Like18) = [Z]
+following(Like19) = [X]
+following(Like16) = [U]
+following(Like17) = [Y]
+following(Like1) = [X]
+following(Like2) = [X]
+following(Like10) = [X]
 following(Like3) = [X]
-following(Like4) = [X]
-following(Like5) = [Z]
+following(Like4) = [W]
+following(Like11) = [Z]
+following(Like5) = [U]
+following(Like6) = [S]
 )
 
 ]

@@ -1,98 +1,105 @@
 ***lista di post***
-(1914487614, A, " ", Tue Jan 18 19:59:00 CET 2022, [])
-(860018043, B, "Test Test Test", Sat Jan 15 16:31:00 CET 2011, [])
-(939186916, A, "Eccezionale", Sun Jan 10 10:10:00 CET 2010, [])
-(1010696548, A, "fine", Mon Jan 18 19:11:00 CET 2021, [])
-(1416098294, C, "Mio zio", Sun Jan 15 10:43:00 CET 2012, [])
-(1381924454, C, "Eccipienti", Sat Jan 15 06:23:00 CET 2000, [])
+(785767387, A, " ", Tue Jan 18 19:59:00 CET 2022, [])
+(1258998784, B, "Test Test Test", Sat Jan 15 16:31:00 CET 2011, [])
+(276775129, A, "Eccezionale", Sun Jan 10 10:10:00 CET 2010, [])
+(873695207, A, "fine", Mon Jan 18 19:11:00 CET 2021, [])
+(1551764536, C, "Mio zio", Sun Jan 15 10:43:00 CET 2012, [])
+(458218173, C, "Eccipienti", Sat Jan 15 06:23:00 CET 2000, [])
 ***Test addLike()***
-aggiunto il like di Nessuno al post con id = 860018043
-aggiunto il like di Dei al post con id = 939186916
-aggiunto il like di Like al post con id = 1010696548
-aggiunto il like di Fa al post con id = 1010696548
-aggiunto il like di Parte al post con id = 1914487614
-aggiunto il like di Degli al post con id = 1010696548
-aggiunto il like di Autori al post con id = 1914487614
+aggiunto il like di Nessuno al post con id = 785767387
+aggiunto il like di Dei al post con id = 785767387
+aggiunto il like di Like al post con id = 1551764536
+aggiunto il like di Fa al post con id = 458218173
+aggiunto il like di Parte al post con id = 1551764536
+aggiunto il like di Degli al post con id = 276775129
+aggiunto il like di Autori al post con id = 1258998784
 ***lista di post + like***
-(1914487614, A, " ", Tue Jan 18 19:59:00 CET 2022, [Autori, Parte])
-(860018043, B, "Test Test Test", Sat Jan 15 16:31:00 CET 2011, [Nessuno])
-(939186916, A, "Eccezionale", Sun Jan 10 10:10:00 CET 2010, [Dei])
-(1010696548, A, "fine", Mon Jan 18 19:11:00 CET 2021, [Like, Fa, Degli])
-(1416098294, C, "Mio zio", Sun Jan 15 10:43:00 CET 2012, [])
-(1381924454, C, "Eccipienti", Sat Jan 15 06:23:00 CET 2000, [])
+(785767387, A, " ", Tue Jan 18 19:59:00 CET 2022, [Nessuno, Dei])
+(1258998784, B, "Test Test Test", Sat Jan 15 16:31:00 CET 2011, [Autori])
+(276775129, A, "Eccezionale", Sun Jan 10 10:10:00 CET 2010, [Degli])
+(873695207, A, "fine", Mon Jan 18 19:11:00 CET 2021, [])
+(1551764536, C, "Mio zio", Sun Jan 15 10:43:00 CET 2012, [Like, Parte])
+(458218173, C, "Eccipienti", Sat Jan 15 06:23:00 CET 2000, [Fa])
 ***MicroBlog***
 (
 [
-	(1914487614, A, " ", Tue Jan 18 19:59:00 CET 2022, [Autori, Parte])
-	(860018043, B, "Test Test Test", Sat Jan 15 16:31:00 CET 2011, [Nessuno])
-	(939186916, A, "Eccezionale", Sun Jan 10 10:10:00 CET 2010, [Dei])
-	(1010696548, A, "fine", Mon Jan 18 19:11:00 CET 2021, [Like, Fa, Degli])
-	(1416098294, C, "Mio zio", Sun Jan 15 10:43:00 CET 2012, [])
-	(1381924454, C, "Eccipienti", Sat Jan 15 06:23:00 CET 2000, [])
-],
-followers(A) = [Like, Autori, Parte, Dei, Fa, Degli]
-followers(B) = [Nessuno]
+	(785767387, A, " ", Tue Jan 18 19:59:00 CET 2022, [Nessuno, Dei])
+	(1258998784, B, "Test Test Test", Sat Jan 15 16:31:00 CET 2011, [Autori])
+	(276775129, A, "Eccezionale", Sun Jan 10 10:10:00 CET 2010, [Degli])
+	(873695207, A, "fine", Mon Jan 18 19:11:00 CET 2021, [])
+	(1551764536, C, "Mio zio", Sun Jan 15 10:43:00 CET 2012, [Like, Parte])
+	(458218173, C, "Eccipienti", Sat Jan 15 06:23:00 CET 2000, [Fa])
+]
 ,
-following(Like) = [A]
-following(Autori) = [A]
-following(Nessuno) = [B]
-following(Parte) = [A]
+followers(A) = [Nessuno, Dei, Degli]
+followers(B) = [Autori]
+followers(C) = [Like, Parte, Fa]
+,
+following(Like) = [C]
+following(Autori) = [B]
+following(Nessuno) = [A]
+following(Parte) = [C]
 following(Dei) = [A]
-following(Fa) = [A]
+following(Fa) = [C]
 following(Degli) = [A]
 )
 
 ***Test addPost()***
-caught: DuplicatePostException: Esiste già un post con id = 1914487614
+caught: DuplicatePostException: Esiste già un post con id = 785767387
 Ok, eccezione sollevata e gestita
 ***Test rmPost()***
 caught: NoSuchPostException: Il post non è presente nella rete sociale
 Ok, eccezione sollevata e gestita
 caught: java.lang.NullPointerException
 Ok, eccezione sollevata e gestita
-***test guessFollowers() con stessa lista***
-A=[Like, Autori, Parte, Dei, Fa, Degli]
-B=[Nessuno]
-C=[]
-***test guessFollowing() con stessa lista***
-Like=[A]
-Autori=[A]
-Nessuno=[B]
-Parte=[A]
-Dei=[A]
-Fa=[A]
-Degli=[A]
 ***Influencers di MicroBlog***
 [A, B, C]
+***test di influencers() con parametro***
+Data la lista di post pList
+Set di utenti per cui #{followers di user)} > 5 = []
+***test guessFollowers() con stessa lista***
+Like=[C]
+Autori=[B]
+Nessuno=[A]
+Parte=[C]
+Dei=[A]
+Fa=[C]
+Degli=[A]
+***test guessFollowing() con stessa lista***
+A=[Nessuno, Dei, Degli]
+B=[Autori]
+C=[Like, Parte, Fa]
 ***test di containing()***
 words = [Ecc, zio]
 MicroBlog.containing(words) = 
 [
-(939186916, A, "Eccezionale", Sun Jan 10 10:10:00 CET 2010, [Dei])
-(1381924454, C, "Eccipienti", Sat Jan 15 06:23:00 CET 2000, [])
-(1416098294, C, "Mio zio", Sun Jan 15 10:43:00 CET 2012, [])
+(276775129, A, "Eccezionale", Sun Jan 10 10:10:00 CET 2010, [Degli])
+(458218173, C, "Eccipienti", Sat Jan 15 06:23:00 CET 2000, [Fa])
+(1551764536, C, "Mio zio", Sun Jan 15 10:43:00 CET 2012, [Like, Parte])
 ]
 ***Social moderato inizializzato***
 [
 badwords: [sse, Post, prova, fpu, Agenda, Windows, windows, agenda, GNU, gnu, Funzione, xi, Xi, Linux, penna, funzione, linux, Penna]
 (
 [
-	(1914487614, A, " ", Tue Jan 18 19:59:00 CET 2022, [Autori, Parte])
-	(860018043, B, "Test Test Test", Sat Jan 15 16:31:00 CET 2011, [Nessuno])
-	(939186916, A, "Eccezionale", Sun Jan 10 10:10:00 CET 2010, [Dei])
-	(1010696548, A, "fine", Mon Jan 18 19:11:00 CET 2021, [Like, Fa, Degli])
-	(1416098294, C, "Mio zio", Sun Jan 15 10:43:00 CET 2012, [])
-	(1381924454, C, "Eccipienti", Sat Jan 15 06:23:00 CET 2000, [])
-],
-followers(A) = [Like, Autori, Parte, Dei, Fa, Degli]
-followers(B) = [Nessuno]
+	(785767387, A, " ", Tue Jan 18 19:59:00 CET 2022, [Nessuno, Dei])
+	(1258998784, B, "Test Test Test", Sat Jan 15 16:31:00 CET 2011, [Autori])
+	(276775129, A, "Eccezionale", Sun Jan 10 10:10:00 CET 2010, [Degli])
+	(873695207, A, "fine", Mon Jan 18 19:11:00 CET 2021, [])
+	(1551764536, C, "Mio zio", Sun Jan 15 10:43:00 CET 2012, [Like, Parte])
+	(458218173, C, "Eccipienti", Sat Jan 15 06:23:00 CET 2000, [Fa])
+]
 ,
-following(Like) = [A]
-following(Autori) = [A]
-following(Nessuno) = [B]
-following(Parte) = [A]
+followers(A) = [Nessuno, Dei, Degli]
+followers(B) = [Autori]
+followers(C) = [Like, Parte, Fa]
+,
+following(Like) = [C]
+following(Autori) = [B]
+following(Nessuno) = [A]
+following(Parte) = [C]
 following(Dei) = [A]
-following(Fa) = [A]
+following(Fa) = [C]
 following(Degli) = [A]
 )
 

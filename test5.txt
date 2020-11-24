@@ -28,22 +28,91 @@ P0PC	  S4	*disabled  pci:0000:00:14.4
 Z
 00000000-00000000 : Reserved
 13-05-2020 19:20
+X
+snd_seq_device 16384 3 snd_seq_midi,snd_rawmidi,snd_seq, Live 0x0000000000000000
+14-12-2005 15:18
+X
+drm 491520 7 radeon,ttm,drm_kms_helper, Live 0x0000000000000000
+13-11-2001 19:20
+X
+sch_fq_codel 20480 2 - Live 0x0000000000000000parport_pc 40960 1 - Live 0x0000000000000000ppdev 24576 0 - Live 0x0000000000000000lp 20480 0 - Live 0x0000000000000000parport 53248 3 parport_pc,ppdev,lp, Live 0x0000000000000000drm 491520 7 radeon,ttm,drm_kms_helper, Live 0x0000000000000000ip_tables 32768 0 - Live 0x0000000000000000x_tables 40960 1 ip_tables, Live 0x0000000000000000autofs4 45056 2 - Live 0x0000000000000000hid_generic 16384 0 - Live 0x0000000000000000usbhid 57344 0 - Live 0x0000000000000000hid 131072 2 hid_generic,usbhid, Live 0x0000000000000000uas 28672 0 - Live 0x0000000000000000usb_storage 77824 1 uas, Live 0x0000000000000000pata_acpi 16384 0 - Live 0x0000000000000000psmouse 155648 0 - Live 0x0000000000000000
+05-05-2000 16:16
+X
+snd 90112 20 snd_hda_codec_via,snd_hda_codec_generic,snd_hda_codec_hdmi,snd_hda_intel,snd_hda_codec,snd_hwdep,snd_pcm,snd_rawmidi,snd_seq,snd_seq_device,snd_timer, Live 0x0000000000000000
+07-11-2021 19:20
+X
+wmi 32768 1 wmi_bmof, Live 0x0000000000000000
+18-03-2011 20:33
+Z
+ath9k_common 36864 1 ath9k, Live 0x0000000000000000ath9k_hw 475136 2 ath9k,ath9k_common, Live 0x0000000000000000ath 36864 3 ath9k,ath9k_common,ath9k_hw, Live 0x0000000000000000
+10-04-2014 17:13
+U
+ccm 20480 6 - Live 0x0000000000000000
+19-04-2009 21:19
+U
+k10temp 16384 0 - Live 0x0000000000000000 drm_kms_helper 184320 1 radeon, Live 0x0000000000000000
+10-10-2010 14:36
+X
+898: 00000000000000000000000000000000:C9F3 00000000000000000000000000000000:0000
+27-03-2006 10:00
+Y
+0000A8C0	00000000	0001	0	0	600	00FFFFFF	0	0	0
+29-11-2020 15:20
+S
+InMsgs InErrors InCsumErrors InDestUnreachs InTimeExcds InParmProbs InSrcQuenchs InRedirects
+30-08-2019 19:30
+S
+InDatagrams NoPorts InErrors OutDatagrams RcvbufErrors SndbufErrors InCsumErrors IgnoredMulti
+29-02-2009 23:33
+X
+timeout inode ref pointer drops
+27-01-2020 18:11
+Z
+Covid
+10-03-2020 18:33
 fine
-Like1
-Like2
-Like3
-Like4
 Y
 X
 Z
 Z
 Z
+X
+X
+X
+X
+X
+X
+X
+Z
+Z
+Z
+Z
+Z
+Z
+X
+S
+S
+X
+X
+Like1
+Like2
+Like3
+Like4
 Like5
-X
-X
-X
-X
-X
-X
-X
+Like6
+Like7
+Like8
+Like9
+Like10
+Like11
+Like12
+Like13
+Like14
+Like15
+Like16
+Like17
+Like18
+Like19
+Like20
+Like21
 fine

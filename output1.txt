@@ -1,52 +1,48 @@
 ***lista di post***
-(779880974, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
+(1133846620, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
 ***Test addLike()***
 Caught: SelfLikeException: Non è possibile mettere like al proprio post
-aggiunto il like di Tu al post con id = 779880974
 Caught: SelfLikeException: Non è possibile mettere like al proprio post
-aggiunto il like di Tu al post con id = 779880974
-aggiunto il like di Lei al post con id = 779880974
-aggiunto il like di Essi al post con id = 779880974
-aggiunto il like di Essi al post con id = 779880974
-aggiunto il like di Essi al post con id = 779880974
-aggiunto il like di Loro al post con id = 779880974
-aggiunto il like di Noi al post con id = 779880974
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
 Caught: SelfLikeException: Non è possibile mettere like al proprio post
 Caught: SelfLikeException: Non è possibile mettere like al proprio post
 ***lista di post + like***
-(779880974, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [Tu, Lei, Loro, Essi, Noi])
+(1133846620, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
 ***MicroBlog***
 (
 [
-	(779880974, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [Tu, Lei, Loro, Essi, Noi])
-],
-followers(Me) = [Tu, Lei, Loro, Essi, Noi]
+	(1133846620, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
+]
 ,
-following(Tu) = [Me]
-following(Lei) = [Me]
-following(Loro) = [Me]
-following(Essi) = [Me]
-following(Noi) = [Me]
+,
 )
 
 ***Test addPost()***
-caught: DuplicatePostException: Esiste già un post con id = 779880974
+caught: DuplicatePostException: Esiste già un post con id = 1133846620
 Ok, eccezione sollevata e gestita
 ***Test rmPost()***
 caught: NoSuchPostException: Il post non è presente nella rete sociale
 Ok, eccezione sollevata e gestita
 caught: java.lang.NullPointerException
 Ok, eccezione sollevata e gestita
-***test guessFollowers() con stessa lista***
-Me=[Tu, Lei, Loro, Essi, Noi]
-***test guessFollowing() con stessa lista***
-Tu=[Me]
-Lei=[Me]
-Loro=[Me]
-Essi=[Me]
-Noi=[Me]
 ***Influencers di MicroBlog***
-[Me]
+[]
+***test di influencers() con parametro***
+Data la lista di post pList
+Set di utenti per cui #{followers di user)} > 5 = []
+***test guessFollowers() con stessa lista***
+***test guessFollowing() con stessa lista***
+Me=[]
 ***test di containing()***
 words = [Non, Sono, Presenti, Queste, Parole]
 MicroBlog.containing(words) = 
@@ -57,17 +53,12 @@ MicroBlog.containing(words) =
 badwords: [sse, Post, prova, fpu, Agenda, Windows, windows, agenda, GNU, gnu, Funzione, xi, Xi, Linux, penna, funzione, linux, Penna]
 (
 [
-	(779880974, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [Tu, Lei, Loro, Essi, Noi])
-],
-followers(Me) = [Tu, Lei, Loro, Essi, Noi]
+	(1133846620, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
+]
 ,
-following(Tu) = [Me]
-following(Lei) = [Me]
-following(Loro) = [Me]
-following(Essi) = [Me]
-following(Noi) = [Me]
+,
 )
 
 ]
 I post segnalati sono:
-[779880974]
+[1133846620]

@@ -6,9 +6,18 @@ import java.util.Scanner;
 import java.util.Set;
 
 class ModeratedSocialNetwork extends SocialNetwork {
-    private Set<Integer> offensivePosts;
+    /**
+    @overview:  ModeratedSocialNetwork è un SocialNetwork e possiede
+                un insieme di post segnalati, quindi può essere vista come una coppia
+                con elemento tipico: (SocialNetwork, reported) dove reported = {id_1, ..., id_n}
+    */
+
+    // il Set di id dei post offensivi
+    private Set<Integer> reported;
+    // creo una hashtable statica da usare come dizionario per le parole offensive
     private static Hashtable<Integer, String> badwords = new Hashtable<Integer, String>();
 
+    // blocco static per inizializzare il dizionario
     static {
         Scanner s = null;
         try {
@@ -25,50 +34,93 @@ class ModeratedSocialNetwork extends SocialNetwork {
         s.close();
     }
 
-    /* costruttore rete sociale moderata vuota */
+    /*
+    Costruttore rete sociale moderata vuota
+    
+    @requires:  true
+    @modifies:  this
+    @effects:   Crea la rete sociale moderata (SocialNetwork(), {})
+    */
     public ModeratedSocialNetwork() {
         super();
-        this.offensivePosts = new HashSet<Integer>();
+        this.reported = new HashSet<Integer>();
     }
 
-    /* costruttore rete sociale moderata con lista di post */
-    public ModeratedSocialNetwork(List<Post> pList) {
-        super(pList);
-        this.offensivePosts = new HashSet<Integer>();
+    /*
+    Costruttore rete sociale inizializzata dalla lista di post pList
+    
+    @requires:  true
+    (in quanto le precondizioni sono controllate comunque dal costruttore di SocialNetwork, potrebbe quindi sollevare NullPointerException)
+    @modifies:  this
+    @throws:    NullPointerException (unchecked)
+    @effects:   Crea la rete sociale moderata (SocialNetwork(ps), {})
+    */
+    public ModeratedSocialNetwork(List<Post> pList) throws NullPointerException {
+        super(pList); // solleva NullPointerException se pList == null
+        this.reported = new HashSet<Integer>();
         for (Post p : pList) {
             for (String w : p.getText().split(" ")) {
                 if (badwords.get(w.hashCode()) != null) {
-                    offensivePosts.add(p.getId());
+                    reported.add(p.getId());
                 }
             }
         }
     }
 
-    // sovrascrivo addPost()
+    /**
+    Sovrascrivo addPost()
+    @requires:  true
+    @throws:    DuplicatePostException, NullPointerException 
+                se lo fa il corrispondente metodo della superclasse
+    @modifies:  this
+    @effects:   Esegue super.addPost(p) e poi se 
+                (∃ i. i ∊ badwords.values() && p.getText() contiene la parola i)
+                esegue reported = reported U {p.getId()}
+    */
     public void addPost(Post p) throws DuplicatePostException, NullPointerException {
         super.addPost(p); // prima aggiungo il post alla rete
         for (String w : p.getText().split(" ")) {
             if (badwords.get(w.hashCode()) != null) {
-                offensivePosts.add(p.getId());
+                reported.add(p.getId());
             }
         }
     }
 
-    // sovrascrivo rmPost()
+    /**
+    Sovrascrivo addPost()
+    @requires:  true
+    @throws:    NoSuchPostException, NullPointerException 
+                se lo fa il corrispondente metodo della superclasse
+    @modifies:  this
+    @effects:   Esegue super.rmPost(p) e poi se 
+                reported.contains(pid)
+                esegue reported = reported - {p.getId()}
+    */
     public void rmPost(Integer pid) throws NoSuchPostException, NullPointerException {
         super.rmPost(pid); // prima rimuovo il post dalla rete
-        if (this.offensivePosts.contains(pid)) {
+        if (this.reported.contains(pid)) {
             // lo rimuovo dai segnalati
-            this.offensivePosts.remove(pid);
+            this.reported.remove(pid);
         }
     }
 
-    // ritorna il set di post segnalati
+    /**
+    Ritorna il Set di post segnalati (copia shallow)
+    
+    @requires:  true
+    @effects:   {reported.get(i) : 0 <= i < reported.size()}
+     */
     public Set<Integer> getOffensive() {
-        return new HashSet<Integer>(this.offensivePosts);
+        return new HashSet<Integer>(this.reported);
     }
 
-    public static HashSet<String> getBadwords() {
+    /**
+    Ritorna il Set di post parole offensive (i valori del dizionario)
+    
+    @requires:  true
+    @effects:   {badwords.values()}
+     */
+    public static Set<String> getBadwords() {
         return new HashSet<String>(badwords.values());
     }
 };

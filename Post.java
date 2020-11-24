@@ -8,7 +8,8 @@ public class Post {
     @overview:  Post è un tipo di dato astratto modificabile rappresentato da una 
                 quintupla, di cui l'ultimo elemento è un insieme modificabile, quindi 
                 globalmente è un tipo di dato modificabile.
-                Elemento tipico: (id, author, text, timestamp, {like_1, ..., like_n})
+                Elemento tipico: (id, author, text, timestamp, likes)
+                dove likes = {like_1, ..., like_n}
     */
 
     /* variabili d'istanza (private) */
@@ -80,6 +81,19 @@ public class Post {
     identico al precedente, ma invece di generare un id lo passo come parametro:
     serve a creare intenzionalmente conflitti tra id e non dovrebbe essere usato
     in un'implementazione reale
+    
+    @requires:  id != null
+                && author != null
+                && text != null
+                && timestamp != null 
+                && text.length() <= 140
+    @throws:    Se almeno uno dei parametri è null allora solleva NullPointerException.
+                Se text.length() > 140 allora solleva TextOverflowException.
+    @modifies:  this
+    @effects:   Crea un'istanza di Post con id >= 0 generato casualmente
+                e nessun like (Set vuoto), ovvero:
+        
+                (rng.nextInt(), author, text, timestamp, {})
     */
     public Post(Integer id, String author, String text, Date timestamp)
     throws TextOverflowException, NullPointerException {
@@ -98,7 +112,7 @@ public class Post {
 
     /*
     @requires:  true
-    @effects:   ritorna una copia (shallow) di this.id
+    @effects:   ritorna una copia (shallow) dell'id
     */
     public Integer getId() {
         return (Integer) this.id.intValue();
@@ -106,7 +120,7 @@ public class Post {
 
     /*
     @requires:  true
-    @effects:   ritorna una copia (shallow) di this.author
+    @effects:   ritorna una copia (shallow) di author
     */
     public String getAuthor() {
         return new String(this.author);
@@ -114,7 +128,7 @@ public class Post {
 
     /*
     @requires:  true
-    @effects:   ritorna una copia (shallow) di this.text
+    @effects:   ritorna una copia (shallow) di text
     */
     public String getText() {
         return new String(this.text);
@@ -122,7 +136,7 @@ public class Post {
 
     /*
     @requires:  true
-    @effects:   ritorna una copia (shallow) di this.likes
+    @effects:   ritorna una copia (shallow) del set likes di this
                 Se anche fosse modificato il set ritornato
                 non avrei effetti su quello contenuto in this
                 (le stringhe non sono mutabili)
@@ -133,12 +147,12 @@ public class Post {
 
     /* metodi modificatori */
     /*
-    @requires:  follower != null && !this.author.equals(follower)
+    @requires:  follower != null && !author.equals(follower)
     @throws:    Se follower == null, allora solleva NullPointerException.
-                Se this.author.equals(follower) solleva SelfLikeException
+                Se author.equals(follower) solleva SelfLikeException
                 (l'autore del post non può seguire se stesso)
     @modifies:  this
-    @effects:   Esegue this.likes = this.likes U {follower}
+    @effects:   Esegue likes = likes U {follower}
                 (come da definizione di insieme non ho duplicati)
     */
     public void addLike(String follower) throws NullPointerException, SelfLikeException {
@@ -152,12 +166,12 @@ public class Post {
     
     /*
     @requires:  true
-    @effects:   ritorna la rappresentazione di this (come indicato nella AF)
-                sotto forma di String
+    @effects:   ritorna la quintupla (id, author, text, timestamp, likes)
+                sotto forma di una String
     */
     public String toString() {
-        // il testo è tagliato se è più lungo di 20 caratteri
-        // per agevolare la visualizzazione
+        // Se il testo ha lunghezza > 20 allora inserisco solo la sottostringa formata
+        // dai primi venti caratteri per evitaredi produrre un output meno leggibile
         String cut_text;
         if (this.text.length() > 20) {
             cut_text = this.text.substring(0, 19) + "...";
@@ -172,7 +186,7 @@ public class Post {
     /*
     @requires:  true
     @effects:   Se other == null ritorna false
-                Se this.getId().equals(other.getId()) ritorna true,
+                Se id.equals(other.getId()) ritorna true,
                 altrimenti ritorna false
     */
     public boolean equals(Post other) {

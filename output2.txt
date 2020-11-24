@@ -1,98 +1,96 @@
-Caught: TextOverflowException: Il testo del post con id = 1376196478 contiene più di 140 caratteri
-Caught: TextOverflowException: Il testo del post con id = 1663190699 contiene più di 140 caratteri
+Caught: TextOverflowException: Il testo del post con id = 835124932 contiene più di 140 caratteri
+Caught: TextOverflowException: Il testo del post con id = 2022526405 contiene più di 140 caratteri
 ***lista di post***
-(1077829062, Autore5, "[Bk!D]y;47mPgqq*va2...", Mon Jan 18 18:21:00 CET 2016, [])
-(1310114059, Autore77, "z!Bqb$iS_$qzKdeZrX)...", Fri Jan 16 10:33:00 CET 2015, [])
-(1970357578, Autore77, "Linux ubuntu 5.4.0-...", Wed Jan 10 00:00:00 CET 2001, [])
-(389721252, Autore0, "Advanced Linux Soun...", Mon Jan 23 15:21:00 CET 2017, [])
-(2146300521, Autore-140-caratteri, "fpu vme de pse tsc ...", Sun Jan 12 10:12:00 CET 2020, [])
+(779783097, Autore5, "[Bk!D]y;47mPgqq*va2...", Mon Jan 18 18:21:00 CET 2016, [])
+(1221796247, Autore77, "z!Bqb$iS_$qzKdeZrX)...", Fri Jan 16 10:33:00 CET 2015, [])
+(922797079, Autore77, "Linux ubuntu 5.4.0-...", Wed Jan 10 00:00:00 CET 2001, [])
+(538759319, Autore0, "Advanced Linux Soun...", Mon Jan 23 15:21:00 CET 2017, [])
+(923946614, Autore-140-caratteri, "fpu vme de pse tsc ...", Sun Jan 12 10:12:00 CET 2020, [])
 ***Test addLike()***
-Caught: SelfLikeException: Non è possibile mettere like al proprio post
-aggiunto il like di Autore-141-caratteri al post con id = 1310114059
-aggiunto il like di Autore999 al post con id = 1970357578
-aggiunto il like di Autore1 al post con id = 2146300521
-aggiunto il like di Autore45 al post con id = 1077829062
-Caught: SelfLikeException: Non è possibile mettere like al proprio post
-aggiunto il like di Bianca al post con id = 2146300521
-aggiunto il like di Mario al post con id = 1077829062
+aggiunto il like di Autore-140-caratteri al post con id = 779783097
+aggiunto il like di Autore-141-caratteri al post con id = 1221796247
+aggiunto il like di Like0 al post con id = 1221796247
+aggiunto il like di Like0 al post con id = 779783097
+aggiunto il like di Like0 al post con id = 922797079
+aggiunto il like di Like0 al post con id = 779783097
+aggiunto il like di Like0 al post con id = 779783097
+aggiunto il like di Like0 al post con id = 1221796247
+aggiunto il like di Like0 al post con id = 923946614
 ***lista di post + like***
-(1077829062, Autore5, "[Bk!D]y;47mPgqq*va2...", Mon Jan 18 18:21:00 CET 2016, [Autore45, Mario])
-(1310114059, Autore77, "z!Bqb$iS_$qzKdeZrX)...", Fri Jan 16 10:33:00 CET 2015, [Autore-141-caratteri])
-(1970357578, Autore77, "Linux ubuntu 5.4.0-...", Wed Jan 10 00:00:00 CET 2001, [Autore999])
-(389721252, Autore0, "Advanced Linux Soun...", Mon Jan 23 15:21:00 CET 2017, [])
-(2146300521, Autore-140-caratteri, "fpu vme de pse tsc ...", Sun Jan 12 10:12:00 CET 2020, [Bianca, Autore1])
+(779783097, Autore5, "[Bk!D]y;47mPgqq*va2...", Mon Jan 18 18:21:00 CET 2016, [Autore-140-caratteri, Like0])
+(1221796247, Autore77, "z!Bqb$iS_$qzKdeZrX)...", Fri Jan 16 10:33:00 CET 2015, [Autore-141-caratteri, Like0])
+(922797079, Autore77, "Linux ubuntu 5.4.0-...", Wed Jan 10 00:00:00 CET 2001, [Like0])
+(538759319, Autore0, "Advanced Linux Soun...", Mon Jan 23 15:21:00 CET 2017, [])
+(923946614, Autore-140-caratteri, "fpu vme de pse tsc ...", Sun Jan 12 10:12:00 CET 2020, [Like0])
 ***MicroBlog***
 (
 [
-	(1077829062, Autore5, "[Bk!D]y;47mPgqq*va2...", Mon Jan 18 18:21:00 CET 2016, [Autore45, Mario])
-	(1310114059, Autore77, "z!Bqb$iS_$qzKdeZrX)...", Fri Jan 16 10:33:00 CET 2015, [Autore-141-caratteri])
-	(1970357578, Autore77, "Linux ubuntu 5.4.0-...", Wed Jan 10 00:00:00 CET 2001, [Autore999])
-	(389721252, Autore0, "Advanced Linux Soun...", Mon Jan 23 15:21:00 CET 2017, [])
-	(2146300521, Autore-140-caratteri, "fpu vme de pse tsc ...", Sun Jan 12 10:12:00 CET 2020, [Bianca, Autore1])
-],
-followers(Autore5) = [Autore45, Mario]
-followers(Autore-140-caratteri) = [Bianca, Autore1]
-followers(Autore77) = [Autore-141-caratteri, Autore999]
+	(779783097, Autore5, "[Bk!D]y;47mPgqq*va2...", Mon Jan 18 18:21:00 CET 2016, [Autore-140-caratteri, Like0])
+	(1221796247, Autore77, "z!Bqb$iS_$qzKdeZrX)...", Fri Jan 16 10:33:00 CET 2015, [Autore-141-caratteri, Like0])
+	(922797079, Autore77, "Linux ubuntu 5.4.0-...", Wed Jan 10 00:00:00 CET 2001, [Like0])
+	(538759319, Autore0, "Advanced Linux Soun...", Mon Jan 23 15:21:00 CET 2017, [])
+	(923946614, Autore-140-caratteri, "fpu vme de pse tsc ...", Sun Jan 12 10:12:00 CET 2020, [Like0])
+]
+,
+followers(Autore5) = [Autore-140-caratteri, Like0]
+followers(Autore-140-caratteri) = [Like0]
+followers(Autore77) = [Autore-141-caratteri, Like0]
 ,
 following(Autore-141-caratteri) = [Autore77]
-following(Bianca) = [Autore-140-caratteri]
-following(Autore45) = [Autore5]
-following(Autore999) = [Autore77]
-following(Autore1) = [Autore-140-caratteri]
-following(Mario) = [Autore5]
+following(Autore-140-caratteri) = [Autore5]
+following(Like0) = [Autore5, Autore-140-caratteri, Autore77]
 )
 
 ***Test addPost()***
-caught: DuplicatePostException: Esiste già un post con id = 1077829062
+caught: DuplicatePostException: Esiste già un post con id = 779783097
 Ok, eccezione sollevata e gestita
 ***Test rmPost()***
 caught: NoSuchPostException: Il post non è presente nella rete sociale
 Ok, eccezione sollevata e gestita
 caught: java.lang.NullPointerException
 Ok, eccezione sollevata e gestita
-***test guessFollowers() con stessa lista***
-Autore5=[Autore45, Mario]
-Autore-140-caratteri=[Bianca, Autore1]
-Autore77=[Autore-141-caratteri, Autore999]
-Autore0=[]
-***test guessFollowing() con stessa lista***
-Autore-141-caratteri=[Autore77]
-Bianca=[Autore-140-caratteri]
-Autore45=[Autore5]
-Autore999=[Autore77]
-Autore1=[Autore-140-caratteri]
-Mario=[Autore5]
 ***Influencers di MicroBlog***
-[Autore5, Autore-140-caratteri, Autore77, Autore0]
+[Autore5, Autore77]
+***test di influencers() con parametro***
+Data la lista di post pList
+Set di utenti per cui #{followers di user)} > 5 = []
+***test guessFollowers() con stessa lista***
+Autore-141-caratteri=[Autore77]
+Autore-140-caratteri=[Autore5]
+Like0=[Autore5, Autore-140-caratteri, Autore77]
+***test guessFollowing() con stessa lista***
+Autore5=[Autore-140-caratteri, Like0]
+Autore-140-caratteri=[Like0]
+Autore77=[Autore-141-caratteri, Like0]
+Autore0=[]
 ***test di containing()***
-words = [GNU, zzzzzzzz, @@]
+words = [GNU, zzzzzzzz, fpu, clflush, @@]
 MicroBlog.containing(words) = 
 [
-(1970357578, Autore77, "Linux ubuntu 5.4.0-...", Wed Jan 10 00:00:00 CET 2001, [Autore999])
+(922797079, Autore77, "Linux ubuntu 5.4.0-...", Wed Jan 10 00:00:00 CET 2001, [Like0])
+(923946614, Autore-140-caratteri, "fpu vme de pse tsc ...", Sun Jan 12 10:12:00 CET 2020, [Like0])
 ]
 ***Social moderato inizializzato***
 [
 badwords: [sse, Post, prova, fpu, Agenda, Windows, windows, agenda, GNU, gnu, Funzione, xi, Xi, Linux, penna, funzione, linux, Penna]
 (
 [
-	(1077829062, Autore5, "[Bk!D]y;47mPgqq*va2...", Mon Jan 18 18:21:00 CET 2016, [Autore45, Mario])
-	(1310114059, Autore77, "z!Bqb$iS_$qzKdeZrX)...", Fri Jan 16 10:33:00 CET 2015, [Autore-141-caratteri])
-	(1970357578, Autore77, "Linux ubuntu 5.4.0-...", Wed Jan 10 00:00:00 CET 2001, [Autore999])
-	(389721252, Autore0, "Advanced Linux Soun...", Mon Jan 23 15:21:00 CET 2017, [])
-	(2146300521, Autore-140-caratteri, "fpu vme de pse tsc ...", Sun Jan 12 10:12:00 CET 2020, [Bianca, Autore1])
-],
-followers(Autore5) = [Autore45, Mario]
-followers(Autore-140-caratteri) = [Bianca, Autore1]
-followers(Autore77) = [Autore-141-caratteri, Autore999]
+	(779783097, Autore5, "[Bk!D]y;47mPgqq*va2...", Mon Jan 18 18:21:00 CET 2016, [Autore-140-caratteri, Like0])
+	(1221796247, Autore77, "z!Bqb$iS_$qzKdeZrX)...", Fri Jan 16 10:33:00 CET 2015, [Autore-141-caratteri, Like0])
+	(922797079, Autore77, "Linux ubuntu 5.4.0-...", Wed Jan 10 00:00:00 CET 2001, [Like0])
+	(538759319, Autore0, "Advanced Linux Soun...", Mon Jan 23 15:21:00 CET 2017, [])
+	(923946614, Autore-140-caratteri, "fpu vme de pse tsc ...", Sun Jan 12 10:12:00 CET 2020, [Like0])
+]
+,
+followers(Autore5) = [Autore-140-caratteri, Like0]
+followers(Autore-140-caratteri) = [Like0]
+followers(Autore77) = [Autore-141-caratteri, Like0]
 ,
 following(Autore-141-caratteri) = [Autore77]
-following(Bianca) = [Autore-140-caratteri]
-following(Autore45) = [Autore5]
-following(Autore999) = [Autore77]
-following(Autore1) = [Autore-140-caratteri]
-following(Mario) = [Autore5]
+following(Autore-140-caratteri) = [Autore5]
+following(Like0) = [Autore5, Autore-140-caratteri, Autore77]
 )
 
 ]
 I post segnalati sono:
-[2146300521, 1970357578, 389721252]
+[923946614, 922797079, 538759319]

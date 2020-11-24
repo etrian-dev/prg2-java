@@ -5,7 +5,8 @@ Lista di post vuota
 ***MicroBlog***
 (
 [
-],
+]
+,
 ,
 )
 
@@ -15,12 +16,15 @@ caught: NoSuchPostException: Il post non è presente nella rete sociale
 Ok, eccezione sollevata e gestita
 caught: java.lang.NullPointerException
 Ok, eccezione sollevata e gestita
-***test guessFollowers() con stessa lista***
-***test guessFollowing() con stessa lista***
 ***Influencers di MicroBlog***
 []
+***test di influencers() con parametro***
+Data la lista di post pList
+Set di utenti per cui #{followers di user)} > 5 = []
+***test guessFollowers() con stessa lista***
+***test guessFollowing() con stessa lista***
 ***test di containing()***
-words = [CosaSuccede?, Niente, Nessun, Post, è, presente, allora, nessuna, di, queste, parole, viene, restituita]
+words = [Niente, Nessun, Post, è, presente, allora, nessuna, di, queste, parole, viene, restituita]
 MicroBlog.containing(words) = 
 [
 ]
@@ -29,7 +33,8 @@ MicroBlog.containing(words) =
 badwords: [sse, Post, prova, fpu, Agenda, Windows, windows, agenda, GNU, gnu, Funzione, xi, Xi, Linux, penna, funzione, linux, Penna]
 (
 [
-],
+]
+,
 ,
 )
 

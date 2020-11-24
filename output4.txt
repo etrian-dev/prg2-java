@@ -1,104 +1,111 @@
 ***lista di post***
-(49741355, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
-(509656530, Tu, "Testo di prova nume...", Sun Jan 05 19:23:00 CET 2020, [])
-(1412701460, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
-(149438419, Lei, "Testo di prova nume...", Sun Jan 05 21:15:00 CET 2020, [])
-(944956218, Essi, "Testo di prova nume...", Sun Jan 05 16:41:00 CET 2020, [])
-(2049695776, Loro, "Testo di prova nume...", Sun Jan 05 17:16:00 CET 2020, [])
+(2021962903, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
+(588876025, Tu, "Testo di prova nume...", Sun Jan 05 19:23:00 CET 2020, [])
+(2139050362, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
+(1607461324, Lei, "Testo di prova nume...", Sun Jan 05 21:15:00 CET 2020, [])
+(1431245019, Essi, "Testo di prova nume...", Sun Jan 05 16:41:00 CET 2020, [])
+(1228558570, Loro, "Testo di prova nume...", Sun Jan 05 17:16:00 CET 2020, [])
 ***Test addLike()***
-aggiunto il like di NonDovrebbeSollevareEccezioni al post con id = 1412701460
-aggiunto il like di Lui al post con id = 509656530
-aggiunto il like di Coloro al post con id = 49741355
-aggiunto il like di Autore2 al post con id = 2049695776
-aggiunto il like di Germania al post con id = 509656530
-aggiunto il like di Italia al post con id = 2049695776
+aggiunto il like di NonDovrebbeSollevareEccezioni al post con id = 1607461324
+aggiunto il like di Lui al post con id = 2139050362
+aggiunto il like di Coloro al post con id = 588876025
+aggiunto il like di Autore2 al post con id = 1607461324
+aggiunto il like di Germania al post con id = 1607461324
+aggiunto il like di Italia al post con id = 1228558570
 ***lista di post + like***
-(49741355, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [Coloro])
-(509656530, Tu, "Testo di prova nume...", Sun Jan 05 19:23:00 CET 2020, [Lui, Germania])
-(1412701460, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [NonDovrebbeSollevareEccezioni])
-(149438419, Lei, "Testo di prova nume...", Sun Jan 05 21:15:00 CET 2020, [])
-(944956218, Essi, "Testo di prova nume...", Sun Jan 05 16:41:00 CET 2020, [])
-(2049695776, Loro, "Testo di prova nume...", Sun Jan 05 17:16:00 CET 2020, [Autore2, Italia])
+(2021962903, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
+(588876025, Tu, "Testo di prova nume...", Sun Jan 05 19:23:00 CET 2020, [Coloro])
+(2139050362, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [Lui])
+(1607461324, Lei, "Testo di prova nume...", Sun Jan 05 21:15:00 CET 2020, [Germania, Autore2, NonDovrebbeSollevareEccezioni])
+(1431245019, Essi, "Testo di prova nume...", Sun Jan 05 16:41:00 CET 2020, [])
+(1228558570, Loro, "Testo di prova nume...", Sun Jan 05 17:16:00 CET 2020, [Italia])
 ***MicroBlog***
 (
 [
-	(49741355, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [Coloro])
-	(509656530, Tu, "Testo di prova nume...", Sun Jan 05 19:23:00 CET 2020, [Lui, Germania])
-	(1412701460, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [NonDovrebbeSollevareEccezioni])
-	(149438419, Lei, "Testo di prova nume...", Sun Jan 05 21:15:00 CET 2020, [])
-	(944956218, Essi, "Testo di prova nume...", Sun Jan 05 16:41:00 CET 2020, [])
-	(2049695776, Loro, "Testo di prova nume...", Sun Jan 05 17:16:00 CET 2020, [Autore2, Italia])
-],
-followers(Tu) = [Lui, Germania]
-followers(Loro) = [Autore2, Italia]
-followers(Me) = [NonDovrebbeSollevareEccezioni, Coloro]
+	(2021962903, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
+	(588876025, Tu, "Testo di prova nume...", Sun Jan 05 19:23:00 CET 2020, [Coloro])
+	(2139050362, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [Lui])
+	(1607461324, Lei, "Testo di prova nume...", Sun Jan 05 21:15:00 CET 2020, [Germania, Autore2, NonDovrebbeSollevareEccezioni])
+	(1431245019, Essi, "Testo di prova nume...", Sun Jan 05 16:41:00 CET 2020, [])
+	(1228558570, Loro, "Testo di prova nume...", Sun Jan 05 17:16:00 CET 2020, [Italia])
+]
 ,
-following(Lui) = [Tu]
-following(Germania) = [Tu]
-following(Autore2) = [Loro]
-following(NonDovrebbeSollevareEccezioni) = [Me]
+followers(Tu) = [Coloro]
+followers(Lei) = [Germania, Autore2, NonDovrebbeSollevareEccezioni]
+followers(Loro) = [Italia]
+followers(Me) = [Lui]
+,
+following(Lui) = [Me]
+following(Germania) = [Lei]
+following(Autore2) = [Lei]
+following(NonDovrebbeSollevareEccezioni) = [Lei]
 following(Italia) = [Loro]
-following(Coloro) = [Me]
+following(Coloro) = [Tu]
 )
 
 ***Test addPost()***
-caught: DuplicatePostException: Esiste già un post con id = 49741355
+caught: DuplicatePostException: Esiste già un post con id = 2021962903
 Ok, eccezione sollevata e gestita
 ***Test rmPost()***
 caught: NoSuchPostException: Il post non è presente nella rete sociale
 Ok, eccezione sollevata e gestita
 caught: java.lang.NullPointerException
 Ok, eccezione sollevata e gestita
-***test guessFollowers() con stessa lista***
-Tu=[Lui, Germania]
-Lei=[]
-Loro=[Autore2, Italia]
-Essi=[]
-Me=[NonDovrebbeSollevareEccezioni, Coloro]
-***test guessFollowing() con stessa lista***
-Lui=[Tu]
-Germania=[Tu]
-Autore2=[Loro]
-NonDovrebbeSollevareEccezioni=[Me]
-Italia=[Loro]
-Coloro=[Me]
 ***Influencers di MicroBlog***
-[Tu, Lei, Loro, Essi, Me]
+[Tu, Lei, Loro, Me]
+***test di influencers() con parametro***
+Data la lista di post pList
+Set di utenti per cui #{followers di user)} > 5 = []
+***test guessFollowers() con stessa lista***
+Lui=[Me]
+Germania=[Lei]
+Autore2=[Lei]
+NonDovrebbeSollevareEccezioni=[Lei]
+Italia=[Loro]
+Coloro=[Tu]
+***test guessFollowing() con stessa lista***
+Tu=[Coloro]
+Lei=[Germania, Autore2, NonDovrebbeSollevareEccezioni]
+Loro=[Italia]
+Essi=[]
+Me=[Lui]
 ***test di containing()***
 words = [Testo, Tutti, I, Post, Sono, Restituiti]
 MicroBlog.containing(words) = 
 [
-(49741355, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [Coloro])
-(509656530, Tu, "Testo di prova nume...", Sun Jan 05 19:23:00 CET 2020, [Lui, Germania])
-(1412701460, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [NonDovrebbeSollevareEccezioni])
-(149438419, Lei, "Testo di prova nume...", Sun Jan 05 21:15:00 CET 2020, [])
-(944956218, Essi, "Testo di prova nume...", Sun Jan 05 16:41:00 CET 2020, [])
-(2049695776, Loro, "Testo di prova nume...", Sun Jan 05 17:16:00 CET 2020, [Autore2, Italia])
+(2021962903, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
+(588876025, Tu, "Testo di prova nume...", Sun Jan 05 19:23:00 CET 2020, [Coloro])
+(2139050362, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [Lui])
+(1607461324, Lei, "Testo di prova nume...", Sun Jan 05 21:15:00 CET 2020, [Germania, Autore2, NonDovrebbeSollevareEccezioni])
+(1431245019, Essi, "Testo di prova nume...", Sun Jan 05 16:41:00 CET 2020, [])
+(1228558570, Loro, "Testo di prova nume...", Sun Jan 05 17:16:00 CET 2020, [Italia])
 ]
 ***Social moderato inizializzato***
 [
 badwords: [sse, Post, prova, fpu, Agenda, Windows, windows, agenda, GNU, gnu, Funzione, xi, Xi, Linux, penna, funzione, linux, Penna]
 (
 [
-	(49741355, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [Coloro])
-	(509656530, Tu, "Testo di prova nume...", Sun Jan 05 19:23:00 CET 2020, [Lui, Germania])
-	(1412701460, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [NonDovrebbeSollevareEccezioni])
-	(149438419, Lei, "Testo di prova nume...", Sun Jan 05 21:15:00 CET 2020, [])
-	(944956218, Essi, "Testo di prova nume...", Sun Jan 05 16:41:00 CET 2020, [])
-	(2049695776, Loro, "Testo di prova nume...", Sun Jan 05 17:16:00 CET 2020, [Autore2, Italia])
-],
-followers(Tu) = [Lui, Germania]
-followers(Loro) = [Autore2, Italia]
-followers(Me) = [NonDovrebbeSollevareEccezioni, Coloro]
+	(2021962903, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
+	(588876025, Tu, "Testo di prova nume...", Sun Jan 05 19:23:00 CET 2020, [Coloro])
+	(2139050362, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [Lui])
+	(1607461324, Lei, "Testo di prova nume...", Sun Jan 05 21:15:00 CET 2020, [Germania, Autore2, NonDovrebbeSollevareEccezioni])
+	(1431245019, Essi, "Testo di prova nume...", Sun Jan 05 16:41:00 CET 2020, [])
+	(1228558570, Loro, "Testo di prova nume...", Sun Jan 05 17:16:00 CET 2020, [Italia])
+]
 ,
-following(Lui) = [Tu]
-following(Germania) = [Tu]
-following(Autore2) = [Loro]
-following(NonDovrebbeSollevareEccezioni) = [Me]
+followers(Tu) = [Coloro]
+followers(Lei) = [Germania, Autore2, NonDovrebbeSollevareEccezioni]
+followers(Loro) = [Italia]
+followers(Me) = [Lui]
+,
+following(Lui) = [Me]
+following(Germania) = [Lei]
+following(Autore2) = [Lei]
+following(NonDovrebbeSollevareEccezioni) = [Lei]
 following(Italia) = [Loro]
-following(Coloro) = [Me]
+following(Coloro) = [Tu]
 )
 
 ]
 I post segnalati sono:
-[1412701460, 509656530, 944956218, 149438419, 2049695776, 49741355]
+[588876025, 1228558570, 2021962903, 1607461324, 1431245019, 2139050362]

@@ -148,6 +148,14 @@ class Test {
         /* stampo influencers di MicroBlog */
         System.out.println("***Influencers di MicroBlog***\n" + MicroBlog.influencers());
 
+        /** Post con un numero di like maggiore di k */
+        int treshold = 5;
+        System.out.println("***test di influencers() con parametro***");
+        // testo anche il metodo guessFollowing
+        Map<String, Set<String>> followersOnList = MicroBlog.guessFollowing(pList);
+        System.out.println("Data la lista di post pList\nSet di utenti per cui #{followers di user)} > " + treshold
+                + " = " + SocialNetwork.influencers(followersOnList, treshold));
+
         /* stampo la mappa di followers e following indotte dalla lista di post */
         System.out.println("***test guessFollowers() con stessa lista***");
         Map<String, Set<String>> m = MicroBlog.guessFollowers(pList);
