@@ -1,55 +1,54 @@
-Caught: TextOverflowException: Il testo del post con id = 1290340746 contiene più di 140 caratteri
+Caught: TextOverflowException: Il testo del post con id = 513852894 contiene più di 140 caratteri
 ***lista di post***
-(683594240, Autore1, "Lorem Ipsum", Mon Jan 11 03:33:00 CET 2010, [])
-(1271297012, Autore2, "classe Post realizz...", Sun Jan 05 16:21:00 CET 2020, [])
-(202124177, Autore3, "La classe SocialNet...", Mon Jan 03 09:44:00 CET 2011, [])
-(1940617656, Autore1, "Pellentesque vestib...", Fri Jan 01 05:05:00 CET 2021, [])
-(841914092, Autore0, "testtesttesttesttes...", Thu Jan 01 18:18:00 CET 1970, [])
+(42957559, Autore1, "Lorem Ipsum", Mon Jan 11 03:33:00 CET 2010, [])
+(323601774, Autore2, "classe Post realizz...", Sun Jan 05 16:21:00 CET 2020, [])
+(1294970783, Autore3, "La classe SocialNet...", Mon Jan 03 09:44:00 CET 2011, [])
+(1187199419, Autore1, "Pellentesque vestib...", Fri Jan 01 05:05:00 CET 2021, [])
+(1578174605, Autore0, "testtesttesttesttes...", Thu Jan 01 18:18:00 CET 1970, [])
 ***Test addLike()***
-aggiunto il like di Autore1 al post con id = 1271297012
-aggiunto il like di Pippo al post con id = 1271297012
-aggiunto il like di Gianni al post con id = 1940617656
-aggiunto il like di Autore2 al post con id = 841914092
 Caught: SelfLikeException: Non è possibile mettere like al proprio post
-aggiunto il like di Autore1 al post con id = 841914092
-aggiunto il like di Maria al post con id = 841914092
-aggiunto il like di Silvia al post con id = 841914092
-aggiunto il like di Autore999 al post con id = 202124177
-aggiunto il like di Autore0 al post con id = 1271297012
+aggiunto il like di Pippo al post con id = 323601774
+aggiunto il like di Gianni al post con id = 1294970783
+aggiunto il like di Autore2 al post con id = 42957559
+aggiunto il like di Autore1 al post con id = 1578174605
+aggiunto il like di Autore1 al post con id = 323601774
+aggiunto il like di Maria al post con id = 42957559
+aggiunto il like di Silvia al post con id = 1187199419
+aggiunto il like di Autore999 al post con id = 323601774
+Caught: SelfLikeException: Non è possibile mettere like al proprio post
 Caught: SelfLikeException: Non è possibile mettere like al proprio post
 ***lista di post + like***
-(683594240, Autore1, "Lorem Ipsum", Mon Jan 11 03:33:00 CET 2010, [])
-(1271297012, Autore2, "classe Post realizz...", Sun Jan 05 16:21:00 CET 2020, [Autore0, Autore1, Pippo])
-(202124177, Autore3, "La classe SocialNet...", Mon Jan 03 09:44:00 CET 2011, [Autore999])
-(1940617656, Autore1, "Pellentesque vestib...", Fri Jan 01 05:05:00 CET 2021, [Gianni])
-(841914092, Autore0, "testtesttesttesttes...", Thu Jan 01 18:18:00 CET 1970, [Autore2, Silvia, Maria, Autore1])
+(42957559, Autore1, "Lorem Ipsum", Mon Jan 11 03:33:00 CET 2010, [Autore2, Maria])
+(323601774, Autore2, "classe Post realizz...", Sun Jan 05 16:21:00 CET 2020, [Autore999, Autore1, Pippo])
+(1294970783, Autore3, "La classe SocialNet...", Mon Jan 03 09:44:00 CET 2011, [Gianni])
+(1187199419, Autore1, "Pellentesque vestib...", Fri Jan 01 05:05:00 CET 2021, [Silvia])
+(1578174605, Autore0, "testtesttesttesttes...", Thu Jan 01 18:18:00 CET 1970, [Autore1])
 ***MicroBlog***
 (
 [
-	(683594240, Autore1, "Lorem Ipsum", Mon Jan 11 03:33:00 CET 2010, [])
-	(1271297012, Autore2, "classe Post realizz...", Sun Jan 05 16:21:00 CET 2020, [Autore0, Autore1, Pippo])
-	(202124177, Autore3, "La classe SocialNet...", Mon Jan 03 09:44:00 CET 2011, [Autore999])
-	(1940617656, Autore1, "Pellentesque vestib...", Fri Jan 01 05:05:00 CET 2021, [Gianni])
-	(841914092, Autore0, "testtesttesttesttes...", Thu Jan 01 18:18:00 CET 1970, [Autore2, Silvia, Maria, Autore1])
+	(42957559, Autore1, "Lorem Ipsum", Mon Jan 11 03:33:00 CET 2010, [Autore2, Maria])
+	(323601774, Autore2, "classe Post realizz...", Sun Jan 05 16:21:00 CET 2020, [Autore999, Autore1, Pippo])
+	(1294970783, Autore3, "La classe SocialNet...", Mon Jan 03 09:44:00 CET 2011, [Gianni])
+	(1187199419, Autore1, "Pellentesque vestib...", Fri Jan 01 05:05:00 CET 2021, [Silvia])
+	(1578174605, Autore0, "testtesttesttesttes...", Thu Jan 01 18:18:00 CET 1970, [Autore1])
 ]
 ,
-followers(Autore2) = [Autore0, Autore1, Pippo]
-followers(Autore3) = [Autore999]
-followers(Autore0) = [Autore2, Silvia, Maria, Autore1]
-followers(Autore1) = [Gianni]
+followers(Autore2) = [Autore999, Autore1, Pippo]
+followers(Autore3) = [Gianni]
+followers(Autore0) = [Autore1]
+followers(Autore1) = [Autore2, Silvia, Maria]
 ,
-following(Autore2) = [Autore0]
-following(Silvia) = [Autore0]
-following(Gianni) = [Autore1]
-following(Autore0) = [Autore2]
-following(Autore999) = [Autore3]
-following(Maria) = [Autore0]
+following(Autore2) = [Autore1]
+following(Silvia) = [Autore1]
+following(Gianni) = [Autore3]
+following(Maria) = [Autore1]
+following(Autore999) = [Autore2]
 following(Autore1) = [Autore2, Autore0]
 following(Pippo) = [Autore2]
 )
 
 ***Test addPost()***
-caught: DuplicatePostException: Esiste già un post con id = 683594240
+caught: DuplicatePostException: Esiste già un post con id = 42957559
 Ok, eccezione sollevata e gestita
 ***Test rmPost()***
 caught: NoSuchPostException: Il post non è presente nella rete sociale
@@ -57,59 +56,57 @@ Ok, eccezione sollevata e gestita
 caught: java.lang.NullPointerException
 Ok, eccezione sollevata e gestita
 ***Influencers di MicroBlog***
-[Autore2, Autore3, Autore0]
+[Autore2, Autore3, Autore0, Autore1]
 ***test di influencers() con parametro***
 Data la lista di post pList
 Set di utenti per cui #{followers di user)} > 5 = []
 ***test guessFollowers() con stessa lista***
-Autore2=[Autore0]
-Silvia=[Autore0]
-Gianni=[Autore1]
-Autore0=[Autore2]
-Autore999=[Autore3]
-Maria=[Autore0]
+Autore2=[Autore1]
+Silvia=[Autore1]
+Gianni=[Autore3]
+Maria=[Autore1]
+Autore999=[Autore2]
 Autore1=[Autore2, Autore0]
 Pippo=[Autore2]
 ***test guessFollowing() con stessa lista***
-Autore2=[Autore0, Autore1, Pippo]
-Autore3=[Autore999]
-Autore0=[Autore2, Silvia, Maria, Autore1]
-Autore1=[Gianni]
+Autore2=[Autore999, Autore1, Pippo]
+Autore3=[Gianni]
+Autore0=[Autore1]
+Autore1=[Autore2, Silvia, Maria]
 ***test di containing()***
 words = [classe, Lorem, Ipsum]
 MicroBlog.containing(words) = 
 [
-(1271297012, Autore2, "classe Post realizz...", Sun Jan 05 16:21:00 CET 2020, [Autore0, Autore1, Pippo])
-(202124177, Autore3, "La classe SocialNet...", Mon Jan 03 09:44:00 CET 2011, [Autore999])
-(683594240, Autore1, "Lorem Ipsum", Mon Jan 11 03:33:00 CET 2010, [])
+(323601774, Autore2, "classe Post realizz...", Sun Jan 05 16:21:00 CET 2020, [Autore999, Autore1, Pippo])
+(1294970783, Autore3, "La classe SocialNet...", Mon Jan 03 09:44:00 CET 2011, [Gianni])
+(42957559, Autore1, "Lorem Ipsum", Mon Jan 11 03:33:00 CET 2010, [Autore2, Maria])
 ]
 ***Social moderato inizializzato***
 [
 badwords: [sse, Post, prova, fpu, Agenda, Windows, windows, agenda, GNU, gnu, Funzione, xi, Xi, Linux, penna, funzione, linux, Penna]
 (
 [
-	(683594240, Autore1, "Lorem Ipsum", Mon Jan 11 03:33:00 CET 2010, [])
-	(1271297012, Autore2, "classe Post realizz...", Sun Jan 05 16:21:00 CET 2020, [Autore0, Autore1, Pippo])
-	(202124177, Autore3, "La classe SocialNet...", Mon Jan 03 09:44:00 CET 2011, [Autore999])
-	(1940617656, Autore1, "Pellentesque vestib...", Fri Jan 01 05:05:00 CET 2021, [Gianni])
-	(841914092, Autore0, "testtesttesttesttes...", Thu Jan 01 18:18:00 CET 1970, [Autore2, Silvia, Maria, Autore1])
+	(42957559, Autore1, "Lorem Ipsum", Mon Jan 11 03:33:00 CET 2010, [Autore2, Maria])
+	(323601774, Autore2, "classe Post realizz...", Sun Jan 05 16:21:00 CET 2020, [Autore999, Autore1, Pippo])
+	(1294970783, Autore3, "La classe SocialNet...", Mon Jan 03 09:44:00 CET 2011, [Gianni])
+	(1187199419, Autore1, "Pellentesque vestib...", Fri Jan 01 05:05:00 CET 2021, [Silvia])
+	(1578174605, Autore0, "testtesttesttesttes...", Thu Jan 01 18:18:00 CET 1970, [Autore1])
 ]
 ,
-followers(Autore2) = [Autore0, Autore1, Pippo]
-followers(Autore3) = [Autore999]
-followers(Autore0) = [Autore2, Silvia, Maria, Autore1]
-followers(Autore1) = [Gianni]
+followers(Autore2) = [Autore999, Autore1, Pippo]
+followers(Autore3) = [Gianni]
+followers(Autore0) = [Autore1]
+followers(Autore1) = [Autore2, Silvia, Maria]
 ,
-following(Autore2) = [Autore0]
-following(Silvia) = [Autore0]
-following(Gianni) = [Autore1]
-following(Autore0) = [Autore2]
-following(Autore999) = [Autore3]
-following(Maria) = [Autore0]
+following(Autore2) = [Autore1]
+following(Silvia) = [Autore1]
+following(Gianni) = [Autore3]
+following(Maria) = [Autore1]
+following(Autore999) = [Autore2]
 following(Autore1) = [Autore2, Autore0]
 following(Pippo) = [Autore2]
 )
 
 ]
 I post segnalati sono:
-[1271297012]
+[323601774]

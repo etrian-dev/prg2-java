@@ -1,5 +1,5 @@
 ***lista di post***
-(1133846620, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
+(1331139081, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
 ***Test addLike()***
 Caught: SelfLikeException: Non è possibile mettere like al proprio post
 Caught: SelfLikeException: Non è possibile mettere like al proprio post
@@ -17,18 +17,18 @@ Caught: SelfLikeException: Non è possibile mettere like al proprio post
 Caught: SelfLikeException: Non è possibile mettere like al proprio post
 Caught: SelfLikeException: Non è possibile mettere like al proprio post
 ***lista di post + like***
-(1133846620, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
+(1331139081, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
 ***MicroBlog***
 (
 [
-	(1133846620, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
+	(1331139081, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
 ]
 ,
 ,
 )
 
 ***Test addPost()***
-caught: DuplicatePostException: Esiste già un post con id = 1133846620
+caught: DuplicatePostException: Esiste già un post con id = 1331139081
 Ok, eccezione sollevata e gestita
 ***Test rmPost()***
 caught: NoSuchPostException: Il post non è presente nella rete sociale
@@ -53,7 +53,7 @@ MicroBlog.containing(words) =
 badwords: [sse, Post, prova, fpu, Agenda, Windows, windows, agenda, GNU, gnu, Funzione, xi, Xi, Linux, penna, funzione, linux, Penna]
 (
 [
-	(1133846620, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
+	(1331139081, Me, "Testo di prova", Sun Jan 05 18:33:00 CET 2020, [])
 ]
 ,
 ,
@@ -61,4 +61,4 @@ badwords: [sse, Post, prova, fpu, Agenda, Windows, windows, agenda, GNU, gnu, Fu
 
 ]
 I post segnalati sono:
-[1133846620]
+[1331139081]

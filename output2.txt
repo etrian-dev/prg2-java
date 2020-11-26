@@ -1,48 +1,49 @@
-Caught: TextOverflowException: Il testo del post con id = 835124932 contiene più di 140 caratteri
-Caught: TextOverflowException: Il testo del post con id = 2022526405 contiene più di 140 caratteri
+Caught: TextOverflowException: Il testo del post con id = 1721176533 contiene più di 140 caratteri
+Caught: TextOverflowException: Il testo del post con id = 1831916529 contiene più di 140 caratteri
 ***lista di post***
-(779783097, Autore5, "[Bk!D]y;47mPgqq*va2...", Mon Jan 18 18:21:00 CET 2016, [])
-(1221796247, Autore77, "z!Bqb$iS_$qzKdeZrX)...", Fri Jan 16 10:33:00 CET 2015, [])
-(922797079, Autore77, "Linux ubuntu 5.4.0-...", Wed Jan 10 00:00:00 CET 2001, [])
-(538759319, Autore0, "Advanced Linux Soun...", Mon Jan 23 15:21:00 CET 2017, [])
-(923946614, Autore-140-caratteri, "fpu vme de pse tsc ...", Sun Jan 12 10:12:00 CET 2020, [])
+(1003492899, Autore5, "[Bk!D]y;47mPgqq*va2...", Mon Jan 18 18:21:00 CET 2016, [])
+(1113091077, Autore77, "z!Bqb$iS_$qzKdeZrX)...", Fri Jan 16 10:33:00 CET 2015, [])
+(236651790, Autore77, "Linux ubuntu 5.4.0-...", Wed Jan 10 00:00:00 CET 2001, [])
+(1263534049, Autore0, "Advanced Linux Soun...", Mon Jan 23 15:21:00 CET 2017, [])
+(262306402, Autore-140-caratteri, "fpu vme de pse tsc ...", Sun Jan 12 10:12:00 CET 2020, [])
 ***Test addLike()***
-aggiunto il like di Autore-140-caratteri al post con id = 779783097
-aggiunto il like di Autore-141-caratteri al post con id = 1221796247
-aggiunto il like di Like0 al post con id = 1221796247
-aggiunto il like di Like0 al post con id = 779783097
-aggiunto il like di Like0 al post con id = 922797079
-aggiunto il like di Like0 al post con id = 779783097
-aggiunto il like di Like0 al post con id = 779783097
-aggiunto il like di Like0 al post con id = 1221796247
-aggiunto il like di Like0 al post con id = 923946614
+aggiunto il like di Autore-140-caratteri al post con id = 1263534049
+aggiunto il like di Autore-141-caratteri al post con id = 1113091077
+aggiunto il like di Like0 al post con id = 1263534049
+aggiunto il like di Like0 al post con id = 1113091077
+aggiunto il like di Like0 al post con id = 1003492899
+aggiunto il like di Like0 al post con id = 1003492899
+aggiunto il like di Like0 al post con id = 262306402
+aggiunto il like di Like0 al post con id = 236651790
+aggiunto il like di Like0 al post con id = 1113091077
 ***lista di post + like***
-(779783097, Autore5, "[Bk!D]y;47mPgqq*va2...", Mon Jan 18 18:21:00 CET 2016, [Autore-140-caratteri, Like0])
-(1221796247, Autore77, "z!Bqb$iS_$qzKdeZrX)...", Fri Jan 16 10:33:00 CET 2015, [Autore-141-caratteri, Like0])
-(922797079, Autore77, "Linux ubuntu 5.4.0-...", Wed Jan 10 00:00:00 CET 2001, [Like0])
-(538759319, Autore0, "Advanced Linux Soun...", Mon Jan 23 15:21:00 CET 2017, [])
-(923946614, Autore-140-caratteri, "fpu vme de pse tsc ...", Sun Jan 12 10:12:00 CET 2020, [Like0])
+(1003492899, Autore5, "[Bk!D]y;47mPgqq*va2...", Mon Jan 18 18:21:00 CET 2016, [Like0])
+(1113091077, Autore77, "z!Bqb$iS_$qzKdeZrX)...", Fri Jan 16 10:33:00 CET 2015, [Autore-141-caratteri, Like0])
+(236651790, Autore77, "Linux ubuntu 5.4.0-...", Wed Jan 10 00:00:00 CET 2001, [Like0])
+(1263534049, Autore0, "Advanced Linux Soun...", Mon Jan 23 15:21:00 CET 2017, [Autore-140-caratteri, Like0])
+(262306402, Autore-140-caratteri, "fpu vme de pse tsc ...", Sun Jan 12 10:12:00 CET 2020, [Like0])
 ***MicroBlog***
 (
 [
-	(779783097, Autore5, "[Bk!D]y;47mPgqq*va2...", Mon Jan 18 18:21:00 CET 2016, [Autore-140-caratteri, Like0])
-	(1221796247, Autore77, "z!Bqb$iS_$qzKdeZrX)...", Fri Jan 16 10:33:00 CET 2015, [Autore-141-caratteri, Like0])
-	(922797079, Autore77, "Linux ubuntu 5.4.0-...", Wed Jan 10 00:00:00 CET 2001, [Like0])
-	(538759319, Autore0, "Advanced Linux Soun...", Mon Jan 23 15:21:00 CET 2017, [])
-	(923946614, Autore-140-caratteri, "fpu vme de pse tsc ...", Sun Jan 12 10:12:00 CET 2020, [Like0])
+	(1003492899, Autore5, "[Bk!D]y;47mPgqq*va2...", Mon Jan 18 18:21:00 CET 2016, [Like0])
+	(1113091077, Autore77, "z!Bqb$iS_$qzKdeZrX)...", Fri Jan 16 10:33:00 CET 2015, [Autore-141-caratteri, Like0])
+	(236651790, Autore77, "Linux ubuntu 5.4.0-...", Wed Jan 10 00:00:00 CET 2001, [Like0])
+	(1263534049, Autore0, "Advanced Linux Soun...", Mon Jan 23 15:21:00 CET 2017, [Autore-140-caratteri, Like0])
+	(262306402, Autore-140-caratteri, "fpu vme de pse tsc ...", Sun Jan 12 10:12:00 CET 2020, [Like0])
 ]
 ,
-followers(Autore5) = [Autore-140-caratteri, Like0]
+followers(Autore5) = [Like0]
 followers(Autore-140-caratteri) = [Like0]
 followers(Autore77) = [Autore-141-caratteri, Like0]
+followers(Autore0) = [Autore-140-caratteri, Like0]
 ,
 following(Autore-141-caratteri) = [Autore77]
-following(Autore-140-caratteri) = [Autore5]
-following(Like0) = [Autore5, Autore-140-caratteri, Autore77]
+following(Autore-140-caratteri) = [Autore0]
+following(Like0) = [Autore5, Autore-140-caratteri, Autore77, Autore0]
 )
 
 ***Test addPost()***
-caught: DuplicatePostException: Esiste già un post con id = 779783097
+caught: DuplicatePostException: Esiste già un post con id = 1003492899
 Ok, eccezione sollevata e gestita
 ***Test rmPost()***
 caught: NoSuchPostException: Il post non è presente nella rete sociale
@@ -50,47 +51,48 @@ Ok, eccezione sollevata e gestita
 caught: java.lang.NullPointerException
 Ok, eccezione sollevata e gestita
 ***Influencers di MicroBlog***
-[Autore5, Autore77]
+[Autore5, Autore77, Autore0]
 ***test di influencers() con parametro***
 Data la lista di post pList
 Set di utenti per cui #{followers di user)} > 5 = []
 ***test guessFollowers() con stessa lista***
 Autore-141-caratteri=[Autore77]
-Autore-140-caratteri=[Autore5]
-Like0=[Autore5, Autore-140-caratteri, Autore77]
+Autore-140-caratteri=[Autore0]
+Like0=[Autore5, Autore-140-caratteri, Autore77, Autore0]
 ***test guessFollowing() con stessa lista***
-Autore5=[Autore-140-caratteri, Like0]
+Autore5=[Like0]
 Autore-140-caratteri=[Like0]
 Autore77=[Autore-141-caratteri, Like0]
-Autore0=[]
+Autore0=[Autore-140-caratteri, Like0]
 ***test di containing()***
 words = [GNU, zzzzzzzz, fpu, clflush, @@]
 MicroBlog.containing(words) = 
 [
-(922797079, Autore77, "Linux ubuntu 5.4.0-...", Wed Jan 10 00:00:00 CET 2001, [Like0])
-(923946614, Autore-140-caratteri, "fpu vme de pse tsc ...", Sun Jan 12 10:12:00 CET 2020, [Like0])
+(236651790, Autore77, "Linux ubuntu 5.4.0-...", Wed Jan 10 00:00:00 CET 2001, [Like0])
+(262306402, Autore-140-caratteri, "fpu vme de pse tsc ...", Sun Jan 12 10:12:00 CET 2020, [Like0])
 ]
 ***Social moderato inizializzato***
 [
 badwords: [sse, Post, prova, fpu, Agenda, Windows, windows, agenda, GNU, gnu, Funzione, xi, Xi, Linux, penna, funzione, linux, Penna]
 (
 [
-	(779783097, Autore5, "[Bk!D]y;47mPgqq*va2...", Mon Jan 18 18:21:00 CET 2016, [Autore-140-caratteri, Like0])
-	(1221796247, Autore77, "z!Bqb$iS_$qzKdeZrX)...", Fri Jan 16 10:33:00 CET 2015, [Autore-141-caratteri, Like0])
-	(922797079, Autore77, "Linux ubuntu 5.4.0-...", Wed Jan 10 00:00:00 CET 2001, [Like0])
-	(538759319, Autore0, "Advanced Linux Soun...", Mon Jan 23 15:21:00 CET 2017, [])
-	(923946614, Autore-140-caratteri, "fpu vme de pse tsc ...", Sun Jan 12 10:12:00 CET 2020, [Like0])
+	(1003492899, Autore5, "[Bk!D]y;47mPgqq*va2...", Mon Jan 18 18:21:00 CET 2016, [Like0])
+	(1113091077, Autore77, "z!Bqb$iS_$qzKdeZrX)...", Fri Jan 16 10:33:00 CET 2015, [Autore-141-caratteri, Like0])
+	(236651790, Autore77, "Linux ubuntu 5.4.0-...", Wed Jan 10 00:00:00 CET 2001, [Like0])
+	(1263534049, Autore0, "Advanced Linux Soun...", Mon Jan 23 15:21:00 CET 2017, [Autore-140-caratteri, Like0])
+	(262306402, Autore-140-caratteri, "fpu vme de pse tsc ...", Sun Jan 12 10:12:00 CET 2020, [Like0])
 ]
 ,
-followers(Autore5) = [Autore-140-caratteri, Like0]
+followers(Autore5) = [Like0]
 followers(Autore-140-caratteri) = [Like0]
 followers(Autore77) = [Autore-141-caratteri, Like0]
+followers(Autore0) = [Autore-140-caratteri, Like0]
 ,
 following(Autore-141-caratteri) = [Autore77]
-following(Autore-140-caratteri) = [Autore5]
-following(Like0) = [Autore5, Autore-140-caratteri, Autore77]
+following(Autore-140-caratteri) = [Autore0]
+following(Like0) = [Autore5, Autore-140-caratteri, Autore77, Autore0]
 )
 
 ]
 I post segnalati sono:
-[923946614, 922797079, 538759319]
+[262306402, 236651790, 1263534049]
