@@ -4,4 +4,8 @@ class SelfLikeException extends Exception {
         super("Non è possibile mettere like al proprio post");
         // crea un istanza di Exception con argomento la stringa indicata
     }
+
+    SelfLikeException(String reason, Throwable parent_exc) {
+        super(reason, parent_exc);
+    }
 };
