@@ -5,8 +5,8 @@ import java.util.Set;
 
 public class Post {
     /*
-    @overview:  Post è un tipo di dato astratto modificabile rappresentato da una 
-                quintupla, di cui l'ultimo elemento è un insieme modificabile, quindi 
+    @overview:  Post è un tipo di dato astratto modificabile rappresentato da una
+                quintupla, di cui l'ultimo elemento è un insieme modificabile, quindi
                 globalmente è un tipo di dato modificabile.
                 Elemento tipico: (id, author, text, timestamp, likes)
                 dove likes = {like_1, ..., like_n}
@@ -25,22 +25,22 @@ public class Post {
     /*
     Funzione di astrazione
     AF(x) = (x.id, x.author, x.text, x.timestamp, x.likes)
-            
+
     Invariante di rappresentazione
-    IR(x) = x != null 
+    IR(x) = x != null
             && x.id != null
             && x.author != null
             && x.text != null
-            && x.timestamp != null 
+            && x.timestamp != null
             && x.likes != null
             && ∀ i.
                 0 <= i < x.likes.size()
                 && x.likes.get(i) != null
                 && !x.likes.get(i).equals(x.author)
             && x.text.length() <= 140
-            && ∀ i. 
+            && ∀ i.
                 0 <= i < x.likes.size()
-                && ∀ j. 
+                && ∀ j.
                     0 <= j < x.likes.size()
                     && (
                         (i != j && !x.likes.get(i).equals(x.likes.get(j)))
@@ -52,14 +52,14 @@ public class Post {
     /*
     @requires:  author != null
                 && text != null
-                && timestamp != null 
+                && timestamp != null
                 && text.length() <= 140
     @throws:    Se almeno uno dei parametri è null allora solleva NullPointerException.
                 Se text.length() > 140 allora solleva TextOverflowException.
     @modifies:  this
     @effects:   Crea un'istanza di Post con id >= 0 generato casualmente
                 e nessun like (Set vuoto), ovvero:
-        
+
                 (rng.nextInt(), author, text, timestamp, {})
     */
     public Post(String author, String text, Date timestamp) throws TextOverflowException, NullPointerException {
@@ -81,18 +81,18 @@ public class Post {
     identico al precedente, ma invece di generare un id lo passo come parametro:
     serve a creare intenzionalmente conflitti tra id e non dovrebbe essere usato
     in un'implementazione reale
-    
+
     @requires:  id != null
                 && author != null
                 && text != null
-                && timestamp != null 
+                && timestamp != null
                 && text.length() <= 140
     @throws:    Se almeno uno dei parametri è null allora solleva NullPointerException.
                 Se text.length() > 140 allora solleva TextOverflowException.
     @modifies:  this
     @effects:   Crea un'istanza di Post con id >= 0 generato casualmente
                 e nessun like (Set vuoto), ovvero:
-        
+
                 (rng.nextInt(), author, text, timestamp, {})
     */
     public Post(Integer id, String author, String text, Date timestamp)
@@ -163,7 +163,7 @@ public class Post {
             throw new SelfLikeException();
         this.likes.add(follower); // aggiungo l'utente al Set di like
     }
-    
+
     /*
     @requires:  true
     @effects:   ritorna la quintupla (id, author, text, timestamp, likes)
@@ -171,15 +171,20 @@ public class Post {
     */
     public String toString() {
         // Se il testo ha lunghezza > 20 allora inserisco solo la sottostringa formata
-        // dai primi venti caratteri per evitaredi produrre un output meno leggibile
+        // dai primi venti caratteri per evitare di produrre un output meno leggibile
         String cut_text;
         if (this.text.length() > 20) {
             cut_text = this.text.substring(0, 19) + "...";
         } else {
             cut_text = this.text;
         }
-        String s = "(" + this.id + ", " + this.author + ", \"" + cut_text + "\", " + this.timestamp.toString() + ", "
-                + this.likes + ")\n";
+        String s =  "("
+                    + this.id + ", "
+                    + this.author + ", \""
+                    + cut_text + "\", "
+                    + this.timestamp.toString()
+                    + ", " + this.likes.toString()
+                    + ")\n";
         return s;
     }
 

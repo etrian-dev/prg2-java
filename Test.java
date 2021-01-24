@@ -153,7 +153,7 @@ class Test {
         System.out.println("***test di influencers() con parametro***");
         // testo anche il metodo guessFollowing
         Map<String, Set<String>> followersOnList = MicroBlog.guessFollowing(pList);
-        System.out.println("Data la lista di post pList\nSet di utenti per cui #{followers di user)} > " + treshold
+        System.out.println("Data la lista di post pList\nSet di utenti per cui #{followers di user} > " + treshold
                 + " = " + SocialNetwork.influencers(followersOnList, treshold));
 
         /* stampo la mappa di followers e following indotte dalla lista di post */
