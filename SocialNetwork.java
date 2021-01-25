@@ -290,60 +290,33 @@ public class SocialNetwork {
     }
 
     /*
-    Modifica il post passato come parametro aggiungendo il like, anch'esso passato
-    come parametro, modificando di conseguenza le mappe
+    Modifica il post con id passato come parametro aggiungendo il like, 
+    anch'esso passato come parametro, modificando di conseguenza le mappe
     
-    @requires:  p != null && liker != null
-    @throws:    Se p == null o liker == null solleva NullPointerException
-                Se (∀i. 0 <= i < this.posts.size() && !(this.posts.get(i).equals(p)))
+    @requires:  pid != null && liker != null
+    @throws:    Se pid == null o liker == null solleva NullPointerException
+                Se 
+                (∀i. 
+                    0 <= i < this.posts.size() 
+                    && !(this.posts.get(i).getId().equals(pid))
+                )
                 solleva NoSuchPostException
                 Se 
                 (∃i. 
                     0 <= i < this.posts.size() 
-                    && this.posts.get(k).equals(p) 
+                    && this.posts.get(k).getId().equals(pid) 
                     && this.posts.get(k).getAuthor().equals(liker)
                 )
                 allora solleva SelfLikeException
     @effects:   Se 
                 (∃i. 
                     0 <= i < this.posts.size() 
-                    && this.posts.get(k).equals(p) 
+                    && this.posts.get(k).getId().equals(pid) 
                     && !(this.posts.get(k).getAuthor().equals(liker))
                 )
                 allora esegue this.posts.get(k).addLike() ed aggiorna 
                 this.followers e this.following di conseguenza
     */
-    public void likePost(Post p, String liker) throws SelfLikeException, NoSuchPostException, NullPointerException {
-        if (p == null || liker == null) {
-            throw new NullPointerException();
-        }
-        // cerca post nella lista
-        boolean found = false;
-        for (Post ps : this.posts) {
-            // cerca il post nella lista
-            if (ps.equals(p)) {
-                try {
-                    // tenta di aggiungere il like (potrebbe sollevare eccezioni)
-                    ps.addLike(liker);
-                    // aggiorno le mappe
-                    updateFollowers(ps, this.followers);
-                    updateFollowing(ps, this.following);
-                } catch (SelfLikeException reject_like) {
-                    // gestisco la SelfLikeException dettagliandola e rilanciandola
-                    throw new SelfLikeException(liker + "Ha provato a mettere like al proprio post", reject_like);
-                } finally {
-                    // in ogni caso se trovo il post setto la flag
-                    found = true;
-                }
-            }
-        }
-        // post non trovato: non posso modificarlo
-        if (!found) {
-            throw new NoSuchPostException();
-        }
-    }
-
-    // come la precedente, ma prende un id
     public void likePost(Integer pid, String liker)
             throws SelfLikeException, NoSuchPostException, NullPointerException {
         if (pid == null || liker == null) {
@@ -362,7 +335,7 @@ public class SocialNetwork {
                     updateFollowing(ps, this.following);
                 } catch (SelfLikeException reject_like) {
                     // gestisco la SelfLikeException dettagliandola e rilanciandola
-                    throw new SelfLikeException(liker + "Ha provato a mettere like al proprio post", reject_like);
+                    throw new SelfLikeException(liker + " Ha provato a mettere like al proprio post", reject_like);
                 } finally {
                     // in ogni caso se trovo il post setto la flag
                     found = true;
@@ -373,6 +346,15 @@ public class SocialNetwork {
         if (!found) {
             throw new NoSuchPostException();
         }
+    }
+
+    // semantica analoga alla precendente, ma prende un post come argomento
+    public void likePost(Post p, String liker) throws SelfLikeException, NoSuchPostException, NullPointerException {
+        if (p == null || liker == null) {
+            throw new NullPointerException();
+        }
+        // chiama semplicemente la versione che usa l'id del post
+        this.likePost(p.getId(), liker);
     }
 
     /*

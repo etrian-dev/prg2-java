@@ -24,6 +24,9 @@ public class LiveTest {
 				System.out.println("Cannot generate the post: caught exception\n\t" + e);
 			}
 			ln = read_in.nextLine();
+
+			// prints the modified social network
+			System.out.println("Modified Social network:\n" + net.toString());
 		} while (!ln.equals("fine"));
 		// throws away the line containing "fine"
 		read_in.nextLine();
@@ -43,10 +46,14 @@ public class LiveTest {
 			// try to add like to the post
 			try {
 				net.likePost(pid, dummy);
+
 			} catch (Exception e) {
 				System.out.println("Cannot add like the post with pid " + pid + ": caught exception\n\t" + e);
 			}
 			ln = read_in.nextLine();
+
+			// prints the modified social network
+			System.out.println("Modified Social network:\n" + net.toString());
 		} while (!ln.equals("fine"));
 
 		read_in.close();
