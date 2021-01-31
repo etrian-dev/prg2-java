@@ -10,29 +10,34 @@ public class LiveTest {
 		// add posts until the user types "fine"
 		boolean cont = true;
 		do {
-			System.out.print("\nAdd post\t[0]\nAdd like\t[1]\nTerminate\t[2]\n>> ");
+			System.out.print("Terminate\t[-1]" + "\nAdd post\t[0]" + "\nAdd like\t[1]" + "\nInfluencers\t[2]"
+					+ "\nMentioned\t[3]" + "\n>> ");
 			String ln = read_in.nextLine();
-			if(ln.equals("0")) {
-				new_post(net, read_in);
-			}
-			else if(ln.equals("1")) {
-				new_like(net, read_in);
-			}
-			else {
-				System.out.println("Quitting");
-				cont = false;
+			switch (Integer.parseInt(ln)) {
+				case -1:
+					System.out.println("Quitting");
+					cont = false;
+					break;
+				case 0:
+					new_post(net, read_in);
+					break;
+				case 1:
+					new_like(net, read_in);
+					break;
+				case 2:
+					display_influencers(net);
+					break;
+				case 3:
+					display_mentioned(net);
+					break;
 			}
 
 			// prints the modified social network
-			System.out.println("Modified Social network:\n" + net.toString());
-		} while(cont);
+			System.out.println("***Current status***\n" + net.toString() + "********************\n");
+		} while (cont);
 
-		read_in.close();
-		
 		// print the social network
-		System.out.println("Social network:\n" + net.toString());
-		System.out.println(
-				"Influencers: " + net.influencers().toString() + "\nMentioned users: " + net.getMentionedUsers());
+
 	}
 	private static void new_post(SocialNetwork net, Scanner s) {
 		System.out.println("Insert author: ");
@@ -61,5 +66,12 @@ public class LiveTest {
 		} catch (Exception e) {
 			System.out.println("Cannot add like the post with pid " + pid + ": caught exception\n\t" + e);
 		}
+	}
+
+	private static void display_influencers(SocialNetwork net) {
+		System.out.println("Influencers:\n" + net.influencers());
+	}
+	private static void display_mentioned(SocialNetwork net) {
+		System.out.println("Mentioned users:\n" + net.getMentionedUsers());
 	}
 }

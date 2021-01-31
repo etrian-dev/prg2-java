@@ -139,7 +139,11 @@ public class SocialNetwork {
             followAuth.get(post.getAuthor()).addAll(post.getLikes());
         } else {
             // l'autore non era presente nella mappa, allora devo inserire la coppia chiave → valore
-            followAuth.put(post.getAuthor(), post.getLikes());
+            Set<String> likes = new HashSet<String>();
+            for (String like : post.getLikes()) {
+                likes.add(new String(like));
+            }
+            followAuth.put(post.getAuthor(), likes);
         }
     }
 
@@ -577,7 +581,7 @@ public class SocialNetwork {
     @effects:   [posts.get(i) : 0 <= i < posts.size()]
     */
     public List<Post> getPosts() {
-        return new ArrayList<Post>(this.posts);
+        return List.copyOf(this.posts);
     }
 
     /*  sovrascrivo il metodo equals per confrontare istanze di SocialNetwork
