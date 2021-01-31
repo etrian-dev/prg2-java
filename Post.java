@@ -142,7 +142,7 @@ public class Post {
                 (le stringhe non sono mutabili)
     */
     public Set<String> getLikes() {
-        return new HashSet<String>(this.likes);
+        return Set.copyOf(this.likes);
     }
 
     /* metodi modificatori */
