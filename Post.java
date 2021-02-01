@@ -136,10 +136,7 @@ public class Post {
 
     /*
     @requires:  true
-    @effects:   ritorna una copia (shallow) del set likes di this
-                Se anche fosse modificato il set ritornato
-                non avrei effetti su quello contenuto in this
-                (le stringhe non sono mutabili)
+    @effects:   ritorna una copia del set likes di this (non modificabile)
     */
     public Set<String> getLikes() {
         return Set.copyOf(this.likes);

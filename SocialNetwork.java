@@ -575,7 +575,7 @@ public class SocialNetwork {
     }
 
     /*
-    Ritorna una copia (shallow) della lista di post
+    Ritorna una copia della lista di post (non modificabile)
 
     @requires:  true
     @effects:   [posts.get(i) : 0 <= i < posts.size()]
