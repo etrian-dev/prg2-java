@@ -6,10 +6,11 @@ import java.util.Scanner;
 import java.util.Set;
 
 class ModeratedSocialNetwork extends SocialNetwork {
-    /**
+    /*
     @overview:  ModeratedSocialNetwork è un SocialNetwork e possiede
                 un insieme di post segnalati, quindi può essere vista come una coppia
-                con elemento tipico: (SocialNetwork, reported) dove reported = {id_1, ..., id_n}
+                con elemento tipico: 
+                (SocialNetwork, reported) dove reported = {id_1, ..., id_n}
     */
 
     // il Set di id dei post offensivi
